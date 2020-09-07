@@ -6,7 +6,7 @@ class PathfinderVisualiser extends Component {
   render() {
     return (
       <div>
-        <h1>Pathfinder Project</h1>
+        <h1 style={{ color: "blue", fontSize: 150 }}>Mimi FIRM</h1>
       </div>
     );
   }
