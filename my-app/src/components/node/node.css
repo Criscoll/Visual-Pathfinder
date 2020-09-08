@@ -1,6 +1,22 @@
-.node {
+.normal-node {
   width: 40px;
   height: 40px;
   outline: 1px solid grey;
+  display: inline-block;
+}
+
+.start-node {
+  width: 40px;
+  height: 40px;
+  outline: 1px solid grey;
+  background-color: green;
+  display: inline-block;
+}
+
+.end_node {
+  width: 40px;
+  height: 40px;
+  outline: 1px solid grey;
+  background-color: red;
   display: inline-block;
 }

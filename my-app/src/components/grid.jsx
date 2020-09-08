@@ -15,7 +15,7 @@ class Grid extends Component {
           return (
             <div key={rowIndex}>
               {row.map((node, colIndex) => {
-                return <Node key={colIndex}></Node>;
+                return <Node key={colIndex} nodeType={node.nodeType}></Node>;
               })}
             </div>
           );
@@ -29,9 +29,10 @@ class Grid extends Component {
     for (let row = 0; row < 15; row++) {
       let currentRow = [];
       for (let col = 0; col < 30; col++) {
-        const currentNode = {
-          row,
-          col,
+        let currentNode = {
+          row: row,
+          col: col,
+          nodeType: "normal-node",
         };
         currentRow.push(currentNode);
       }
