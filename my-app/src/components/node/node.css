@@ -1,13 +1,6 @@
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(30, auto);
-  padding: 10px;
-}
-
-.grid-item {
-  background-color: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(0, 0, 0, 0.8);
-  padding: 20px;
-  font-size: 30px;
-  text-align: center;
+.node {
+  width: 40px;
+  height: 40px;
+  outline: 1px solid grey;
+  display: inline-block;
 }

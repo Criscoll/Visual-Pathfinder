@@ -3,13 +3,11 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import * as serviceWorker from "./serviceWorker";
 
-import PathfinderVisualiser from "./components/PathfinderVisualiser";
-import Node from "./components/node/node";
+import Grid from "./components/Grid";
 
 ReactDOM.render(
   <React.StrictMode>
-    <PathfinderVisualiser />
-    <Node />
+    <Grid />
   </React.StrictMode>,
   document.getElementById("root")
 );
