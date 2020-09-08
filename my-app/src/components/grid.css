@@ -1,6 +1,5 @@
 .grid {
-  margin: auto;
-  width: 50%;
+  margin-top: 5%;
+  padding-left: 20%;
   border: 3px solid green;
-  padding: 10px;
 }

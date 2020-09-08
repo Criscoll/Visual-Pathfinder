@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Node from "./node/node";
+import "./grid.css";
 
 class Grid extends Component {
   state = {
@@ -8,14 +9,13 @@ class Grid extends Component {
 
   render() {
     const { nodes } = this.state;
-    console.log(nodes);
     return (
       <div className="grid">
         {nodes.map((row, rowIndex) => {
           return (
             <div key={rowIndex}>
               {row.map((node, colIndex) => {
-                return <Node keyName={node}></Node>;
+                return <Node key={colIndex}></Node>;
               })}
             </div>
           );
@@ -28,10 +28,10 @@ class Grid extends Component {
     let nodes = [];
     for (let row = 0; row < 15; row++) {
       let currentRow = [];
-      for (let col = 0; col < 15; col++) {
+      for (let col = 0; col < 30; col++) {
         const currentNode = {
-          col,
           row,
+          col,
         };
         currentRow.push(currentNode);
       }

@@ -4,7 +4,7 @@ import "./node.css";
 class Node extends Component {
   state = {};
   render() {
-    return <div className="node" key={this.props.keyName}></div>;
+    return <div className="node"></div>;
   }
 }
 
