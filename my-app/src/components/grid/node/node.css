@@ -13,10 +13,18 @@
   display: inline-block;
 }
 
-.end_node {
+.end-node {
   width: 40px;
   height: 40px;
   outline: 1px solid grey;
   background-color: red;
+  display: inline-block;
+}
+
+.wall-node {
+  width: 40px;
+  height: 40px;
+  outline: 1px solid grey;
+  background-color: black;
   display: inline-block;
 }

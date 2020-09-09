@@ -1,0 +1,13 @@
+.node-type {
+  font-weight: bold;
+  list-style-type: none;
+  margin-left: 20%;
+  display: inline-block;
+}
+
+.node-selection {
+  margin: 0% 35%;
+  position: relative;
+  right: 700px;
+  top: 40px;
+}

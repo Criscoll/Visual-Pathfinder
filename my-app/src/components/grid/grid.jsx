@@ -15,7 +15,13 @@ class Grid extends Component {
           return (
             <div key={rowIndex}>
               {row.map((node, colIndex) => {
-                return <Node key={colIndex} nodeType={node.nodeType}></Node>;
+                return (
+                  <Node
+                    key={colIndex}
+                    nodeType={node.nodeType}
+                    selectionMode={this.props.selectionMode}
+                  ></Node>
+                );
               })}
             </div>
           );

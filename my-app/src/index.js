@@ -3,13 +3,11 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import * as serviceWorker from "./serviceWorker";
 
-import Grid from "./components/grid";
-import Header from "./components/header";
+import MainWrapper from "./components/app";
 
 ReactDOM.render(
   <React.StrictMode>
-    <Header />
-    <Grid />
+    <MainWrapper />
   </React.StrictMode>,
   document.getElementById("root")
 );
