@@ -76,6 +76,7 @@ class Header extends Component {
           >
             Wall
           </button>
+          <button>Clear Grid</button>
         </ul>
       </div>
     );

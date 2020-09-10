@@ -7,22 +7,18 @@ class Node extends Component {
     this.setStart = this.setStart.bind(this);
     this.setEnd = this.setEnd.bind(this);
     this.setWall = this.setWall.bind(this);
+
+    this.state = {
+      nodeType: "",
+    };
   }
 
-  state = {
-    nodeType: "",
-  };
-
   render() {
-    let selectionFunction = this.setWall;
-    if (this.props.selectionMode === "start") {
-      selectionFunction = this.setStart;
-    } else if (this.props.selectionMode === "end") {
-      selectionFunction = this.setEnd;
-    }
-
     return (
-      <div className={this.state.nodeType} onClick={selectionFunction}></div>
+      <div
+        className={this.state.nodeType}
+        onClick={this.getSelectionFunction()}
+      ></div>
     );
   }
 
@@ -31,9 +27,24 @@ class Node extends Component {
     this.setState({ nodeType });
   }
 
+  getSelectionFunction() {
+    let selectionFunction = this.setWall;
+    if (this.props.selectionMode === "start") {
+      selectionFunction = this.setStart;
+    } else if (this.props.selectionMode === "end") {
+      selectionFunction = this.setEnd;
+    }
+
+    return selectionFunction;
+  }
+
   setStart() {
-    let nodeType = "start-node";
-    this.setState({ nodeType });
+    if (this.props.startNodeSet === false) {
+      console.log("HEREEE");
+      this.props.handleStartNodeSet();
+      let nodeType = "start-node";
+      this.setState({ nodeType });
+    }
   }
 
   setEnd() {
