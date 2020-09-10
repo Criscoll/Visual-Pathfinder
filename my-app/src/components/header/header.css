@@ -1,13 +1,19 @@
-.node-type {
+.button-container {
   font-weight: bold;
   list-style-type: none;
-  margin-left: 20%;
-  display: inline-block;
+  margin-left: 30px;
+  position: relative;
+  top: 70px;
+  right: 30px;
 }
 
-.node-selection {
-  margin: 0% 35%;
-  position: relative;
-  right: 700px;
-  top: 40px;
+.button-default {
+  display: inline;
+  margin: 5px;
+}
+
+.button-hovered {
+  display: inline;
+  margin: 5px;
+  border: 3px solid red;
 }
