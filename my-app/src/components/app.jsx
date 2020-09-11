@@ -9,12 +9,13 @@ class MainWrapper extends Component {
       selectionMode: "",
       resetGridCalled: false,
     };
+
     this.handleStartClick = this.handleStartClick.bind(this);
     this.handleEndClick = this.handleEndClick.bind(this);
     this.handleWallClick = this.handleWallClick.bind(this);
     this.handleResetClick = this.handleResetClick.bind(this);
 
-    this.handleResetState = this.handleResetState.bind(this);
+    this.resetGrid = React.createRef(); // used to handle reseting the grid. Need to access the method from here
   }
 
   handleStartClick() {
@@ -30,15 +31,10 @@ class MainWrapper extends Component {
   }
 
   handleResetClick() {
-    this.setState({ resetGridCalled: true });
-  }
-
-  handleResetState() {
-    this.setState({ resetGridCalled: !this.state.resetGridCalled });
+    this.resetGrid.current.resetGrid();
   }
 
   render() {
-    console.log(this.state.selectionMode);
     return (
       <div>
         <Header
@@ -50,7 +46,7 @@ class MainWrapper extends Component {
         <Grid
           selectionMode={this.state.selectionMode}
           resetGrid={this.state.resetGridCalled}
-          changeResetState={this.handleResetState}
+          ref={this.resetGrid}
         />
       </div>
     );

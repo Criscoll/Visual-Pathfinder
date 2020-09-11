@@ -79,7 +79,7 @@ class Grid extends Component {
 
   render() {
     let { nodes } = this.state;
-
+    console.log("GRID RENDERED");
     return (
       <div className="grid">
         {nodes.map((row, rowIndex) => {
@@ -118,6 +118,22 @@ class Grid extends Component {
     }
 
     return [-1, -1];
+  }
+
+  resetGrid() {
+    let nodes = this.state.nodes;
+
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = 0; j < nodes[i].length; j++) {
+        nodes[i][j].nodeType = "normal-node";
+      }
+    }
+
+    this.setState({
+      nodes: nodes,
+      startNodePreviouslySet: false,
+      endNodePreviouslySet: false,
+    });
   }
 }
 
