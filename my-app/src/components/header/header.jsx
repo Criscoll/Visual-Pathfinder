@@ -9,42 +9,54 @@ class Header extends Component {
       isStartHovered: false,
       isEndHovered: false,
       isWallHovered: false,
+      isResetHovered: false,
       buttonPressed: "",
     };
-    this.handleEventStartHover = this.handleEventStartHover.bind(this);
-    this.handleEventEndHover = this.handleEventEndHover.bind(this);
-    this.handleEventWallHover = this.handleEventWallHover.bind(this);
+    this.handleStartHover = this.handleStartHover.bind(this);
+    this.handleEndHover = this.handleEndHover.bind(this);
+    this.handleWallHover = this.handleWallHover.bind(this);
+    this.handleResetHover = this.handleResetHover.bind(this);
 
-    this.handleEventStartClick = this.handleEventStartClick.bind(this);
-    this.handleEventEndClick = this.handleEventEndClick.bind(this);
-    this.handleEventWallClick = this.handleEventWallClick.bind(this);
+    this.handleStartClick = this.handleStartClick.bind(this);
+    this.handleEndClick = this.handleEndClick.bind(this);
+    this.handleWallClick = this.handleWallClick.bind(this);
+    this.handleResetClick = this.handleResetClick.bind(this);
   }
 
-  handleEventStartHover() {
+  handleStartHover() {
     this.setState({ isStartHovered: !this.state.isStartHovered });
   }
 
-  handleEventEndHover() {
+  handleEndHover() {
     this.setState({ isEndHovered: !this.state.isEndHovered });
   }
 
-  handleEventWallHover() {
+  handleWallHover() {
     this.setState({ isWallHovered: !this.state.isWallHovered });
   }
 
-  handleEventStartClick() {
+  handleResetHover() {
+    this.setState({ isResetHovered: !this.state.isResetHovered });
+  }
+
+  handleStartClick() {
     this.props.startClick();
     this.setState({ buttonPressed: "start" });
   }
 
-  handleEventEndClick() {
+  handleEndClick() {
     this.props.endClick();
     this.setState({ buttonPressed: "end" });
   }
 
-  handleEventWallClick() {
+  handleWallClick() {
     this.props.wallClick();
     this.setState({ buttonPressed: "wall" });
+  }
+
+  handleResetClick() {
+    this.props.resetClick();
+    this.setState({ buttonPressed: "reset" });
   }
 
   render() {
@@ -54,29 +66,36 @@ class Header extends Component {
         <ul className="button-container">
           <button
             className={this.getBtnClass("start")}
-            onClick={this.handleEventStartClick}
-            onMouseEnter={this.handleEventStartHover}
-            onMouseLeave={this.handleEventStartHover}
+            onClick={this.handleStartClick}
+            onMouseEnter={this.handleStartHover}
+            onMouseLeave={this.handleStartHover}
           >
             Start
           </button>
           <button
             className={this.getBtnClass("end")}
-            onClick={this.handleEventEndClick}
-            onMouseEnter={this.handleEventEndHover}
-            onMouseLeave={this.handleEventEndHover}
+            onClick={this.handleEndClick}
+            onMouseEnter={this.handleEndHover}
+            onMouseLeave={this.handleEndHover}
           >
             End
           </button>
           <button
             className={this.getBtnClass("wall")}
-            onClick={this.handleEventWallClick}
-            onMouseEnter={this.handleEventWallHover}
-            onMouseLeave={this.handleEventWallHover}
+            onClick={this.handleWallClick}
+            onMouseEnter={this.handleWallHover}
+            onMouseLeave={this.handleWallHover}
           >
             Wall
           </button>
-          <button>Clear Grid</button>
+          <button
+            className={this.getBtnClass("reset")}
+            onClick={this.handleResetClick}
+            onMouseEnter={this.handleResetHover}
+            onMouseLeave={this.handleResetHover}
+          >
+            Clear Grid
+          </button>
         </ul>
       </div>
     );
@@ -99,12 +118,16 @@ class Header extends Component {
       if (this.state.buttonPressed === "end") {
         btnClass = "button-clicked";
       }
-    } else {
+    } else if (button === "wall") {
       btnClass = this.state.isWallHovered ? "button-hovered" : "button-default";
 
       if (this.state.buttonPressed === "wall") {
         btnClass = "button-clicked";
       }
+    } else if (button === "reset") {
+      btnClass = this.state.isResetHovered
+        ? "button-hovered"
+        : "button-default";
     }
 
     return btnClass;

@@ -32,8 +32,11 @@ class Grid extends Component {
   }
 
   handleNodeClick(newRow, newColumn) {
-    let nodes = this.state.nodes;
+    if (this.props.selectionMode === "") {
+      return;
+    }
 
+    let nodes = this.state.nodes;
     let nodeSetMode = "wall-node";
     let nodePreviouslySet = false;
 
@@ -75,7 +78,7 @@ class Grid extends Component {
   }
 
   render() {
-    const { nodes } = this.state;
+    let { nodes } = this.state;
 
     return (
       <div className="grid">
@@ -87,7 +90,6 @@ class Grid extends Component {
                   <Node
                     key={colIndex}
                     node={node}
-                    selectionMode={this.props.selectionMode}
                     handleNodeClick={this.handleNodeClick}
                   ></Node>
                 );
