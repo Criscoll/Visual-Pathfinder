@@ -26,7 +26,6 @@ class MainWrapper extends Component {
   }
 
   render() {
-    console.log("APP RENDERED");
     return (
       <div>
         <Header
