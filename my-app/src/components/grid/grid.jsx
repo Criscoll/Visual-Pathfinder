@@ -6,6 +6,8 @@ class Grid extends Component {
   constructor(props) {
     super(props);
     this.handleNodeClick = this.handleNodeClick.bind(this);
+    this.maxRow = 15;
+    this.maxCol = 30;
   }
 
   state = {
@@ -16,14 +18,20 @@ class Grid extends Component {
 
   componentDidMount() {
     let nodes = [];
-    for (let row = 0; row < 15; row++) {
+    for (let row = 0; row < this.maxRow; row++) {
       let currentRow = [];
-      for (let col = 0; col < 30; col++) {
+      for (let col = 0; col < this.maxCol; col++) {
         let currentNode = {
           row: row,
           col: col,
           nodeType: "normal-node",
+          adjacent: [],
         };
+        this.setAdjacentNodes(
+          currentNode.row,
+          currentNode.col,
+          currentNode.adjacent
+        );
         currentRow.push(currentNode);
       }
       nodes.push(currentRow);
@@ -32,6 +40,11 @@ class Grid extends Component {
   }
 
   handleNodeClick(newRow, newColumn) {
+    console.log(
+      newRow,
+      newColumn,
+      this.state.nodes[newRow][newColumn].adjacent
+    );
     if (this.props.selectionMode === "") {
       return;
     }
@@ -50,8 +63,8 @@ class Grid extends Component {
 
     if (nodeSetMode !== "wall-node") {
       let rowColIndices = [-1, -1];
-      let rowIndex = -1;
-      let colIndex = -1;
+      let oldRow = -1;
+      let oldCol = -1;
       if (nodePreviouslySet === false) {
         nodes[newRow][newColumn].nodeType = nodeSetMode;
         if (nodeSetMode === "start-node") {
@@ -61,12 +74,12 @@ class Grid extends Component {
         }
       } else {
         rowColIndices = this.findPrevNode(nodeSetMode);
-        rowIndex = rowColIndices[0];
-        colIndex = rowColIndices[1];
+        oldRow = rowColIndices[0];
+        oldCol = rowColIndices[1];
       }
 
-      if (rowIndex !== -1 && colIndex !== -1) {
-        nodes[rowIndex][colIndex].nodeType = "normal-node";
+      if (oldRow !== -1 && oldCol !== -1) {
+        nodes[oldRow][oldCol].nodeType = "normal-node";
         nodes[newRow][newColumn].nodeType = nodeSetMode;
 
         this.setState({ nodes });
@@ -79,7 +92,6 @@ class Grid extends Component {
 
   render() {
     let { nodes } = this.state;
-    console.log("GRID RENDERED");
     return (
       <div className="grid">
         {nodes.map((row, rowIndex) => {
@@ -134,6 +146,24 @@ class Grid extends Component {
       startNodePreviouslySet: false,
       endNodePreviouslySet: false,
     });
+  }
+
+  setAdjacentNodes(row, col, arr) {
+    if (row !== 0) {
+      arr.push({ row: row - 1, col: col });
+    }
+
+    if (row !== this.maxRow - 1) {
+      arr.push({ row: row + 1, col: col });
+    }
+
+    if (col !== 0) {
+      arr.push({ row: row, col: col - 1 });
+    }
+
+    if (col !== this.maxCol - 1) {
+      arr.push({ row: row, col: col + 1 });
+    }
   }
 }
 

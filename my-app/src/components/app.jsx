@@ -32,6 +32,7 @@ class MainWrapper extends Component {
 
   handleResetClick() {
     this.resetGrid.current.resetGrid();
+    this.setState({ selectionMode: "" });
   }
 
   render() {
