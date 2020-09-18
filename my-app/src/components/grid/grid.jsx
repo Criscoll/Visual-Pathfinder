@@ -12,6 +12,8 @@ class Grid extends Component {
 
   state = {
     nodes: [],
+    startNode: { row: 0, col: 0 },
+    endNode: { row: 0, col: 0 },
     startNodePreviouslySet: false,
     endNodePreviouslySet: false,
   };
@@ -21,20 +23,17 @@ class Grid extends Component {
     for (let row = 0; row < this.maxRow; row++) {
       let currentRow = [];
       for (let col = 0; col < this.maxCol; col++) {
-        let currentNode = {
-          row: row,
-          col: col,
-          nodeType: "normal-node",
-          adjacent: [],
-        };
-        this.setAdjacentNodes(
-          currentNode.row,
-          currentNode.col,
-          currentNode.adjacent
-        );
+        let currentNode = this.createNode(row, col);
         currentRow.push(currentNode);
       }
       nodes.push(currentRow);
+    }
+
+    // !!! Maybe set this just before the algorithm runs in case you set walls etc
+    for (let row = 0; row < this.maxRow; row++) {
+      for (let col = 0; col < this.maxCol; col++) {
+        this.setAdjacentNodes(nodes[row][col], nodes);
+      }
     }
     this.setState({ nodes });
   }
@@ -43,8 +42,9 @@ class Grid extends Component {
     console.log(
       newRow,
       newColumn,
-      this.state.nodes[newRow][newColumn].adjacent
+      this.state.nodes[newRow][newColumn].adjacentNodes
     );
+
     if (this.props.selectionMode === "") {
       return;
     }
@@ -82,7 +82,17 @@ class Grid extends Component {
         nodes[oldRow][oldCol].nodeType = "normal-node";
         nodes[newRow][newColumn].nodeType = nodeSetMode;
 
-        this.setState({ nodes });
+        if (nodeSetMode === "start-node") {
+          this.setState({
+            nodes: nodes,
+            startNode: { row: newRow, col: newColumn },
+          });
+        } else {
+          this.setState({
+            nodes: nodes,
+            endNode: { row: newRow, col: newColumn },
+          });
+        }
       }
     } else {
       nodes[newRow][newColumn].nodeType = "wall-node";
@@ -148,23 +158,40 @@ class Grid extends Component {
     });
   }
 
-  setAdjacentNodes(row, col, arr) {
+  setAdjacentNodes(node, nodes) {
+    let row = node.row;
+    let col = node.col;
+
     if (row !== 0) {
-      arr.push({ row: row - 1, col: col });
+      node.adjacentNodes.push(nodes[row - 1][col]);
     }
 
     if (row !== this.maxRow - 1) {
-      arr.push({ row: row + 1, col: col });
+      node.adjacentNodes.push(nodes[row + 1][col]);
     }
 
     if (col !== 0) {
-      arr.push({ row: row, col: col - 1 });
+      node.adjacentNodes.push(nodes[row][col - 1]);
     }
 
     if (col !== this.maxCol - 1) {
-      arr.push({ row: row, col: col + 1 });
+      node.adjacentNodes.push(nodes[row][col + 1]);
     }
   }
+
+  createNode(row, col) {
+    return {
+      row: row,
+      col: col,
+      nodeType: "normal-node",
+      adjacentNodes: [],
+      isVisited: false,
+      dist: Infinity,
+      prev: {},
+    };
+  }
+
+  // ================= PATHFINDING ALGORITHMS =====================
 }
 
 export default Grid;
