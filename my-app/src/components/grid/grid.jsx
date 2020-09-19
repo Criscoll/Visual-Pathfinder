@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Node from "./node/node";
 import "./grid.css";
+import dijkstras from "../../Algorithms/dijkstras";
 
 class Grid extends Component {
   constructor(props) {
@@ -12,8 +13,8 @@ class Grid extends Component {
 
   state = {
     nodes: [],
-    startNode: { row: 0, col: 0 },
-    endNode: { row: 0, col: 0 },
+    startNode: {},
+    endNode: {},
     startNodePreviouslySet: false,
     endNodePreviouslySet: false,
   };
@@ -68,9 +69,17 @@ class Grid extends Component {
       if (nodePreviouslySet === false) {
         nodes[newRow][newColumn].nodeType = nodeSetMode;
         if (nodeSetMode === "start-node") {
-          this.setState({ nodes: nodes, startNodePreviouslySet: true });
+          this.setState({
+            nodes: nodes,
+            startNode: nodes[newRow][newColumn],
+            startNodePreviouslySet: true,
+          });
         } else if (nodeSetMode === "end-node") {
-          this.setState({ nodes: nodes, endNodePreviouslySet: true });
+          this.setState({
+            nodes: nodes,
+            endNode: nodes[newRow][newColumn],
+            endNodePreviouslySet: true,
+          });
         }
       } else {
         rowColIndices = this.findPrevNode(nodeSetMode);
@@ -85,12 +94,12 @@ class Grid extends Component {
         if (nodeSetMode === "start-node") {
           this.setState({
             nodes: nodes,
-            startNode: { row: newRow, col: newColumn },
+            startNode: nodes[newRow][newColumn],
           });
         } else {
           this.setState({
             nodes: nodes,
-            endNode: { row: newRow, col: newColumn },
+            endNode: nodes[newRow][newColumn],
           });
         }
       }
@@ -100,6 +109,7 @@ class Grid extends Component {
     }
   }
 
+  // Displays the nods on the grid with their state values
   render() {
     let { nodes } = this.state;
     return (
@@ -192,6 +202,21 @@ class Grid extends Component {
   }
 
   // ================= PATHFINDING ALGORITHMS =====================
+  visualiseDijkstras() {
+    let nodes = [...this.state.nodes];
+    let startNode = nodes[this.state.startNode.row][this.state.startNode.col];
+    let endNode = nodes[this.state.endNode.row][this.state.endNode.col];
+
+    let visitedNodes = dijkstras(
+      nodes,
+      startNode,
+      endNode,
+      this.maxRow,
+      this.maxCol
+    );
+
+    console.log(visitedNodes);
+  }
 }
 
 export default Grid;

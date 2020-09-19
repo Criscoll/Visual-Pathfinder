@@ -14,8 +14,9 @@ class MainWrapper extends Component {
     this.handleEndClick = this.handleEndClick.bind(this);
     this.handleWallClick = this.handleWallClick.bind(this);
     this.handleResetClick = this.handleResetClick.bind(this);
+    this.handleGoClick = this.handleGoClick.bind(this);
 
-    this.resetGrid = React.createRef(); // used to handle reseting the grid. Need to access the method from here
+    this.gridRef = React.createRef(); // used to handle reseting the grid. Need to access the method from here
   }
 
   handleStartClick() {
@@ -31,8 +32,12 @@ class MainWrapper extends Component {
   }
 
   handleResetClick() {
-    this.resetGrid.current.resetGrid();
+    this.gridRef.current.resetGrid();
     this.setState({ selectionMode: "" });
+  }
+
+  handleGoClick() {
+    this.gridRef.current.visualiseDijkstras();
   }
 
   render() {
@@ -43,11 +48,12 @@ class MainWrapper extends Component {
           endClick={this.handleEndClick}
           wallClick={this.handleWallClick}
           resetClick={this.handleResetClick}
+          goClick={this.handleGoClick}
         />
         <Grid
           selectionMode={this.state.selectionMode}
           resetGrid={this.state.resetGridCalled}
-          ref={this.resetGrid}
+          ref={this.gridRef}
         />
       </div>
     );

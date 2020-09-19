@@ -10,17 +10,20 @@ class Header extends Component {
       isEndHovered: false,
       isWallHovered: false,
       isResetHovered: false,
+      isGoHovered: false,
       buttonPressed: "",
     };
     this.handleStartHover = this.handleStartHover.bind(this);
     this.handleEndHover = this.handleEndHover.bind(this);
     this.handleWallHover = this.handleWallHover.bind(this);
     this.handleResetHover = this.handleResetHover.bind(this);
+    this.handleGoHover = this.handleGoHover.bind(this);
 
     this.handleStartClick = this.handleStartClick.bind(this);
     this.handleEndClick = this.handleEndClick.bind(this);
     this.handleWallClick = this.handleWallClick.bind(this);
     this.handleResetClick = this.handleResetClick.bind(this);
+    this.handleGoClick = this.handleGoClick.bind(this);
   }
 
   handleStartHover() {
@@ -37,6 +40,10 @@ class Header extends Component {
 
   handleResetHover() {
     this.setState({ isResetHovered: !this.state.isResetHovered });
+  }
+
+  handleGoHover() {
+    this.setState({ isGoHovered: !this.state.isGoHovered });
   }
 
   handleStartClick() {
@@ -57,6 +64,11 @@ class Header extends Component {
   handleResetClick() {
     this.props.resetClick();
     this.setState({ buttonPressed: "reset" });
+  }
+
+  handleGoClick() {
+    this.props.goClick();
+    this.setState({ buttonPressed: "go" });
   }
 
   render() {
@@ -96,6 +108,14 @@ class Header extends Component {
           >
             Clear Grid
           </button>
+          <button
+            className={this.getBtnClass("go")}
+            onClick={this.handleGoClick}
+            onMouseEnter={this.handleGoHover}
+            onMouseLeave={this.handleGoHover}
+          >
+            Go
+          </button>
         </ul>
       </div>
     );
@@ -128,6 +148,12 @@ class Header extends Component {
       btnClass = this.state.isResetHovered
         ? "button-hovered"
         : "button-default";
+    } else if (button === "go") {
+      btnClass = this.state.isGoHovered ? "button-hovered" : "button-default";
+
+      if (this.state.buttonPressed === "go") {
+        btnClass = "button-clicked";
+      }
     }
 
     return btnClass;

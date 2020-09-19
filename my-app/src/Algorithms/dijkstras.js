@@ -1,25 +1,30 @@
-function dikstrasAlgorithm(grid, startNode, endNode) {
+export default function dikstrasAlgorithm(
+  grid,
+  startNode,
+  endNode,
+  numRows,
+  numCols
+) {
   let visitedNodes = [];
 
   let queue = [];
   startNode.dist = 0;
-  for (let i = 0; i < grid.maxRow; i++) {
-    for (let j = 0; j < grid.maxCol; j++) {
-      queue.push(grid.nodes[i][j]);
+  for (let i = 0; i < numRows; i++) {
+    for (let j = 0; j < numCols; j++) {
+      queue.push(grid[i][j]);
     }
   }
 
-  while (!queue.empty) {
+  while (queue.length !== 0) {
     let s = findMinimum(queue);
     visitedNodes.push(s);
 
-    if (s.row == endNode.row && s.col == endNode.col) {
+    if (s.row === endNode.row && s.col === endNode.col) {
       return visitedNodes;
     }
 
     for (let i = 0; i < s.adjacentNodes.length; i++) {
-      let alt = s.adjacentNodes[i].dist + distance(s, s.adjacentNodes[i]);
-
+      let alt = s.dist + distance(s, s.adjacentNodes[i]);
       if (alt < s.adjacentNodes[i].dist) {
         s.adjacentNodes[i].dist = alt;
         s.adjacentNodes[i].prev = s;
