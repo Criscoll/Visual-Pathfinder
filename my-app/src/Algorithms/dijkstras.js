@@ -11,7 +11,9 @@ export default function dikstrasAlgorithm(
   startNode.dist = 0;
   for (let i = 0; i < numRows; i++) {
     for (let j = 0; j < numCols; j++) {
-      queue.push(grid[i][j]);
+      if (grid[i][j].nodeType !== "wall-node") {
+        queue.push(grid[i][j]);
+      }
     }
   }
 

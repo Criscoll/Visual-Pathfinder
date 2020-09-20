@@ -112,6 +112,7 @@ class Grid extends Component {
   // Displays the nods on the grid with their state values
   render() {
     let { nodes } = this.state;
+    console.log(this.state.startNode);
     return (
       <div className="grid">
         {nodes.map((row, rowIndex) => {
@@ -157,7 +158,22 @@ class Grid extends Component {
 
     for (let i = 0; i < nodes.length; i++) {
       for (let j = 0; j < nodes[i].length; j++) {
-        nodes[i][j].nodeType = "normal-node";
+        nodes[i][j] = {
+          row: i,
+          col: j,
+          nodeType: "normal-node",
+          adjacentNodes: [],
+          isVisited: false,
+          dist: Infinity,
+          prev: {},
+        };
+      }
+    }
+
+    // !!! Maybe set this just before the algorithm runs in case you set walls etc
+    for (let row = 0; row < this.maxRow; row++) {
+      for (let col = 0; col < this.maxCol; col++) {
+        this.setAdjacentNodes(nodes[row][col], nodes);
       }
     }
 
