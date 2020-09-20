@@ -215,7 +215,24 @@ class Grid extends Component {
       this.maxCol
     );
 
-    console.log(visitedNodes);
+    for (let i = 0; i < visitedNodes.length; i++) {
+      if (visitedNodes[i] !== startNode && visitedNodes[i] !== endNode) {
+        setTimeout(() => {
+          let visited = visitedNodes[i];
+          nodes[visited.row][visited.col].nodeType = "visited-node";
+          this.setState({ nodes: nodes });
+        }, 10 * i);
+      }
+    }
+
+    setTimeout(() => {
+      let prev = endNode.prev;
+      while (prev.row !== startNode.row || prev.col !== startNode.col) {
+        nodes[prev.row][prev.col].nodeType = "path-node";
+        prev = prev.prev;
+      }
+      this.setState({ nodes: nodes });
+    }, 10 * visitedNodes.length);
   }
 }
 

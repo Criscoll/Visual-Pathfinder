@@ -28,3 +28,19 @@
   background-color: black;
   display: inline-block;
 }
+
+.visited-node {
+  width: 40px;
+  height: 40px;
+  outline: 1px solid grey;
+  background-color: blue;
+  display: inline-block;
+}
+
+.path-node {
+  width: 40px;
+  height: 40px;
+  outline: 1px solid grey;
+  background-color: rgb(105, 165, 245);
+  display: inline-block;
+}
