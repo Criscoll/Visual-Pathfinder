@@ -18,12 +18,20 @@ export default function dikstrasAlgorithm(
   }
 
   while (queue.length !== 0) {
+    console.log(queue.length);
     let s = findMinimum(queue);
+
+    if (Object.keys(s).length === 0) {
+      return { visitedNodes: visitedNodes, pathFound: false };
+    }
+
     visitedNodes.push(s);
 
     if (s.row === endNode.row && s.col === endNode.col) {
-      return visitedNodes;
+      return { visitedNodes: visitedNodes, pathFound: true };
     }
+
+    console.log(s);
 
     for (let i = 0; i < s.adjacentNodes.length; i++) {
       if (s.adjacentNodes[i].nodeType !== "wall-node") {
@@ -36,7 +44,7 @@ export default function dikstrasAlgorithm(
     }
   }
 
-  return visitedNodes;
+  return { visitedNodes: visitedNodes, pathFound: false };
 }
 
 // change this when weights are implemented

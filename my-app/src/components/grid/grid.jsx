@@ -7,6 +7,8 @@ class Grid extends Component {
   constructor(props) {
     super(props);
     this.handleNodeClick = this.handleNodeClick.bind(this);
+    this.handleNodePressed = this.handleNodePressed.bind(this);
+    this.handleNodeReleased = this.handleNodeReleased.bind(this);
     this.maxRow = 15;
     this.maxCol = 30;
   }
@@ -17,6 +19,7 @@ class Grid extends Component {
     endNode: {},
     startNodePreviouslySet: false,
     endNodePreviouslySet: false,
+    isDragging: false,
   };
 
   componentDidMount() {
@@ -40,11 +43,11 @@ class Grid extends Component {
   }
 
   handleNodeClick(newRow, newColumn) {
-    console.log(
-      newRow,
-      newColumn,
-      this.state.nodes[newRow][newColumn].adjacentNodes
-    );
+    // console.log(
+    //   newRow,
+    //   newColumn,
+    //   this.state.nodes[newRow][newColumn].adjacentNodes
+    // );
 
     if (this.props.selectionMode === "") {
       return;
@@ -109,12 +112,20 @@ class Grid extends Component {
     }
   }
 
+  handleNodePressed(row, column) {
+    this.setState({ isDragging: true });
+    this.handleNodeClick(row, column);
+  }
+
+  handleNodeReleased() {
+    this.setState({ isDragging: false });
+  }
+
   // Displays the nods on the grid with their state values
   render() {
     let { nodes } = this.state;
-    console.log(this.state.startNode);
     return (
-      <div className="grid">
+      <div className="grid" onMouseLeave={this.handleNodeReleased}>
         {nodes.map((row, rowIndex) => {
           return (
             <div key={rowIndex}>
@@ -123,7 +134,10 @@ class Grid extends Component {
                   <Node
                     key={colIndex}
                     node={node}
+                    isDragging={this.state.isDragging}
                     handleNodeClick={this.handleNodeClick}
+                    handleNodePressed={this.handleNodePressed}
+                    handleNodeReleased={this.handleNodeReleased}
                   ></Node>
                 );
               })}
@@ -222,14 +236,18 @@ class Grid extends Component {
     let nodes = [...this.state.nodes];
     let startNode = nodes[this.state.startNode.row][this.state.startNode.col];
     let endNode = nodes[this.state.endNode.row][this.state.endNode.col];
+    let pathFound = true;
 
-    let visitedNodes = dijkstras(
+    let result = dijkstras(
       nodes,
       startNode,
       endNode,
       this.maxRow,
-      this.maxCol
+      this.maxCol,
+      pathFound
     );
+
+    let visitedNodes = result.visitedNodes;
 
     for (let i = 0; i < visitedNodes.length; i++) {
       if (visitedNodes[i] !== startNode && visitedNodes[i] !== endNode) {
@@ -241,6 +259,13 @@ class Grid extends Component {
       }
     }
 
+    if (result.pathFound === false) {
+      setTimeout(() => {
+        console.log("No path found");
+      }, 1000);
+      return;
+    }
+
     setTimeout(() => {
       let prev = endNode.prev;
       while (prev.row !== startNode.row || prev.col !== startNode.col) {
@@ -249,6 +274,8 @@ class Grid extends Component {
       }
       this.setState({ nodes: nodes });
     }, 10 * visitedNodes.length);
+
+    console.log("Path found!");
   }
 }
 

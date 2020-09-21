@@ -5,10 +5,17 @@ class Node extends Component {
   constructor(props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);
+    this.handlePress = this.handlePress.bind(this);
   }
 
   handleClick() {
-    this.props.handleNodeClick(this.props.node.row, this.props.node.col);
+    if (this.props.isDragging) {
+      this.props.handleNodeClick(this.props.node.row, this.props.node.col);
+    }
+  }
+
+  handlePress() {
+    this.props.handleNodePressed(this.props.node.row, this.props.node.col);
   }
 
   render() {
@@ -16,6 +23,9 @@ class Node extends Component {
       <div
         className={this.props.node.nodeType}
         onClick={this.handleClick}
+        onMouseDown={this.handlePress}
+        onMouseUp={this.props.handleNodeReleased}
+        onMouseEnter={this.handleClick}
       ></div>
     );
   }
