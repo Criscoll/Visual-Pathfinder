@@ -1,29 +1,23 @@
 import React, { Component } from "react";
-import "./header.css";
+import "./buttons.css";
 
-class Header extends Component {
+class Buttons extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
-      nodes: [],
       isStartHovered: false,
       isEndHovered: false,
       isWallHovered: false,
       isResetHovered: false,
       isGoHovered: false,
-      buttonPressed: "",
     };
+
     this.handleStartHover = this.handleStartHover.bind(this);
     this.handleEndHover = this.handleEndHover.bind(this);
     this.handleWallHover = this.handleWallHover.bind(this);
     this.handleResetHover = this.handleResetHover.bind(this);
     this.handleGoHover = this.handleGoHover.bind(this);
-
-    this.handleStartClick = this.handleStartClick.bind(this);
-    this.handleEndClick = this.handleEndClick.bind(this);
-    this.handleWallClick = this.handleWallClick.bind(this);
-    this.handleResetClick = this.handleResetClick.bind(this);
-    this.handleGoClick = this.handleGoClick.bind(this);
   }
 
   handleStartHover() {
@@ -46,39 +40,14 @@ class Header extends Component {
     this.setState({ isGoHovered: !this.state.isGoHovered });
   }
 
-  handleStartClick() {
-    this.props.startClick();
-    this.setState({ buttonPressed: "start" });
-  }
-
-  handleEndClick() {
-    this.props.endClick();
-    this.setState({ buttonPressed: "end" });
-  }
-
-  handleWallClick() {
-    this.props.wallClick();
-    this.setState({ buttonPressed: "wall" });
-  }
-
-  handleResetClick() {
-    this.props.resetClick();
-    this.setState({ buttonPressed: "reset" });
-  }
-
-  handleGoClick() {
-    this.props.goClick();
-    this.setState({ buttonPressed: "go" });
-  }
-
   render() {
     return (
-      <div>
+      <React.Fragment>
         <h1>Visual Pathfinder</h1>
         <ul className="button-container">
           <button
             className={this.getBtnClass("start")}
-            onClick={this.handleStartClick}
+            onClick={this.props.handleStartClick}
             onMouseEnter={this.handleStartHover}
             onMouseLeave={this.handleStartHover}
           >
@@ -86,7 +55,7 @@ class Header extends Component {
           </button>
           <button
             className={this.getBtnClass("end")}
-            onClick={this.handleEndClick}
+            onClick={this.props.handleEndClick}
             onMouseEnter={this.handleEndHover}
             onMouseLeave={this.handleEndHover}
           >
@@ -94,7 +63,7 @@ class Header extends Component {
           </button>
           <button
             className={this.getBtnClass("wall")}
-            onClick={this.handleWallClick}
+            onClick={this.props.handleWallClick}
             onMouseEnter={this.handleWallHover}
             onMouseLeave={this.handleWallHover}
           >
@@ -102,22 +71,22 @@ class Header extends Component {
           </button>
           <button
             className={this.getBtnClass("reset")}
-            onClick={this.handleResetClick}
-            onMouseEnter={this.handleResetHover}
-            onMouseLeave={this.handleResetHover}
+            onClick={this.props.handleResetClick}
+            onMouseEnter={this.props.handleResetHover}
+            onMouseLeave={this.props.handleResetHover}
           >
             Clear Grid
           </button>
           <button
             className={this.getBtnClass("go")}
-            onClick={this.handleGoClick}
+            onClick={this.props.handleGoClick}
             onMouseEnter={this.handleGoHover}
             onMouseLeave={this.handleGoHover}
           >
             Go
           </button>
         </ul>
-      </div>
+      </React.Fragment>
     );
   }
 
@@ -129,19 +98,19 @@ class Header extends Component {
         ? "button-hovered"
         : "button-default";
 
-      if (this.state.buttonPressed === "start") {
+      if (this.props.buttonPressed === "start") {
         btnClass = "button-clicked";
       }
     } else if (button === "end") {
       btnClass = this.state.isEndHovered ? "button-hovered" : "button-default";
 
-      if (this.state.buttonPressed === "end") {
+      if (this.props.buttonPressed === "end") {
         btnClass = "button-clicked";
       }
     } else if (button === "wall") {
       btnClass = this.state.isWallHovered ? "button-hovered" : "button-default";
 
-      if (this.state.buttonPressed === "wall") {
+      if (this.props.buttonPressed === "wall") {
         btnClass = "button-clicked";
       }
     } else if (button === "reset") {
@@ -151,7 +120,7 @@ class Header extends Component {
     } else if (button === "go") {
       btnClass = this.state.isGoHovered ? "button-hovered" : "button-default";
 
-      if (this.state.buttonPressed === "go") {
+      if (this.props.buttonPressed === "go") {
         btnClass = "button-clicked";
       }
     }
@@ -160,4 +129,4 @@ class Header extends Component {
   }
 }
 
-export default Header;
+export default Buttons;

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Node from "./node/node";
 import "./grid.css";
-import dijkstras from "../../Algorithms/dijkstras";
+import dijkstras from "../../../Algorithms/dijkstras";
 
 class Grid extends Component {
   constructor(props) {
