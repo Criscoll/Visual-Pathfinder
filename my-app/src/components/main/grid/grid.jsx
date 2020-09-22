@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Node from "./node/node";
 import "./grid.css";
 import dijkstras from "../../../Algorithms/dijkstras";
+import Results from "./results/results";
 
 class Grid extends Component {
   constructor(props) {
@@ -20,6 +21,7 @@ class Grid extends Component {
     startNodePreviouslySet: false,
     endNodePreviouslySet: false,
     isDragging: false,
+    pathStatus: "",
   };
 
   componentDidMount() {
@@ -121,7 +123,7 @@ class Grid extends Component {
     this.setState({ isDragging: false });
   }
 
-  handleDrag(e) {
+  handleDragBug(e) {
     e.preventDefault();
     console.log("prevented a drag");
   }
@@ -130,30 +132,33 @@ class Grid extends Component {
   render() {
     let { nodes } = this.state;
     return (
-      <div
-        className="grid"
-        onMouseLeave={this.handleNodeReleased}
-        onDragStart={this.handleDrag}
-      >
-        {nodes.map((row, rowIndex) => {
-          return (
-            <div key={rowIndex}>
-              {row.map((node, colIndex) => {
-                return (
-                  <Node
-                    key={colIndex}
-                    node={node}
-                    isDragging={this.state.isDragging}
-                    handleNodeClick={this.handleNodeClick}
-                    handleNodePressed={this.handleNodePressed}
-                    handleNodeReleased={this.handleNodeReleased}
-                  ></Node>
-                );
-              })}
-            </div>
-          );
-        })}
-      </div>
+      <React.Fragment>
+        <div
+          className="grid"
+          onMouseLeave={this.handleNodeReleased}
+          onDragStart={this.handleDragBug}
+        >
+          {nodes.map((row, rowIndex) => {
+            return (
+              <div key={rowIndex}>
+                {row.map((node, colIndex) => {
+                  return (
+                    <Node
+                      key={colIndex}
+                      node={node}
+                      isDragging={this.state.isDragging}
+                      handleNodeClick={this.handleNodeClick}
+                      handleNodePressed={this.handleNodePressed}
+                      handleNodeReleased={this.handleNodeReleased}
+                    ></Node>
+                  );
+                })}
+              </div>
+            );
+          })}
+        </div>
+        <Results pathStatus={this.state.pathStatus} />
+      </React.Fragment>
     );
   }
 
@@ -204,6 +209,7 @@ class Grid extends Component {
       nodes: nodes,
       startNodePreviouslySet: false,
       endNodePreviouslySet: false,
+      pathStatus: "",
     });
   }
 
@@ -256,6 +262,7 @@ class Grid extends Component {
       pathFound
     );
 
+    this.setState({ pathStatus: "searching" });
     let visitedNodes = result.visitedNodes;
 
     for (let i = 0; i < visitedNodes.length; i++) {
@@ -270,7 +277,7 @@ class Grid extends Component {
 
     if (result.pathFound === false) {
       setTimeout(() => {
-        console.log("No path found");
+        this.setState({ pathStatus: "none" });
       }, 1000);
       return;
     }
@@ -281,10 +288,8 @@ class Grid extends Component {
         nodes[prev.row][prev.col].nodeType = "path-node";
         prev = prev.prev;
       }
-      this.setState({ nodes: nodes });
+      this.setState({ nodes: nodes, pathStatus: "found" });
     }, 10 * visitedNodes.length);
-
-    console.log("Path found!");
   }
 }
 
