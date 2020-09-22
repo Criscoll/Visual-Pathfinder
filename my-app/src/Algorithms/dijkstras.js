@@ -18,7 +18,6 @@ export default function dikstrasAlgorithm(
   }
 
   while (queue.length !== 0) {
-    console.log(queue.length);
     let s = findMinimum(queue);
 
     if (Object.keys(s).length === 0) {
@@ -30,8 +29,6 @@ export default function dikstrasAlgorithm(
     if (s.row === endNode.row && s.col === endNode.col) {
       return { visitedNodes: visitedNodes, pathFound: true };
     }
-
-    console.log(s);
 
     for (let i = 0; i < s.adjacentNodes.length; i++) {
       if (s.adjacentNodes[i].nodeType !== "wall-node") {

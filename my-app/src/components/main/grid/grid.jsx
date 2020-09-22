@@ -121,11 +121,20 @@ class Grid extends Component {
     this.setState({ isDragging: false });
   }
 
+  handleDrag(e) {
+    e.preventDefault();
+    console.log("prevented a drag");
+  }
+
   // Displays the nods on the grid with their state values
   render() {
     let { nodes } = this.state;
     return (
-      <div className="grid" onMouseLeave={this.handleNodeReleased}>
+      <div
+        className="grid"
+        onMouseLeave={this.handleNodeReleased}
+        onDragStart={this.handleDrag}
+      >
         {nodes.map((row, rowIndex) => {
           return (
             <div key={rowIndex}>
