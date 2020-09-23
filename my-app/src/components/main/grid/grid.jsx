@@ -10,8 +10,8 @@ class Grid extends Component {
     this.handleNodeClick = this.handleNodeClick.bind(this);
     this.handleNodePressed = this.handleNodePressed.bind(this);
     this.handleNodeReleased = this.handleNodeReleased.bind(this);
-    this.maxRow = 15;
-    this.maxCol = 30;
+    this.maxRow = 20;
+    this.maxCol = 50;
   }
 
   state = {
@@ -55,7 +55,7 @@ class Grid extends Component {
       return;
     }
 
-    let nodes = this.state.nodes;
+    let nodes = this.copyNodes();
     let nodeSetMode = "wall-node";
     let nodePreviouslySet = false;
 
@@ -120,7 +120,9 @@ class Grid extends Component {
   }
 
   handleNodeReleased() {
-    this.setState({ isDragging: false });
+    if (this.state.isDragging) {
+      this.setState({ isDragging: false });
+    }
   }
 
   handleDragBug(e) {
@@ -130,6 +132,7 @@ class Grid extends Component {
 
   // Displays the nods on the grid with their state values
   render() {
+    console.log("GRID RENDERED");
     let { nodes } = this.state;
     return (
       <React.Fragment>
@@ -165,7 +168,7 @@ class Grid extends Component {
   findPrevNode(type) {
     let rowIndex = -1;
     let colIndex = -1;
-    let nodes = this.state.nodes;
+    let nodes = this.copyNodes();
 
     for (let i = 0; i < nodes.length; i++) {
       colIndex = nodes[i].findIndex((currentColumn) => {
@@ -182,7 +185,7 @@ class Grid extends Component {
   }
 
   resetGrid() {
-    let nodes = this.state.nodes;
+    let nodes = this.copyNodes();
 
     for (let i = 0; i < nodes.length; i++) {
       for (let j = 0; j < nodes[i].length; j++) {
@@ -218,19 +221,19 @@ class Grid extends Component {
     let col = node.col;
 
     if (row !== 0) {
-      node.adjacentNodes.push(nodes[row - 1][col]);
+      node.adjacentNodes.push({ row: row - 1, col: col });
     }
 
     if (row !== this.maxRow - 1) {
-      node.adjacentNodes.push(nodes[row + 1][col]);
+      node.adjacentNodes.push({ row: row + 1, col: col });
     }
 
     if (col !== 0) {
-      node.adjacentNodes.push(nodes[row][col - 1]);
+      node.adjacentNodes.push({ row: row, col: col - 1 });
     }
 
     if (col !== this.maxCol - 1) {
-      node.adjacentNodes.push(nodes[row][col + 1]);
+      node.adjacentNodes.push({ row: row, col: col + 1 });
     }
   }
 
@@ -246,9 +249,26 @@ class Grid extends Component {
     };
   }
 
+  // performs a deep copy of the grid so that the state is not altered directly by accident.
+  copyNodes() {
+    let clone = [];
+    this.state.nodes.forEach((x) => {
+      let currentRow = [];
+      x.forEach((nodes) => {
+        let node = JSON.parse(JSON.stringify(nodes));
+        node.dist = Infinity; // JSON.parse for some reason sets INFINITY to NULL in a deep copy
+        currentRow.push(node);
+      });
+
+      clone.push(currentRow);
+    });
+
+    return clone;
+  }
+
   // ================= PATHFINDING ALGORITHMS =====================
   visualiseDijkstras() {
-    let nodes = [...this.state.nodes];
+    let nodes = this.copyNodes();
     let startNode = nodes[this.state.startNode.row][this.state.startNode.col];
     let endNode = nodes[this.state.endNode.row][this.state.endNode.col];
     let pathFound = true;
@@ -265,13 +285,23 @@ class Grid extends Component {
     this.setState({ pathStatus: "searching" });
     let visitedNodes = result.visitedNodes;
 
+    // Below is the chunk of code that deals with incrementally updating the node colour to show which nodes the algorithm
+    // took in search of the goal node. To get this to work I utilise how the setTimeout function works with respect to react.
+    // In react, setState is normally run asynchronously with multiple setState calls typically batched together into one single
+    // setState call update for performance reasons. However, if setState is called within setTimeout, these calls now run synchronously.
+    // The reason for this is due to how setTimeout() works, it doesn't guarantee that the callback function will run after whatever delay
+    // you give it, it is only guaranteed to QUEUE UP the callback in a 'message queue' after that delay period. This message queue is a queue
+    // of callback functions which are run AFTER ALL OTHER CODE IS RUN and which are run one after the other in the order in which they
+    // were queued. I set a delay of 0 here because all I need to do is get this chunk of code into that queue and it will be run
+    // synchronously, the delay just controls when the code is sent to that queue, all other code below must run first regardless so it
+    // doesn't really matter.
     for (let i = 0; i < visitedNodes.length; i++) {
       if (visitedNodes[i] !== startNode && visitedNodes[i] !== endNode) {
         setTimeout(() => {
           let visited = visitedNodes[i];
           nodes[visited.row][visited.col].nodeType = "visited-node";
           this.setState({ nodes: nodes });
-        }, 10 * i);
+        }, 0);
       }
     }
 

@@ -32,10 +32,13 @@ export default function dikstrasAlgorithm(
 
     for (let i = 0; i < s.adjacentNodes.length; i++) {
       if (s.adjacentNodes[i].nodeType !== "wall-node") {
+        let adjacentRow = s.adjacentNodes[i].row;
+        let adjacentCol = s.adjacentNodes[i].col;
         let alt = s.dist + distance(s, s.adjacentNodes[i]);
-        if (alt < s.adjacentNodes[i].dist) {
-          s.adjacentNodes[i].dist = alt;
-          s.adjacentNodes[i].prev = s;
+
+        if (alt < grid[adjacentRow][adjacentCol].dist) {
+          grid[adjacentRow][adjacentCol].dist = alt;
+          grid[adjacentRow][adjacentCol].prev = s;
         }
       }
     }

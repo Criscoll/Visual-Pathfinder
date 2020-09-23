@@ -1,45 +1,45 @@
 .normal-node {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   outline: 2px solid grey;
   display: inline-block;
 }
 
 .start-node {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   outline: 2px solid grey;
   background-color: green;
   display: inline-block;
 }
 
 .end-node {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   outline: 2px solid grey;
   background-color: red;
   display: inline-block;
 }
 
 .wall-node {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   outline: 2px solid grey;
   background-color: black;
   display: inline-block;
 }
 
 .visited-node {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   outline: 2px solid grey;
   background-color: blue;
   display: inline-block;
 }
 
 .path-node {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   outline: 2px solid grey;
   background-color: yellow;
   display: inline-block;

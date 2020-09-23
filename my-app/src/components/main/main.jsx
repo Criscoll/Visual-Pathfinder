@@ -39,8 +39,8 @@ class Main extends Component {
   }
 
   handleGoClick() {
-    this.gridRef.current.visualiseDijkstras();
     this.setState({ buttonPressed: "go" });
+    this.gridRef.current.visualiseDijkstras();
   }
 
   render() {
