@@ -21,6 +21,7 @@ class Node extends Component {
   render() {
     return (
       <div
+        id={"node-" + this.props.row + "-" + this.props.col}
         className={this.props.node.nodeType}
         onClick={this.handleClick}
         onMouseDown={this.handlePress}

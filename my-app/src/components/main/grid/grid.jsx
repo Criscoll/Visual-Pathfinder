@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import Node from "./node/node";
-import "./grid.css";
-import dijkstras from "../../../Algorithms/dijkstras";
-import Results from "./results/results";
+import React, { Component } from 'react';
+import Node from './node/node';
+import './grid.css';
+import dijkstras from '../../../Algorithms/dijkstras';
+import Results from './results/results';
 
 class Grid extends Component {
   constructor(props) {
@@ -21,7 +21,7 @@ class Grid extends Component {
     startNodePreviouslySet: false,
     endNodePreviouslySet: false,
     isDragging: false,
-    pathStatus: "",
+    pathStatus: '',
   };
 
   componentDidMount() {
@@ -51,35 +51,35 @@ class Grid extends Component {
     //   this.state.nodes[newRow][newColumn].adjacentNodes
     // );
 
-    if (this.props.selectionMode === "") {
+    if (this.props.selectionMode === '') {
       return;
     }
 
     let nodes = this.copyNodes();
-    let nodeSetMode = "wall-node";
+    let nodeSetMode = 'wall-node';
     let nodePreviouslySet = false;
 
-    if (this.props.selectionMode === "start") {
-      nodeSetMode = "start-node";
+    if (this.props.selectionMode === 'start') {
+      nodeSetMode = 'start-node';
       nodePreviouslySet = this.state.startNodePreviouslySet;
-    } else if (this.props.selectionMode === "end") {
-      nodeSetMode = "end-node";
+    } else if (this.props.selectionMode === 'end') {
+      nodeSetMode = 'end-node';
       nodePreviouslySet = this.state.endNodePreviouslySet;
     }
 
-    if (nodeSetMode !== "wall-node") {
+    if (nodeSetMode !== 'wall-node') {
       let rowColIndices = [-1, -1];
       let oldRow = -1;
       let oldCol = -1;
       if (nodePreviouslySet === false) {
         nodes[newRow][newColumn].nodeType = nodeSetMode;
-        if (nodeSetMode === "start-node") {
+        if (nodeSetMode === 'start-node') {
           this.setState({
             nodes: nodes,
             startNode: nodes[newRow][newColumn],
             startNodePreviouslySet: true,
           });
-        } else if (nodeSetMode === "end-node") {
+        } else if (nodeSetMode === 'end-node') {
           this.setState({
             nodes: nodes,
             endNode: nodes[newRow][newColumn],
@@ -93,10 +93,10 @@ class Grid extends Component {
       }
 
       if (oldRow !== -1 && oldCol !== -1) {
-        nodes[oldRow][oldCol].nodeType = "normal-node";
+        nodes[oldRow][oldCol].nodeType = 'normal-node';
         nodes[newRow][newColumn].nodeType = nodeSetMode;
 
-        if (nodeSetMode === "start-node") {
+        if (nodeSetMode === 'start-node') {
           this.setState({
             nodes: nodes,
             startNode: nodes[newRow][newColumn],
@@ -109,7 +109,7 @@ class Grid extends Component {
         }
       }
     } else {
-      nodes[newRow][newColumn].nodeType = "wall-node";
+      nodes[newRow][newColumn].nodeType = 'wall-node';
       this.setState({ nodes });
     }
   }
@@ -127,12 +127,12 @@ class Grid extends Component {
 
   handleDragBug(e) {
     e.preventDefault();
-    console.log("prevented a drag");
+    console.log('prevented a drag');
   }
 
   // Displays the nods on the grid with their state values
   render() {
-    console.log("GRID RENDERED");
+    console.log('GRID RENDERED');
     let { nodes } = this.state;
     return (
       <React.Fragment>
@@ -153,6 +153,8 @@ class Grid extends Component {
                       handleNodeClick={this.handleNodeClick}
                       handleNodePressed={this.handleNodePressed}
                       handleNodeReleased={this.handleNodeReleased}
+                      row={rowIndex}
+                      col={colIndex}
                     ></Node>
                   );
                 })}
@@ -192,7 +194,7 @@ class Grid extends Component {
         nodes[i][j] = {
           row: i,
           col: j,
-          nodeType: "normal-node",
+          nodeType: 'normal-node',
           adjacentNodes: [],
           isVisited: false,
           dist: Infinity,
@@ -210,9 +212,12 @@ class Grid extends Component {
 
     this.setState({
       nodes: nodes,
+      startNode: {},
+      endNode: {},
       startNodePreviouslySet: false,
       endNodePreviouslySet: false,
-      pathStatus: "",
+      isDragging: false,
+      pathStatus: '',
     });
   }
 
@@ -241,7 +246,7 @@ class Grid extends Component {
     return {
       row: row,
       col: col,
-      nodeType: "normal-node",
+      nodeType: 'normal-node',
       adjacentNodes: [],
       isVisited: false,
       dist: Infinity,
@@ -282,7 +287,7 @@ class Grid extends Component {
       pathFound
     );
 
-    this.setState({ pathStatus: "searching" });
+    this.setState({ pathStatus: 'searching' });
     let visitedNodes = result.visitedNodes;
 
     // Below is the chunk of code that deals with incrementally updating the node colour to show which nodes the algorithm
@@ -299,15 +304,18 @@ class Grid extends Component {
       if (visitedNodes[i] !== startNode && visitedNodes[i] !== endNode) {
         setTimeout(() => {
           let visited = visitedNodes[i];
-          nodes[visited.row][visited.col].nodeType = "visited-node";
-          this.setState({ nodes: nodes });
-        }, 0);
+          document.getElementById(
+            `node-${visited.row}-${visited.col}`
+          ).className = 'visited-node';
+          // nodes[visited.row][visited.col].nodeType = "visited-node";
+          // this.setState({ nodes: nodes });
+        }, 25 * i);
       }
     }
 
     if (result.pathFound === false) {
       setTimeout(() => {
-        this.setState({ pathStatus: "none" });
+        this.setState({ pathStatus: 'none' });
       }, 1000);
       return;
     }
@@ -315,11 +323,11 @@ class Grid extends Component {
     setTimeout(() => {
       let prev = endNode.prev;
       while (prev.row !== startNode.row || prev.col !== startNode.col) {
-        nodes[prev.row][prev.col].nodeType = "path-node";
+        nodes[prev.row][prev.col].nodeType = 'path-node';
         prev = prev.prev;
       }
-      this.setState({ nodes: nodes, pathStatus: "found" });
-    }, 10 * visitedNodes.length);
+      this.setState({ nodes: nodes, pathStatus: 'found' });
+    }, 25 * visitedNodes.length);
   }
 }
 
