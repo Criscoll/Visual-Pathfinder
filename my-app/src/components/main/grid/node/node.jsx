@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import "./node.css";
+import React, { Component } from 'react';
+import './node.css';
 
 class Node extends Component {
   constructor(props) {
@@ -15,13 +15,17 @@ class Node extends Component {
   }
 
   handlePress() {
+    console.log(
+      document.getElementById(`node-${this.props.row}-${this.props.col}`)
+        .className
+    );
     this.props.handleNodePressed(this.props.node.row, this.props.node.col);
   }
 
   render() {
     return (
       <div
-        id={"node-" + this.props.row + "-" + this.props.col}
+        id={'node-' + this.props.row + '-' + this.props.col}
         className={this.props.node.nodeType}
         onClick={this.handleClick}
         onMouseDown={this.handlePress}

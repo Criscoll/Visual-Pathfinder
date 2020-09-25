@@ -45,11 +45,7 @@ class Grid extends Component {
   }
 
   handleNodeClick(newRow, newColumn) {
-    // console.log(
-    //   newRow,
-    //   newColumn,
-    //   this.state.nodes[newRow][newColumn].adjacentNodes
-    // );
+    console.log(newRow, newColumn, this.state.nodes[newRow][newColumn]);
 
     if (this.props.selectionMode === '') {
       return;
@@ -110,7 +106,7 @@ class Grid extends Component {
       }
     } else {
       nodes[newRow][newColumn].nodeType = 'wall-node';
-      this.setState({ nodes });
+      this.setState({ nodes: nodes });
     }
   }
 
@@ -132,7 +128,7 @@ class Grid extends Component {
 
   // Displays the nods on the grid with their state values
   render() {
-    console.log('GRID RENDERED');
+    console.log('RENDERED');
     let { nodes } = this.state;
     return (
       <React.Fragment>
@@ -200,6 +196,7 @@ class Grid extends Component {
           dist: Infinity,
           prev: {},
         };
+        document.getElementById(`node-${i}-${j}`).className = 'normal-node';
       }
     }
 
@@ -307,6 +304,7 @@ class Grid extends Component {
           document.getElementById(
             `node-${visited.row}-${visited.col}`
           ).className = 'visited-node';
+          console.log('ELEMENT ID FUCK');
           // nodes[visited.row][visited.col].nodeType = "visited-node";
           // this.setState({ nodes: nodes });
         }, 25 * i);
