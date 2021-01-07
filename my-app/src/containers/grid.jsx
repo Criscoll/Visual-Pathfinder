@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import Node from './node/node';
-import './grid.css';
-import dijkstras from '../../../Algorithms/dijkstras';
-import Results from './results/results';
+import dijkstras from '../Algorithms/dijkstras';
+import Node from '../components/node';
+import Results from '../components/results';
+
+import '../styles/main.css';
 
 class Grid extends Component {
   constructor(props) {

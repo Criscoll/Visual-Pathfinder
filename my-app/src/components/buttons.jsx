@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import "./buttons.css";
+import React, { Component } from 'react';
+import '../styles/main.css';
 
 class Buttons extends Component {
   constructor(props) {
@@ -46,7 +46,7 @@ class Buttons extends Component {
         <h1>Visual Pathfinder</h1>
         <ul className="button-container">
           <button
-            className={this.getBtnClass("start")}
+            className={this.getBtnClass('start')}
             onClick={this.props.handleStartClick}
             onMouseEnter={this.handleStartHover}
             onMouseLeave={this.handleStartHover}
@@ -54,7 +54,7 @@ class Buttons extends Component {
             Start
           </button>
           <button
-            className={this.getBtnClass("end")}
+            className={this.getBtnClass('end')}
             onClick={this.props.handleEndClick}
             onMouseEnter={this.handleEndHover}
             onMouseLeave={this.handleEndHover}
@@ -62,7 +62,7 @@ class Buttons extends Component {
             End
           </button>
           <button
-            className={this.getBtnClass("wall")}
+            className={this.getBtnClass('wall')}
             onClick={this.props.handleWallClick}
             onMouseEnter={this.handleWallHover}
             onMouseLeave={this.handleWallHover}
@@ -70,7 +70,7 @@ class Buttons extends Component {
             Wall
           </button>
           <button
-            className={this.getBtnClass("reset")}
+            className={this.getBtnClass('reset')}
             onClick={this.props.handleResetClick}
             onMouseEnter={this.props.handleResetHover}
             onMouseLeave={this.props.handleResetHover}
@@ -78,7 +78,7 @@ class Buttons extends Component {
             Clear Grid
           </button>
           <button
-            className={this.getBtnClass("go")}
+            className={this.getBtnClass('go')}
             onClick={this.props.handleGoClick}
             onMouseEnter={this.handleGoHover}
             onMouseLeave={this.handleGoHover}
@@ -91,37 +91,37 @@ class Buttons extends Component {
   }
 
   getBtnClass(button) {
-    let btnClass = "";
+    let btnClass = '';
 
-    if (button === "start") {
+    if (button === 'start') {
       btnClass = this.state.isStartHovered
-        ? "button-hovered"
-        : "button-default";
+        ? 'button-hovered'
+        : 'button-default';
 
-      if (this.props.buttonPressed === "start") {
-        btnClass = "button-clicked";
+      if (this.props.buttonPressed === 'start') {
+        btnClass = 'button-clicked';
       }
-    } else if (button === "end") {
-      btnClass = this.state.isEndHovered ? "button-hovered" : "button-default";
+    } else if (button === 'end') {
+      btnClass = this.state.isEndHovered ? 'button-hovered' : 'button-default';
 
-      if (this.props.buttonPressed === "end") {
-        btnClass = "button-clicked";
+      if (this.props.buttonPressed === 'end') {
+        btnClass = 'button-clicked';
       }
-    } else if (button === "wall") {
-      btnClass = this.state.isWallHovered ? "button-hovered" : "button-default";
+    } else if (button === 'wall') {
+      btnClass = this.state.isWallHovered ? 'button-hovered' : 'button-default';
 
-      if (this.props.buttonPressed === "wall") {
-        btnClass = "button-clicked";
+      if (this.props.buttonPressed === 'wall') {
+        btnClass = 'button-clicked';
       }
-    } else if (button === "reset") {
+    } else if (button === 'reset') {
       btnClass = this.state.isResetHovered
-        ? "button-hovered"
-        : "button-default";
-    } else if (button === "go") {
-      btnClass = this.state.isGoHovered ? "button-hovered" : "button-default";
+        ? 'button-hovered'
+        : 'button-default';
+    } else if (button === 'go') {
+      btnClass = this.state.isGoHovered ? 'button-hovered' : 'button-default';
 
-      if (this.props.buttonPressed === "go") {
-        btnClass = "button-clicked";
+      if (this.props.buttonPressed === 'go') {
+        btnClass = 'button-clicked';
       }
     }
 

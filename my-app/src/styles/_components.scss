@@ -1,3 +1,43 @@
+.button-container {
+  font-weight: bold;
+  list-style-type: none;
+  margin-left: 30px;
+  position: relative;
+  top: 70px;
+  right: 30px;
+}
+
+.button-default {
+  margin: 5px;
+  background: #ffffff;
+  box-shadow: 0px 0px 0px rgb(255, 255, 255);
+}
+
+.button-hovered {
+  margin: 5px;
+  border: 0.1px solid red;
+}
+
+.button-clicked {
+  background: #cccbcb;
+  box-shadow: 0px 0px 0px rgb(255, 255, 255);
+  border: 0.1px solid red;
+}
+
+.grid {
+  margin-top: 90px;
+  text-align: center;
+  border: 3px solid green;
+}
+
+.container {
+  position: relative;
+  margin-top: 20px;
+  margin-left: 200px;
+  margin-right: 200px;
+  padding-left: 500px;
+}
+
 .normal-node {
   width: 30px;
   height: 30px;

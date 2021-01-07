@@ -1,0 +1,89 @@
+.button-container {
+  font-weight: bold;
+  list-style-type: none;
+  margin-left: 30px;
+  position: relative;
+  top: 70px;
+  right: 30px;
+}
+
+.button-default {
+  margin: 5px;
+  background: #ffffff;
+  -webkit-box-shadow: 0px 0px 0px white;
+          box-shadow: 0px 0px 0px white;
+}
+
+.button-hovered {
+  margin: 5px;
+  border: 0.1px solid red;
+}
+
+.button-clicked {
+  background: #cccbcb;
+  -webkit-box-shadow: 0px 0px 0px white;
+          box-shadow: 0px 0px 0px white;
+  border: 0.1px solid red;
+}
+
+.grid {
+  margin-top: 90px;
+  text-align: center;
+  border: 3px solid green;
+}
+
+.container {
+  position: relative;
+  margin-top: 20px;
+  margin-left: 200px;
+  margin-right: 200px;
+  padding-left: 500px;
+}
+
+.normal-node {
+  width: 30px;
+  height: 30px;
+  outline: 2px solid grey;
+  display: inline-block;
+}
+
+.start-node {
+  width: 30px;
+  height: 30px;
+  outline: 2px solid grey;
+  background-color: green;
+  display: inline-block;
+}
+
+.end-node {
+  width: 30px;
+  height: 30px;
+  outline: 2px solid grey;
+  background-color: red;
+  display: inline-block;
+}
+
+.wall-node {
+  width: 30px;
+  height: 30px;
+  outline: 2px solid grey;
+  background-color: black;
+  display: inline-block;
+}
+
+.visited-node {
+  width: 30px;
+  height: 30px;
+  outline: 2px solid grey;
+  background-color: blue;
+  display: inline-block;
+}
+
+.path-node {
+  width: 30px;
+  height: 30px;
+  outline: 2px solid grey;
+  background-color: yellow;
+  display: inline-block;
+}
+/*# sourceMappingURL=main.css.map */

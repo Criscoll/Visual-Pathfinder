@@ -1,14 +1,14 @@
-import React, { Component } from "react";
-import Buttons from "./buttons/buttons";
-import Grid from "./grid/grid";
+import React, { Component } from 'react';
+import Buttons from './components/buttons';
+import Grid from './containers/grid';
 
 class Main extends Component {
   constructor(props) {
     super(props);
     this.state = {
       nodes: [],
-      selectionMode: "",
-      buttonPressed: "",
+      selectionMode: '',
+      buttonPressed: '',
       resetGridCalled: false,
     };
 
@@ -22,24 +22,24 @@ class Main extends Component {
   }
 
   handleStartClick() {
-    this.setState({ selectionMode: "start", buttonPressed: "start" });
+    this.setState({ selectionMode: 'start', buttonPressed: 'start' });
   }
 
   handleEndClick() {
-    this.setState({ selectionMode: "end", buttonPressed: "end" });
+    this.setState({ selectionMode: 'end', buttonPressed: 'end' });
   }
 
   handleWallClick() {
-    this.setState({ selectionMode: "wall", buttonPressed: "wall" });
+    this.setState({ selectionMode: 'wall', buttonPressed: 'wall' });
   }
 
   handleResetClick() {
     this.gridRef.current.resetGrid();
-    this.setState({ selectionMode: "", buttonPressed: "reset" });
+    this.setState({ selectionMode: '', buttonPressed: 'reset' });
   }
 
   handleGoClick() {
-    this.setState({ buttonPressed: "go" });
+    this.setState({ buttonPressed: 'go' });
     this.gridRef.current.visualiseDijkstras();
   }
 
