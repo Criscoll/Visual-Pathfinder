@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import dijkstras from '../Algorithms/dijkstras';
-import Node from '../components/node';
-import Results from '../components/results';
+import Node from '../components/Node';
+import Results from '../components/Results';
 
 import '../styles/main.css';
 
@@ -46,8 +46,6 @@ class Grid extends Component {
   }
 
   handleNodeClick(newRow, newColumn) {
-    // console.log(newRow, newColumn, this.state.nodes[newRow][newColumn]);
-
     if (this.props.selectionMode === '') {
       return;
     }
@@ -129,7 +127,7 @@ class Grid extends Component {
     console.log('prevented a drag');
   }
 
-  // Displays the nods on the grid with their state values
+  // Displays the nodes on the grid with their state values
   render() {
     let { nodes } = this.state;
     return (

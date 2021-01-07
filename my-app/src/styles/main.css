@@ -29,7 +29,6 @@
 .grid {
   margin-top: 90px;
   text-align: center;
-  border: 3px solid green;
 }
 
 .container {
@@ -85,5 +84,10 @@
   outline: 2px solid grey;
   background-color: yellow;
   display: inline-block;
+}
+
+#toolbar {
+  background-color: rgba(47, 47, 47, 0.493);
+  height: 5vh;
 }
 /*# sourceMappingURL=main.css.map */

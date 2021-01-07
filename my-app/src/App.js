@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import Buttons from './components/buttons';
-import Grid from './containers/grid';
+import Buttons from './components/Buttons';
+import Grid from './containers/Grid';
+import Toolbar from './containers/Toolbar';
 
 class Main extends Component {
   constructor(props) {
@@ -46,6 +47,7 @@ class Main extends Component {
   render() {
     return (
       <React.Fragment>
+        <Toolbar />
         <Buttons
           buttonPressed={this.state.buttonPressed}
           handleStartClick={this.handleStartClick}
