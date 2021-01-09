@@ -12,4 +12,5 @@ const useStyles = makeStyles(() => ({
 export default function ClearGridButton() {
   const classes = useStyles();
   return <Button classes={{ root: classes.root }}>Clear Grid </Button>;
+  
 }

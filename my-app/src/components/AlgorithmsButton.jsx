@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../styles/main.css';
 import Button from '@material-ui/core/Button';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
@@ -8,6 +8,7 @@ import Popper from '@material-ui/core/Popper';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import { makeStyles } from '@material-ui/core/styles';
+import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,6 +30,8 @@ export default function MenuListComposition() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
+
+  const [algorithm, setAlgorithm] = useState('Algorithms');
 
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
@@ -64,13 +67,13 @@ export default function MenuListComposition() {
       <div>
         <Button
           classes={{ root: classes.button }}
-          //   style={{ fontSize: 30, fontFamily: 'Share Tech' }}
           ref={anchorRef}
           aria-controls={open ? 'menu-list-grow' : undefined}
           aria-haspopup="true"
           onClick={handleToggle}
         >
-          Algorithms
+          {algorithm}
+          <ArrowDropDownIcon />
         </Button>
         <Popper
           open={open}
@@ -95,22 +98,31 @@ export default function MenuListComposition() {
                     onKeyDown={handleListKeyDown}
                   >
                     <MenuItem
-                      classes={{ root: classes.dropDownText }}
-                      onClick={handleClose}
+                      classes={{ root: classes.root }}
+                      onClick={(e) => {
+                        handleClose(e);
+                        setAlgorithm('Dijkstras');
+                      }}
                     >
-                      Profile
+                      Dijkstras
                     </MenuItem>
                     <MenuItem
-                      classes={{ root: classes.dropDownText }}
-                      onClick={handleClose}
+                      classes={{ root: classes.root }}
+                      onClick={(e) => {
+                        handleClose(e);
+                        setAlgorithm('*A Star');
+                      }}
                     >
-                      My account
+                      *A Star
                     </MenuItem>
                     <MenuItem
-                      classes={{ root: classes.dropDownText }}
-                      onClick={handleClose}
+                      classes={{ root: classes.root }}
+                      onClick={(e) => {
+                        handleClose(e);
+                        setAlgorithm('Swarm');
+                      }}
                     >
-                      Logout
+                      Swarm
                     </MenuItem>
                   </MenuList>
                 </ClickAwayListener>
