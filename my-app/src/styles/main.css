@@ -87,7 +87,31 @@
 }
 
 #toolbar {
-  background-color: rgba(47, 47, 47, 0.493);
-  height: 5vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: rgba(109, 107, 107, 0.493);
+  height: 8vh;
+}
+
+#toolbar > .app-heading-name {
+  margin-left: 1rem;
+  padding: 1.5rem 0;
+  width: 25%;
+  font-family: 'Share Tech', sans-serif;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+#toolbar > .buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
 }
 /*# sourceMappingURL=main.css.map */

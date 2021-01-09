@@ -43,7 +43,6 @@ class Buttons extends Component {
   render() {
     return (
       <React.Fragment>
-        <h1>Visual Pathfinder</h1>
         <ul className="button-container">
           <button
             className={this.getBtnClass('start')}
