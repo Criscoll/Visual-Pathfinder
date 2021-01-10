@@ -47,7 +47,10 @@ class Main extends Component {
   render() {
     return (
       <React.Fragment>
-        <Toolbar />
+        <Toolbar
+          handleResetClick={this.handleResetClick}
+          handleGoClick={this.handleGoClick}
+        />
         <Buttons
           buttonPressed={this.state.buttonPressed}
           handleStartClick={this.handleStartClick}

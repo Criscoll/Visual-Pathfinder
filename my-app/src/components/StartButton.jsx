@@ -12,7 +12,11 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function ClearGridButton() {
+export default function ClearGridButton(props) {
   const classes = useStyles();
-  return <Button classes={{ root: classes.root }}>Run Algorithm</Button>;
+  return (
+    <Button classes={{ root: classes.root }} onClick={props.handleGoClick}>
+      Run Algorithm
+    </Button>
+  );
 }

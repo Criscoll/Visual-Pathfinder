@@ -9,8 +9,11 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function ClearGridButton() {
+export default function ClearGridButton(props) {
   const classes = useStyles();
-  return <Button classes={{ root: classes.root }}>Clear Grid </Button>;
-  
+  return (
+    <Button classes={{ root: classes.root }} onClick={props.handleResetClick}>
+      Clear Grid{' '}
+    </Button>
+  );
 }

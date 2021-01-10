@@ -9,15 +9,11 @@ class Buttons extends Component {
       isStartHovered: false,
       isEndHovered: false,
       isWallHovered: false,
-      isResetHovered: false,
-      isGoHovered: false,
     };
 
     this.handleStartHover = this.handleStartHover.bind(this);
     this.handleEndHover = this.handleEndHover.bind(this);
     this.handleWallHover = this.handleWallHover.bind(this);
-    this.handleResetHover = this.handleResetHover.bind(this);
-    this.handleGoHover = this.handleGoHover.bind(this);
   }
 
   handleStartHover() {
@@ -30,14 +26,6 @@ class Buttons extends Component {
 
   handleWallHover() {
     this.setState({ isWallHovered: !this.state.isWallHovered });
-  }
-
-  handleResetHover() {
-    this.setState({ isResetHovered: !this.state.isResetHovered });
-  }
-
-  handleGoHover() {
-    this.setState({ isGoHovered: !this.state.isGoHovered });
   }
 
   render() {
@@ -67,22 +55,6 @@ class Buttons extends Component {
             onMouseLeave={this.handleWallHover}
           >
             Wall
-          </button>
-          <button
-            className={this.getBtnClass('reset')}
-            onClick={this.props.handleResetClick}
-            onMouseEnter={this.props.handleResetHover}
-            onMouseLeave={this.props.handleResetHover}
-          >
-            Clear Grid
-          </button>
-          <button
-            className={this.getBtnClass('go')}
-            onClick={this.props.handleGoClick}
-            onMouseEnter={this.handleGoHover}
-            onMouseLeave={this.handleGoHover}
-          >
-            Go
           </button>
         </ul>
       </React.Fragment>
