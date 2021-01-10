@@ -30,7 +30,6 @@ class Node extends Component {
   }
 
   render() {
-    // console.log(`RENDERED-${this.props.row}-${this.props.col}`);
     return (
       <div
         id={'node-' + this.props.row + '-' + this.props.col}

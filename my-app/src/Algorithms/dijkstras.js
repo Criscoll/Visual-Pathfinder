@@ -11,7 +11,7 @@ export default function dikstrasAlgorithm(
   startNode.dist = 0;
   for (let i = 0; i < numRows; i++) {
     for (let j = 0; j < numCols; j++) {
-      if (grid[i][j].nodeType !== "wall-node") {
+      if (grid[i][j].nodeType !== 'wall-node') {
         queue.push(grid[i][j]);
       }
     }
@@ -31,7 +31,11 @@ export default function dikstrasAlgorithm(
     }
 
     for (let i = 0; i < s.adjacentNodes.length; i++) {
-      if (s.adjacentNodes[i].nodeType !== "wall-node") {
+      if (
+        document.getElementById(
+          `node-${s.adjacentNodes[i].row}-${s.adjacentNodes[i].col}`
+        ).className !== 'wall-node'
+      ) {
         let adjacentRow = s.adjacentNodes[i].row;
         let adjacentCol = s.adjacentNodes[i].col;
         let alt = s.dist + distance(s, s.adjacentNodes[i]);

@@ -19,9 +19,8 @@ class Grid extends Component {
     nodes: [],
     startNode: {},
     endNode: {},
-    startNodePreviouslySet: false,
-    endNodePreviouslySet: false,
     isDragging: false,
+    dragNode: 'wall',
     pathStatus: '',
   };
 
@@ -46,46 +45,17 @@ class Grid extends Component {
   }
 
   handleNodeClick(newRow, newColumn) {
-    if (this.props.selectionMode === '') {
-      return;
-    }
-
     let nodes = this.copyNodes();
     let nodeSetMode = 'wall-node';
-    let nodePreviouslySet = false;
-
-    if (this.props.selectionMode === 'start') {
-      nodeSetMode = 'start-node';
-      nodePreviouslySet = this.state.startNodePreviouslySet;
-    } else if (this.props.selectionMode === 'end') {
-      nodeSetMode = 'end-node';
-      nodePreviouslySet = this.state.endNodePreviouslySet;
-    }
 
     if (nodeSetMode !== 'wall-node') {
       let rowColIndices = [-1, -1];
       let oldRow = -1;
       let oldCol = -1;
-      if (nodePreviouslySet === false) {
-        nodes[newRow][newColumn].nodeType = nodeSetMode;
-        if (nodeSetMode === 'start-node') {
-          this.setState({
-            nodes: nodes,
-            startNode: nodes[newRow][newColumn],
-            startNodePreviouslySet: true,
-          });
-        } else if (nodeSetMode === 'end-node') {
-          this.setState({
-            nodes: nodes,
-            endNode: nodes[newRow][newColumn],
-            endNodePreviouslySet: true,
-          });
-        }
-      } else {
-        rowColIndices = this.findPrevNode(nodeSetMode);
-        oldRow = rowColIndices[0];
-        oldCol = rowColIndices[1];
-      }
+
+      rowColIndices = this.findPrevNode(nodeSetMode);
+      oldRow = rowColIndices[0];
+      oldCol = rowColIndices[1];
 
       if (oldRow !== -1 && oldCol !== -1) {
         nodes[oldRow][oldCol].nodeType = 'normal-node';
@@ -105,14 +75,27 @@ class Grid extends Component {
       }
     } else {
       nodes[newRow][newColumn].nodeType = 'wall-node';
-      // document.getElementById(`node-${newRow}-${newColumn}`).className =
-      //   'wall-node';
+      document.getElementById(`node-${newRow}-${newColumn}`).className =
+        'wall-node';
       this.setState({ nodes });
     }
   }
 
   handleNodePressed(row, column) {
-    this.setState({ isDragging: true });
+    let dragNode = 'wall';
+    if (
+      this.state.startNode.row === row &&
+      this.state.startNode.col === column
+    ) {
+      dragNode = 'start';
+    } else if (
+      this.state.endNode.row === row &&
+      this.state.endNode.col === column
+    ) {
+      dragNode = 'end';
+    }
+
+    this.setState({ isDragging: true, dragNode: dragNode });
     this.handleNodeClick(row, column);
   }
 
@@ -120,6 +103,7 @@ class Grid extends Component {
     if (this.state.isDragging) {
       this.setState({ isDragging: false });
     }
+    this.setState({ dragNode: 'wall' });
   }
 
   handleDragBug(e) {
@@ -239,15 +223,42 @@ class Grid extends Component {
   }
 
   createNode(row, col) {
-    return {
-      row: row,
-      col: col,
-      nodeType: 'normal-node',
-      adjacentNodes: [],
-      isVisited: false,
-      dist: Infinity,
-      prev: {},
-    };
+    if (row === 8 && col === 10) {
+      const nodeObject = {
+        row: row,
+        col: col,
+        nodeType: 'start-node',
+        adjacentNodes: [],
+        isVisited: false,
+        dist: Infinity,
+        prev: {},
+      };
+
+      this.setState({ startNode: nodeObject });
+      return nodeObject;
+    } else if (row === 8 && col === 38) {
+      const nodeObject = {
+        row: row,
+        col: col,
+        nodeType: 'end-node',
+        adjacentNodes: [],
+        isVisited: false,
+        dist: Infinity,
+        prev: {},
+      };
+      this.setState({ endNode: nodeObject });
+      return nodeObject;
+    } else {
+      return {
+        row: row,
+        col: col,
+        nodeType: 'normal-node',
+        adjacentNodes: [],
+        isVisited: false,
+        dist: Infinity,
+        prev: {},
+      };
+    }
   }
 
   // performs a deep copy of the grid so that the state is not altered directly by accident.
