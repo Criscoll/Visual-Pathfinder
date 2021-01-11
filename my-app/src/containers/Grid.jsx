@@ -101,6 +101,9 @@ class Grid extends Component {
         document.getElementById(`node-${row}-${col}`).className = 'wall-node';
       }
     }
+    let audio = document.getElementById('click_sound').cloneNode(true);
+    audio.volume = 0.1;
+    audio.play();
   }
 
   handleNodePressed(row, column) {
@@ -305,6 +308,10 @@ class Grid extends Component {
           document.getElementById(
             `node-${visited.row}-${visited.col}`
           ).className = 'visited-node';
+
+          let audio = document.getElementById('loading_sound');
+          audio.volume = 0.5;
+          audio.play();
         }, 25 * i);
       }
     }
@@ -323,7 +330,13 @@ class Grid extends Component {
           'path-node';
         prev = prev.prev;
       }
-      this.setState({ pathStatus: 'found' });
+      let audio = document.getElementById('path_sound').cloneNode(true);
+      audio.volume = 0.5;
+      audio.play();
+      this.setState({ pathStatus: 'found' }, () => {
+        document.getElementById('loading_sound').pause();
+        document.getElementById('loading_sound').currentTime = 0;
+      });
     }, 25 * visitedNodes.length);
   }
 }

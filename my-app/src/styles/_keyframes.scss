@@ -1,7 +1,19 @@
-@keyframes createNode {
+@keyframes create-node {
   0% {
     opacity: 0;
     background-size: 0% 0%;
+  }
+
+  100% {
+    opacity: 1;
+    background-size: 100% 100%;
+  }
+}
+
+@keyframes move-node {
+  0% {
+    opacity: 0.5;
+    background-size: 50% 50%;
   }
 
   100% {

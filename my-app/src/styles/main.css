@@ -1,4 +1,4 @@
-@-webkit-keyframes createNode {
+@-webkit-keyframes create-node {
   0% {
     opacity: 0;
     background-size: 0% 0%;
@@ -9,10 +9,32 @@
   }
 }
 
-@keyframes createNode {
+@keyframes create-node {
   0% {
     opacity: 0;
     background-size: 0% 0%;
+  }
+  100% {
+    opacity: 1;
+    background-size: 100% 100%;
+  }
+}
+
+@-webkit-keyframes move-node {
+  0% {
+    opacity: 0.5;
+    background-size: 50% 50%;
+  }
+  100% {
+    opacity: 1;
+    background-size: 100% 100%;
+  }
+}
+
+@keyframes move-node {
+  0% {
+    opacity: 0.5;
+    background-size: 50% 50%;
   }
   100% {
     opacity: 1;
@@ -21,54 +43,70 @@
 }
 
 .normal-node {
-  width: 30px;
-  height: 30px;
-  outline: 2px solid grey;
   display: inline-block;
+  height: 1.5rem;
+  width: 1.5rem;
+  outline: 0.12rem solid grey;
 }
 
 .start-node {
-  width: 30px;
-  height: 30px;
-  outline: 2px solid grey;
-  background-color: green;
   display: inline-block;
+  height: 1.5rem;
+  width: 1.5rem;
+  outline: 0.12rem solid grey;
+  background: -webkit-gradient(linear, left top, left bottom, from(green), to(green)) no-repeat;
+  background: linear-gradient(green, green) no-repeat;
+  background-position: center;
+  -webkit-animation: create-node 100ms ease-out;
+          animation: create-node 100ms ease-out;
 }
 
 .end-node {
-  width: 30px;
-  height: 30px;
-  outline: 2px solid grey;
-  background-color: red;
   display: inline-block;
+  height: 1.5rem;
+  width: 1.5rem;
+  outline: 0.12rem solid grey;
+  background: -webkit-gradient(linear, left top, left bottom, from(red), to(red)) no-repeat;
+  background: linear-gradient(red, red) no-repeat;
+  background-position: center;
+  -webkit-animation: create-node 100ms ease-out;
+          animation: create-node 100ms ease-out;
 }
 
 .wall-node {
-  width: 30px;
-  height: 30px;
-  outline: 2px solid grey;
+  display: inline-block;
+  height: 1.5rem;
+  width: 1.5rem;
+  outline: 0.12rem solid grey;
   background: -webkit-gradient(linear, left top, left bottom, from(black), to(black)) no-repeat;
   background: linear-gradient(black, black) no-repeat;
   background-position: center;
-  display: inline-block;
-  -webkit-animation: createNode 200ms linear;
-          animation: createNode 200ms linear;
+  -webkit-animation: create-node 200ms ease-out;
+          animation: create-node 200ms ease-out;
 }
 
 .visited-node {
-  width: 30px;
-  height: 30px;
-  outline: 2px solid grey;
-  background-color: blue;
   display: inline-block;
+  height: 1.5rem;
+  width: 1.5rem;
+  outline: 0.12rem solid grey;
+  background: -webkit-gradient(linear, left top, left bottom, from(aqua), to(aqua)) no-repeat;
+  background: linear-gradient(aqua, aqua) no-repeat;
+  background-position: center;
+  -webkit-animation: create-node 200ms ease-out;
+          animation: create-node 200ms ease-out;
 }
 
 .path-node {
-  width: 30px;
-  height: 30px;
-  outline: 2px solid grey;
-  background-color: yellow;
   display: inline-block;
+  height: 1.5rem;
+  width: 1.5rem;
+  outline: 0.12rem solid grey;
+  background: -webkit-gradient(linear, left top, left bottom, from(yellow), to(yellow)) no-repeat;
+  background: linear-gradient(yellow, yellow) no-repeat;
+  background-position: center;
+  -webkit-animation: create-node 200ms ease-out;
+          animation: create-node 200ms ease-out;
 }
 
 .results-container {

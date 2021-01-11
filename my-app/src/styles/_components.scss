@@ -1,52 +1,45 @@
 @import 'keyframes.scss';
 
-.normal-node {
-  width: 30px;
-  height: 30px;
-  outline: 2px solid grey;
+@mixin node-properties() {
   display: inline-block;
+  height: 1.5rem;
+  width: 1.5rem;
+  outline: 0.12rem solid grey;
+}
+
+@mixin node-styles($node-colour, $timing: 200ms, $animation: create-node) {
+  background: linear-gradient($node-colour, $node-colour) no-repeat;
+  background-position: center;
+  animation: $animation $timing ease-out;
+}
+
+.normal-node {
+  @include node-properties();
 }
 
 .start-node {
-  width: 30px;
-  height: 30px;
-  outline: 2px solid grey;
-  background-color: green;
-  display: inline-block;
+  @include node-properties();
+  @include node-styles(green, 100ms);
 }
 
 .end-node {
-  width: 30px;
-  height: 30px;
-  outline: 2px solid grey;
-  background-color: red;
-  display: inline-block;
+  @include node-properties();
+  @include node-styles(red, 100ms);
 }
 
 .wall-node {
-  width: 30px;
-  height: 30px;
-  outline: 2px solid grey;
-  background: linear-gradient(black, black) no-repeat;
-  background-position: center;
-  display: inline-block;
-  animation: createNode 200ms linear;
+  @include node-properties();
+  @include node-styles(black);
 }
 
 .visited-node {
-  width: 30px;
-  height: 30px;
-  outline: 2px solid grey;
-  background-color: blue;
-  display: inline-block;
+  @include node-properties();
+  @include node-styles(aqua);
 }
 
 .path-node {
-  width: 30px;
-  height: 30px;
-  outline: 2px solid grey;
-  background-color: yellow;
-  display: inline-block;
+  @include node-properties();
+  @include node-styles(yellow);
 }
 
 .results-container {
