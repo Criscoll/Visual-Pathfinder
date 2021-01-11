@@ -1,0 +1,11 @@
+@keyframes createNode {
+  0% {
+    opacity: 0;
+    background-size: 0% 0%;
+  }
+
+  100% {
+    opacity: 1;
+    background-size: 100% 100%;
+  }
+}

@@ -1,42 +1,23 @@
-.button-container {
-  font-weight: bold;
-  list-style-type: none;
-  margin-left: 30px;
-  position: relative;
-  top: 70px;
-  right: 30px;
+@-webkit-keyframes createNode {
+  0% {
+    opacity: 0;
+    background-size: 0% 0%;
+  }
+  100% {
+    opacity: 1;
+    background-size: 100% 100%;
+  }
 }
 
-.button-default {
-  margin: 5px;
-  background: #ffffff;
-  -webkit-box-shadow: 0px 0px 0px white;
-          box-shadow: 0px 0px 0px white;
-}
-
-.button-hovered {
-  margin: 5px;
-  border: 0.1px solid red;
-}
-
-.button-clicked {
-  background: #cccbcb;
-  -webkit-box-shadow: 0px 0px 0px white;
-          box-shadow: 0px 0px 0px white;
-  border: 0.1px solid red;
-}
-
-.grid {
-  margin-top: 90px;
-  text-align: center;
-}
-
-.container {
-  position: relative;
-  margin-top: 20px;
-  margin-left: 200px;
-  margin-right: 200px;
-  padding-left: 500px;
+@keyframes createNode {
+  0% {
+    opacity: 0;
+    background-size: 0% 0%;
+  }
+  100% {
+    opacity: 1;
+    background-size: 100% 100%;
+  }
 }
 
 .normal-node {
@@ -66,8 +47,12 @@
   width: 30px;
   height: 30px;
   outline: 2px solid grey;
-  background-color: black;
+  background: -webkit-gradient(linear, left top, left bottom, from(black), to(black)) no-repeat;
+  background: linear-gradient(black, black) no-repeat;
+  background-position: center;
   display: inline-block;
+  -webkit-animation: createNode 200ms linear;
+          animation: createNode 200ms linear;
 }
 
 .visited-node {
@@ -84,6 +69,14 @@
   outline: 2px solid grey;
   background-color: yellow;
   display: inline-block;
+}
+
+.results-container {
+  position: relative;
+  margin-top: 20px;
+  margin-left: 200px;
+  margin-right: 200px;
+  padding-left: 500px;
 }
 
 #toolbar {
@@ -113,5 +106,10 @@
       -ms-flex-align: center;
           align-items: center;
   width: 100%;
+}
+
+.grid {
+  margin-top: 90px;
+  text-align: center;
 }
 /*# sourceMappingURL=main.css.map */

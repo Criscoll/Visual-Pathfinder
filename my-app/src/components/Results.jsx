@@ -3,7 +3,7 @@ import '../styles/main.css';
 
 class Results extends Component {
   render() {
-    return <div className="container">{this.getMessage()}</div>;
+    return <div className="results-container">{this.getMessage()}</div>;
   }
 
   getMessage() {
