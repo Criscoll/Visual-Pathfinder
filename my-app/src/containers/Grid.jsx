@@ -48,10 +48,6 @@ class Grid extends Component {
     let nodes = this.copyNodes();
     let nodeType = 'wall-node';
 
-    setTimeout(() => {
-      console.log(this.state.dragNode);
-    }, 500);
-
     if (this.state.dragNode === 'start') {
       nodeType = 'start-node';
     } else if (this.state.dragNode === 'end') {
@@ -91,7 +87,19 @@ class Grid extends Component {
         }
       }
     } else {
-      document.getElementById(`node-${row}-${col}`).className = 'wall-node';
+      if (
+        this.state.startNode.row === row &&
+        this.state.startNode.col === col
+      ) {
+        return;
+      } else if (
+        this.state.endNode.row === row &&
+        this.state.endNode.col === col
+      ) {
+        return;
+      } else {
+        document.getElementById(`node-${row}-${col}`).className = 'wall-node';
+      }
     }
   }
 
