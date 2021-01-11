@@ -4,21 +4,17 @@ import '../styles/main.css';
 class Node extends Component {
   constructor(props) {
     super(props);
-    this.handleClick = this.handleClick.bind(this);
+    this.handleMouseEnter = this.handleMouseEnter.bind(this);
     this.handlePress = this.handlePress.bind(this);
   }
 
-  handleClick() {
+  handleMouseEnter() {
     if (this.props.isDragging) {
       this.props.handleNodeClick(this.props.row, this.props.col);
     }
   }
 
   handlePress() {
-    console.log(
-      document.getElementById(`node-${this.props.row}-${this.props.col}`)
-        .className
-    );
     this.props.handleNodePressed(this.props.row, this.props.col);
   }
 
@@ -34,10 +30,9 @@ class Node extends Component {
       <div
         id={'node-' + this.props.row + '-' + this.props.col}
         className={this.props.node.nodeType}
-        onClick={this.handleClick}
         onMouseDown={this.handlePress}
         onMouseUp={this.props.handleNodeReleased}
-        onMouseEnter={this.handleClick}
+        onMouseEnter={this.handleMouseEnter}
       ></div>
     );
   }

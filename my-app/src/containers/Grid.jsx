@@ -44,40 +44,54 @@ class Grid extends Component {
     this.setState({ nodes });
   }
 
-  handleNodeClick(newRow, newColumn) {
+  handleNodeClick(row, col) {
     let nodes = this.copyNodes();
-    let nodeSetMode = 'wall-node';
+    let nodeType = 'wall-node';
 
-    if (nodeSetMode !== 'wall-node') {
+    setTimeout(() => {
+      console.log(this.state.dragNode);
+    }, 500);
+
+    if (this.state.dragNode === 'start') {
+      nodeType = 'start-node';
+    } else if (this.state.dragNode === 'end') {
+      nodeType = 'end-node';
+    }
+
+    if (nodeType !== 'wall-node') {
       let rowColIndices = [-1, -1];
       let oldRow = -1;
       let oldCol = -1;
 
-      rowColIndices = this.findPrevNode(nodeSetMode);
+      if (nodeType === 'start-node') {
+        rowColIndices[0] = this.state.startNode.row;
+        rowColIndices[1] = this.state.startNode.col;
+      } else {
+        rowColIndices[0] = this.state.endNode.row;
+        rowColIndices[1] = this.state.endNode.col;
+      }
+
       oldRow = rowColIndices[0];
       oldCol = rowColIndices[1];
 
       if (oldRow !== -1 && oldCol !== -1) {
-        nodes[oldRow][oldCol].nodeType = 'normal-node';
-        nodes[newRow][newColumn].nodeType = nodeSetMode;
+        document.getElementById(`node-${oldRow}-${oldCol}`).className =
+          'normal-node';
 
-        if (nodeSetMode === 'start-node') {
+        document.getElementById(`node-${row}-${col}`).className = nodeType;
+
+        if (nodeType === 'start-node') {
           this.setState({
-            nodes: nodes,
-            startNode: nodes[newRow][newColumn],
+            startNode: nodes[row][col],
           });
         } else {
           this.setState({
-            nodes: nodes,
-            endNode: nodes[newRow][newColumn],
+            endNode: nodes[row][col],
           });
         }
       }
     } else {
-      nodes[newRow][newColumn].nodeType = 'wall-node';
-      document.getElementById(`node-${newRow}-${newColumn}`).className =
-        'wall-node';
-      this.setState({ nodes });
+      document.getElementById(`node-${row}-${col}`).className = 'wall-node';
     }
   }
 
@@ -95,8 +109,9 @@ class Grid extends Component {
       dragNode = 'end';
     }
 
-    this.setState({ isDragging: true, dragNode: dragNode });
-    this.handleNodeClick(row, column);
+    this.setState({ isDragging: true, dragNode: dragNode }, () => {
+      this.handleNodeClick(row, column);
+    });
   }
 
   handleNodeReleased() {
@@ -147,25 +162,6 @@ class Grid extends Component {
     );
   }
 
-  findPrevNode(type) {
-    let rowIndex = -1;
-    let colIndex = -1;
-    let nodes = this.copyNodes();
-
-    for (let i = 0; i < nodes.length; i++) {
-      colIndex = nodes[i].findIndex((currentColumn) => {
-        return currentColumn.nodeType === type;
-      });
-
-      if (colIndex !== -1) {
-        rowIndex = i;
-        return [rowIndex, colIndex];
-      }
-    }
-
-    return [-1, -1];
-  }
-
   resetGrid() {
     let nodes = this.copyNodes();
 
@@ -174,7 +170,6 @@ class Grid extends Component {
         nodes[i][j] = {
           row: i,
           col: j,
-          nodeType: 'normal-node',
           adjacentNodes: [],
           isVisited: false,
           dist: Infinity,
@@ -314,8 +309,6 @@ class Grid extends Component {
           document.getElementById(
             `node-${visited.row}-${visited.col}`
           ).className = 'visited-node';
-          nodes[visited.row][visited.col].nodeType = 'visited-node';
-          // this.setState({ nodes: nodes });
         }, 25 * i);
       }
     }
@@ -330,10 +323,11 @@ class Grid extends Component {
     setTimeout(() => {
       let prev = endNode.prev;
       while (prev.row !== startNode.row || prev.col !== startNode.col) {
-        nodes[prev.row][prev.col].nodeType = 'path-node';
+        document.getElementById(`node-${prev.row}-${prev.col}`).className =
+          'path-node';
         prev = prev.prev;
       }
-      this.setState({ nodes: nodes, pathStatus: 'found' });
+      this.setState({ pathStatus: 'found' });
     }, 25 * visitedNodes.length);
   }
 }
