@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Buttons from './components/Buttons';
 import Grid from './containers/Grid';
 import Toolbar from './containers/Toolbar';
 
@@ -51,14 +50,7 @@ class Main extends Component {
           handleResetClick={this.handleResetClick}
           handleGoClick={this.handleGoClick}
         />
-        <Buttons
-          buttonPressed={this.state.buttonPressed}
-          handleStartClick={this.handleStartClick}
-          handleEndClick={this.handleEndClick}
-          handleWallClick={this.handleWallClick}
-          handleResetClick={this.handleResetClick}
-          handleGoClick={this.handleGoClick}
-        />
+
         <Grid
           selectionMode={this.state.selectionMode}
           resetGrid={this.state.resetGridCalled}

@@ -22,7 +22,7 @@ class Node extends Component {
   // whenever the parent re-renders so does the child. The check here ensures that shouldComponentUpdate() returns false (don't re-render)
   // unless the nodeType of this Node component changes
   shouldComponentUpdate(nextProps) {
-    return this.props.node.nodeType !== nextProps.node.nodeType;
+    return this.props.resetClicked !== nextProps.resetClicked;
   }
 
   render() {

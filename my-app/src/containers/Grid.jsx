@@ -172,36 +172,24 @@ class Grid extends Component {
 
   resetGrid() {
     let nodes = this.copyNodes();
-
-    for (let i = 0; i < nodes.length; i++) {
-      for (let j = 0; j < nodes[i].length; j++) {
-        nodes[i][j] = {
-          row: i,
-          col: j,
-          adjacentNodes: [],
-          isVisited: false,
-          dist: Infinity,
-          prev: {},
-        };
+    for (let row = 0; row < this.maxRow; row++) {
+      for (let col = 0; col < this.maxCol; col++) {
+        if (
+          ['wall-node', 'visited-node', 'path-node'].includes(
+            document.getElementById(`node-${row}-${col}`).className
+          )
+        ) {
+          document.getElementById(`node-${row}-${col}`).className =
+            'normal-node';
+        }
       }
     }
 
-    // !!! Maybe set this just before the algorithm runs in case you set walls etc
     for (let row = 0; row < this.maxRow; row++) {
       for (let col = 0; col < this.maxCol; col++) {
         this.setAdjacentNodes(nodes[row][col], nodes);
       }
     }
-
-    this.setState({
-      nodes: nodes,
-      startNode: {},
-      endNode: {},
-      startNodePreviouslySet: false,
-      endNodePreviouslySet: false,
-      isDragging: false,
-      pathStatus: '',
-    });
   }
 
   setAdjacentNodes(node, nodes) {
