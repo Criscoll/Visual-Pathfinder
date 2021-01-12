@@ -327,14 +327,6 @@ class Grid extends Component {
       }
     }
 
-    // // path found result
-    // if (result.pathFound === false) {
-    //   setTimeout(() => {
-    //     this.props.setAlgorithmRunning(false);
-    //   }, 25 * (visitedNodes.length + 1));
-    //   return;
-    // }
-
     // visualise shortest path
     setTimeout(() => {
       if (result.pathFound === false) {
