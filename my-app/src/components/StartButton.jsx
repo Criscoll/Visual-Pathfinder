@@ -6,9 +6,12 @@ const useStyles = makeStyles(() => ({
   root: {
     fontFamily: ['Share Tech', 'Sans Serif'],
     fontSize: 25,
-    backgroundColor: 'rgb(79, 201, 117)',
-    // borderColor: 'rgb(79, 201, 117)',
+    backgroundColor: 'rgb(212, 23, 58)',
     borderColor: 'red',
+    color: 'white',
+    '&:hover': {
+      backgroundColor: 'rgb(189, 15, 47)',
+    },
   },
 }));
 

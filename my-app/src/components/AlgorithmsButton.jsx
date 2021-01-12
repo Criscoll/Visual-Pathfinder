@@ -13,6 +13,7 @@ import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
+    zIndex: 1000,
   },
   paper: {
     marginRight: theme.spacing(2),
@@ -20,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
   button: {
     fontFamily: 'Share Tech',
     fontSize: 25,
+    color: 'white',
   },
   dropDownText: {
     fontFamily: 'Share Tech',

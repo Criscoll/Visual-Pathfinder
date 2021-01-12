@@ -1,7 +1,7 @@
 #toolbar {
   display: flex;
 
-  background-color: rgba(109, 107, 107, 0.493);
+  background-color: rgb(15, 104, 107);
   height: 8vh;
 }
 
@@ -14,6 +14,7 @@
   font-family: 'Share Tech', sans-serif;
   font-size: 30px;
   font-weight: bold;
+  color: white;
 }
 
 #toolbar > .buttons {

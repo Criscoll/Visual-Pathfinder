@@ -6,6 +6,7 @@ const useStyles = makeStyles(() => ({
   root: {
     fontFamily: 'Share Tech',
     fontSize: 25,
+    color: 'white',
   },
 }));
 

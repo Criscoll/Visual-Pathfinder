@@ -44,44 +44,6 @@
 
 @-webkit-keyframes visit-nodes {
   0% {
-    background-size: 25% 25%;
-  }
-  50% {
-    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 255, 136, 0.568)), to(rgba(0, 255, 55, 0.568)));
-    background-image: linear-gradient(rgba(0, 255, 136, 0.568), rgba(0, 255, 55, 0.568));
-  }
-  60% {
-    background-size: 100% 100%;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#39df39), to(#39df39));
-    background-image: linear-gradient(#39df39, #39df39);
-  }
-  100% {
-    background-image: -webkit-gradient(linear, left top, left bottom, from(aqua), to(aqua));
-    background-image: linear-gradient(aqua, aqua);
-  }
-}
-
-@keyframes visit-nodes {
-  0% {
-    background-size: 25% 25%;
-  }
-  50% {
-    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 255, 136, 0.568)), to(rgba(0, 255, 55, 0.568)));
-    background-image: linear-gradient(rgba(0, 255, 136, 0.568), rgba(0, 255, 55, 0.568));
-  }
-  60% {
-    background-size: 100% 100%;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#39df39), to(#39df39));
-    background-image: linear-gradient(#39df39, #39df39);
-  }
-  100% {
-    background-image: -webkit-gradient(linear, left top, left bottom, from(aqua), to(aqua));
-    background-image: linear-gradient(aqua, aqua);
-  }
-}
-
-@-webkit-keyframes test {
-  0% {
     -webkit-transform: scale(0);
             transform: scale(0);
     background-color: rgba(218, 7, 7, 0.835);
@@ -103,7 +65,7 @@
   }
 }
 
-@keyframes test {
+@keyframes visit-nodes {
   0% {
     -webkit-transform: scale(0);
             transform: scale(0);
@@ -204,6 +166,19 @@
   overflow: hidden;
 }
 
+.path-node {
+  position: relative;
+  display: inline-block;
+  height: 1.5rem;
+  width: 1.5rem;
+  outline: 0.12rem solid grey;
+  background: -webkit-gradient(linear, left top, left bottom, from(yellow), to(yellow)) no-repeat;
+  background: linear-gradient(yellow, yellow) no-repeat;
+  background-position: center;
+  -webkit-animation: draw-path 200ms ease-out;
+          animation: draw-path 200ms ease-out;
+}
+
 .visited-node::before {
   content: '';
   position: absolute;
@@ -216,21 +191,8 @@
   right: 0;
   background-color: aqua;
   border-radius: 50%;
-  -webkit-animation: test linear 2000ms forwards;
-          animation: test linear 2000ms forwards;
-}
-
-.path-node {
-  position: relative;
-  display: inline-block;
-  height: 1.5rem;
-  width: 1.5rem;
-  outline: 0.12rem solid grey;
-  background: -webkit-gradient(linear, left top, left bottom, from(yellow), to(yellow)) no-repeat;
-  background: linear-gradient(yellow, yellow) no-repeat;
-  background-position: center;
-  -webkit-animation: draw-path 200ms ease-out;
-          animation: draw-path 200ms ease-out;
+  -webkit-animation: visit-nodes linear 2000ms forwards;
+          animation: visit-nodes linear 2000ms forwards;
 }
 
 .results-container {
@@ -245,7 +207,7 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  background-color: rgba(109, 107, 107, 0.493);
+  background-color: #0f686b;
   height: 8vh;
 }
 
@@ -256,6 +218,7 @@
   font-family: 'Share Tech', sans-serif;
   font-size: 30px;
   font-weight: bold;
+  color: white;
 }
 
 #toolbar > .buttons {

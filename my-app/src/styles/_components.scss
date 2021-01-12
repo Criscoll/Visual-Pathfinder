@@ -39,6 +39,11 @@
   // @include node-styles(aqua, 5000ms, visit-nodes);
 }
 
+.path-node {
+  @include node-properties();
+  @include node-styles(yellow, 200ms, draw-path);
+}
+
 .visited-node::before {
   content: '';
   position: absolute;
@@ -53,12 +58,7 @@
   background-color: aqua;
   border-radius: 50%;
 
-  animation: test linear 2000ms forwards;
-}
-
-.path-node {
-  @include node-properties();
-  @include node-styles(yellow, 200ms, draw-path);
+  animation: visit-nodes linear 2000ms forwards;
 }
 
 .results-container {
