@@ -34,12 +34,12 @@
 
 .visited-node {
   @include node-properties();
-  @include node-styles(aqua);
+  @include node-styles(aqua, 3000ms, visit-nodes);
 }
 
 .path-node {
   @include node-properties();
-  @include node-styles(yellow);
+  @include node-styles(yellow, 200ms, draw-path);
 }
 
 .results-container {

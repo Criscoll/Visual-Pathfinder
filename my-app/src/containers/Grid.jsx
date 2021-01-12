@@ -174,7 +174,6 @@ class Grid extends Component {
   }
 
   resetGrid() {
-    let nodes = this.copyNodes();
     for (let row = 0; row < this.maxRow; row++) {
       for (let col = 0; col < this.maxCol; col++) {
         if (
@@ -187,15 +186,9 @@ class Grid extends Component {
         }
       }
     }
-
-    for (let row = 0; row < this.maxRow; row++) {
-      for (let col = 0; col < this.maxCol; col++) {
-        this.setAdjacentNodes(nodes[row][col], nodes);
-      }
-    }
   }
 
-  setAdjacentNodes(node, nodes) {
+  setAdjacentNodes(node) {
     let row = node.row;
     let col = node.col;
 
@@ -289,18 +282,27 @@ class Grid extends Component {
     );
 
     this.setState({ pathStatus: 'searching' });
+
+    this.visualisePath(result, startNode, endNode);
+  }
+
+  visualisePath(result, startNode, endNode) {
+    for (let row = 0; row < this.maxRow; row++) {
+      for (let col = 0; col < this.maxCol; col++) {
+        if (
+          ['visited-node', 'path-node'].includes(
+            document.getElementById(`node-${row}-${col}`).className
+          )
+        ) {
+          document.getElementById(`node-${row}-${col}`).className =
+            'normal-node';
+        }
+      }
+    }
+
     let visitedNodes = result.visitedNodes;
 
-    // Below is the chunk of code that deals with incrementally updating the node colour to show which nodes the algorithm
-    // took in search of the goal node. To get this to work I utilise how the setTimeout function works with respect to react.
-    // In react, setState is normally run asynchronously with multiple setState calls typically batched together into one single
-    // setState call update for performance reasons. However, if setState is called within setTimeout, these calls now run synchronously.
-    // The reason for this is due to how setTimeout() works, it doesn't guarantee that the callback function will run after whatever delay
-    // you give it, it is only guaranteed to QUEUE UP the callback in a 'message queue' after that delay period. This message queue is a queue
-    // of callback functions which are run AFTER ALL OTHER CODE IS RUN and which are run one after the other in the order in which they
-    // were queued. I set a delay of 0 here because all I need to do is get this chunk of code into that queue and it will be run
-    // synchronously, the delay just controls when the code is sent to that queue, all other code below must run first regardless so it
-    // doesn't really matter.
+    // visualise visited nodes
     for (let i = 0; i < visitedNodes.length; i++) {
       if (visitedNodes[i] !== startNode && visitedNodes[i] !== endNode) {
         setTimeout(() => {
@@ -316,6 +318,7 @@ class Grid extends Component {
       }
     }
 
+    // path found result
     if (result.pathFound === false) {
       setTimeout(() => {
         this.setState({ pathStatus: 'none' });
@@ -323,16 +326,33 @@ class Grid extends Component {
       return;
     }
 
+    // visualise shortest path
     setTimeout(() => {
       let prev = endNode.prev;
+
+      let pathNodes = [];
       while (prev.row !== startNode.row || prev.col !== startNode.col) {
-        document.getElementById(`node-${prev.row}-${prev.col}`).className =
-          'path-node';
+        pathNodes.push({ row: prev.row, col: prev.col });
         prev = prev.prev;
       }
-      let audio = document.getElementById('path_sound').cloneNode(true);
-      audio.volume = 0.5;
-      audio.play();
+
+      let i = 1;
+      pathNodes.reverse().forEach((node) => {
+        setTimeout(
+          (row, col) => {
+            document.getElementById(`node-${row}-${col}`).className =
+              'path-node';
+            let audio = document.getElementById('path_sound').cloneNode(true);
+            audio.volume = 0.3;
+            audio.play();
+          },
+          70 * i,
+          node.row,
+          node.col
+        );
+        i++;
+      });
+
       this.setState({ pathStatus: 'found' }, () => {
         document.getElementById('loading_sound').pause();
         document.getElementById('loading_sound').currentTime = 0;

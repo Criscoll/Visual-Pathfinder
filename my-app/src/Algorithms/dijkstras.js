@@ -6,12 +6,12 @@ export default function dikstrasAlgorithm(
   numCols
 ) {
   let visitedNodes = [];
-
   let queue = [];
+
   startNode.dist = 0;
   for (let i = 0; i < numRows; i++) {
     for (let j = 0; j < numCols; j++) {
-      if (grid[i][j].nodeType !== 'wall-node') {
+      if (document.getElementById(`node-${i}-${j}`).className !== 'wall-node') {
         queue.push(grid[i][j]);
       }
     }

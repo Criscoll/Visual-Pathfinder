@@ -21,3 +21,46 @@
     background-size: 100% 100%;
   }
 }
+
+@keyframes visit-nodes {
+  0% {
+    opacity: 1;
+    background-size: 25% 25%;
+  }
+  50% {
+    opacity: 1;
+    background-size: 50% 50%;
+
+    background: linear-gradient(
+        rgba(0, 255, 255, 0.568),
+        rgba(0, 255, 255, 0.568)
+      )
+      no-repeat center;
+  }
+
+  70% {
+    background-size: 100% 100%;
+  }
+  95% {
+    background: linear-gradient(rgb(57, 223, 57), rgb(57, 223, 57)) center;
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 1;
+    background-size: 100% 100%;
+    background: linear-gradient(aqua, aqua) center;
+  }
+}
+
+@keyframes draw-path {
+  0% {
+    opacity: 0;
+    background-size: 0% 0%;
+  }
+
+  100% {
+    opacity: 1;
+    background-size: 100% 100%;
+  }
+}
