@@ -131,16 +131,16 @@
 .normal-node {
   position: relative;
   display: inline-block;
-  height: 1.5rem;
-  width: 1.5rem;
+  height: 1.9rem;
+  width: 1.9rem;
   outline: 0.12rem solid grey;
 }
 
 .start-node {
   position: relative;
   display: inline-block;
-  height: 1.5rem;
-  width: 1.5rem;
+  height: 1.9rem;
+  width: 1.9rem;
   outline: 0.12rem solid grey;
   background: -webkit-gradient(linear, left top, left bottom, from(green), to(green)) no-repeat;
   background: linear-gradient(green, green) no-repeat;
@@ -152,8 +152,8 @@
 .end-node {
   position: relative;
   display: inline-block;
-  height: 1.5rem;
-  width: 1.5rem;
+  height: 1.9rem;
+  width: 1.9rem;
   outline: 0.12rem solid grey;
   background: -webkit-gradient(linear, left top, left bottom, from(red), to(red)) no-repeat;
   background: linear-gradient(red, red) no-repeat;
@@ -165,8 +165,8 @@
 .end-node-found {
   position: relative;
   display: inline-block;
-  height: 1.5rem;
-  width: 1.5rem;
+  height: 1.9rem;
+  width: 1.9rem;
   outline: 0.12rem solid grey;
   background: -webkit-gradient(linear, left top, left bottom, from(red), to(red)) no-repeat;
   background: linear-gradient(red, red) no-repeat;
@@ -178,8 +178,8 @@
 .wall-node {
   position: relative;
   display: inline-block;
-  height: 1.5rem;
-  width: 1.5rem;
+  height: 1.9rem;
+  width: 1.9rem;
   outline: 0.12rem solid grey;
   background: -webkit-gradient(linear, left top, left bottom, from(black), to(black)) no-repeat;
   background: linear-gradient(black, black) no-repeat;
@@ -191,8 +191,8 @@
 .visited-node {
   position: relative;
   display: inline-block;
-  height: 1.5rem;
-  width: 1.5rem;
+  height: 1.9rem;
+  width: 1.9rem;
   outline: 0.12rem solid grey;
   overflow: hidden;
 }
@@ -200,8 +200,8 @@
 .path-node {
   position: relative;
   display: inline-block;
-  height: 1.5rem;
-  width: 1.5rem;
+  height: 1.9rem;
+  width: 1.9rem;
   outline: 0.12rem solid grey;
   background: -webkit-gradient(linear, left top, left bottom, from(yellow), to(yellow)) no-repeat;
   background: linear-gradient(yellow, yellow) no-repeat;

@@ -18,7 +18,11 @@ const useStyles = makeStyles(() => ({
 export default function ClearGridButton(props) {
   const classes = useStyles();
   return (
-    <Button classes={{ root: classes.root }} onClick={props.handleGoClick}>
+    <Button
+      classes={{ root: classes.root }}
+      onClick={props.handleGoClick}
+      disabled={props.algorithmRunning}
+    >
       Run Algorithm
     </Button>
   );

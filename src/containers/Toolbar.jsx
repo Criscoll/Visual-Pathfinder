@@ -11,8 +11,14 @@ export default function Toolbar(props) {
         <div className="app-heading-name">Visual Pathfinder</div>
         <div className="buttons">
           <AlgorithmsButton />
-          <ClearGridButton handleResetClick={props.handleResetClick} />
-          <StartButton handleGoClick={props.handleGoClick} />
+          <ClearGridButton
+            handleResetClick={props.handleResetClick}
+            algorithmRunning={props.algorithmRunning}
+          />
+          <StartButton
+            handleGoClick={props.handleGoClick}
+            algorithmRunning={props.algorithmRunning}
+          />
         </div>
       </div>
     </React.Fragment>

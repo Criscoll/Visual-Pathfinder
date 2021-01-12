@@ -11,8 +11,8 @@ class Grid extends Component {
     this.handleNodeClick = this.handleNodeClick.bind(this);
     this.handleNodePressed = this.handleNodePressed.bind(this);
     this.handleNodeReleased = this.handleNodeReleased.bind(this);
-    this.maxRow = 20;
-    this.maxCol = 50;
+    this.maxRow = 22;
+    this.maxCol = 55;
   }
 
   state = {
@@ -21,7 +21,6 @@ class Grid extends Component {
     endNode: {},
     isDragging: false,
     dragNode: 'wall',
-    pathStatus: '',
   };
 
   componentDidMount() {
@@ -172,7 +171,6 @@ class Grid extends Component {
             );
           })}
         </div>
-        <Results pathStatus={this.state.pathStatus} />
       </React.Fragment>
     );
   }
@@ -285,8 +283,6 @@ class Grid extends Component {
       pathFound
     );
 
-    this.setState({ pathStatus: 'searching' });
-
     this.visualisePath(result, startNode, endNode);
   }
 
@@ -314,6 +310,7 @@ class Grid extends Component {
     let visitedNodes = result.visitedNodes;
 
     // visualise visited nodes
+    let temp = 0;
     for (let i = 0; i < visitedNodes.length; i++) {
       if (visitedNodes[i] !== startNode && visitedNodes[i] !== endNode) {
         setTimeout(() => {
@@ -325,20 +322,28 @@ class Grid extends Component {
           let audio = document.getElementById('loading_sound');
           audio.volume = 0.5;
           audio.play();
+          temp = i;
         }, 25 * i);
       }
     }
 
-    // path found result
-    if (result.pathFound === false) {
-      setTimeout(() => {
-        this.setState({ pathStatus: 'none' });
-      }, 1000);
-      return;
-    }
+    // // path found result
+    // if (result.pathFound === false) {
+    //   setTimeout(() => {
+    //     this.props.setAlgorithmRunning(false);
+    //   }, 25 * (visitedNodes.length + 1));
+    //   return;
+    // }
 
     // visualise shortest path
     setTimeout(() => {
+      if (result.pathFound === false) {
+        document.getElementById('loading_sound').pause();
+        document.getElementById('loading_sound').currentTime = 0;
+        this.props.setAlgorithmRunning(false);
+        return;
+      }
+
       let prev = endNode.prev;
 
       let pathNodes = [];
@@ -370,10 +375,9 @@ class Grid extends Component {
         ).className = 'end-node-found';
       }, 70 * i + 1);
 
-      this.setState({ pathStatus: 'found' }, () => {
-        document.getElementById('loading_sound').pause();
-        document.getElementById('loading_sound').currentTime = 0;
-      });
+      document.getElementById('loading_sound').pause();
+      document.getElementById('loading_sound').currentTime = 0;
+      this.props.setAlgorithmRunning(false);
     }, 25 * visitedNodes.length);
   }
 }
