@@ -55,24 +55,11 @@
   }
 }
 
-// @keyframes visit-nodes {
-//   0% {
-//     background-size: 25% 25%;
-//   }
-//   50% {
-//     background-image: linear-gradient(
-//       rgba(0, 255, 136, 0.568),
-//       rgba(0, 255, 55, 0.568)
-//     );
-//   }
+@keyframes end-node-reached {
+  0% {
+  }
 
-//   60% {
-//     background-size: 100% 100%;
-
-//     background-image: linear-gradient(rgb(57, 223, 57), rgb(57, 223, 57));
-//   }
-
-//   100% {
-//     background-image: linear-gradient(aqua, aqua);
-//   }
-// }
+  50% {
+    transform: scale(1.5);
+  }
+}

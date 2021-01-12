@@ -97,6 +97,10 @@ class Grid extends Component {
         this.state.endNode.col === col
       ) {
         return;
+      } else if (
+        document.getElementById(`node-${row}-${col}`).className === 'wall-node'
+      ) {
+        document.getElementById(`node-${row}-${col}`).className = 'normal-node';
       } else {
         document.getElementById(`node-${row}-${col}`).className = 'wall-node';
       }
@@ -297,6 +301,13 @@ class Grid extends Component {
           document.getElementById(`node-${row}-${col}`).className =
             'normal-node';
         }
+
+        if (
+          document.getElementById(`node-${row}-${col}`).className ===
+          'end-node-found'
+        ) {
+          document.getElementById(`node-${row}-${col}`).className = 'end-node';
+        }
       }
     }
 
@@ -352,6 +363,12 @@ class Grid extends Component {
         );
         i++;
       });
+
+      setTimeout(() => {
+        document.getElementById(
+          `node-${this.state.endNode.row}-${this.state.endNode.col}`
+        ).className = 'end-node-found';
+      }, 70 * i + 1);
 
       this.setState({ pathStatus: 'found' }, () => {
         document.getElementById('loading_sound').pause();

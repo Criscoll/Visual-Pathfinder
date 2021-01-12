@@ -110,6 +110,24 @@
   }
 }
 
+@-webkit-keyframes end-node-reached {
+  0% {
+  }
+  50% {
+    -webkit-transform: scale(1.5);
+            transform: scale(1.5);
+  }
+}
+
+@keyframes end-node-reached {
+  0% {
+  }
+  50% {
+    -webkit-transform: scale(1.5);
+            transform: scale(1.5);
+  }
+}
+
 .normal-node {
   position: relative;
   display: inline-block;
@@ -142,6 +160,19 @@
   background-position: center;
   -webkit-animation: create-node 100ms ease-out;
           animation: create-node 100ms ease-out;
+}
+
+.end-node-found {
+  position: relative;
+  display: inline-block;
+  height: 1.5rem;
+  width: 1.5rem;
+  outline: 0.12rem solid grey;
+  background: -webkit-gradient(linear, left top, left bottom, from(red), to(red)) no-repeat;
+  background: linear-gradient(red, red) no-repeat;
+  background-position: center;
+  -webkit-animation: end-node-reached 600ms ease-out;
+          animation: end-node-reached 600ms ease-out;
 }
 
 .wall-node {

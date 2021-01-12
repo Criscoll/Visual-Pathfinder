@@ -8,10 +8,15 @@
   outline: 0.12rem solid grey;
 }
 
-@mixin node-styles($node-colour, $timing: 200ms, $animation: create-node) {
+@mixin node-styles(
+  $node-colour,
+  $timing: 200ms,
+  $animation: create-node,
+  $timing-fn: ease-out
+) {
   background: linear-gradient($node-colour, $node-colour) no-repeat;
   background-position: center;
-  animation: $animation $timing ease-out;
+  animation: $animation $timing $timing-fn;
 }
 
 .normal-node {
@@ -26,6 +31,11 @@
 .end-node {
   @include node-properties();
   @include node-styles(red, 100ms);
+}
+
+.end-node-found {
+  @include node-properties();
+  @include node-styles(red, 600ms, end-node-reached, ease-out);
 }
 
 .wall-node {
