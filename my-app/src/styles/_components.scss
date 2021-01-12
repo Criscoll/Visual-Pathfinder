@@ -1,6 +1,7 @@
 @import 'keyframes.scss';
 
 @mixin node-properties() {
+  position: relative;
   display: inline-block;
   height: 1.5rem;
   width: 1.5rem;
@@ -34,7 +35,25 @@
 
 .visited-node {
   @include node-properties();
-  @include node-styles(aqua, 3000ms, visit-nodes);
+  overflow: hidden;
+  // @include node-styles(aqua, 5000ms, visit-nodes);
+}
+
+.visited-node::before {
+  content: '';
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+
+  background-color: aqua;
+  border-radius: 50%;
+
+  animation: test linear 2000ms forwards;
 }
 
 .path-node {

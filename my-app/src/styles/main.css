@@ -44,55 +44,85 @@
 
 @-webkit-keyframes visit-nodes {
   0% {
-    opacity: 1;
     background-size: 25% 25%;
   }
   50% {
-    opacity: 1;
-    background-size: 50% 50%;
-    background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 255, 255, 0.568)), to(rgba(0, 255, 255, 0.568))) no-repeat center;
-    background: linear-gradient(rgba(0, 255, 255, 0.568), rgba(0, 255, 255, 0.568)) no-repeat center;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 255, 136, 0.568)), to(rgba(0, 255, 55, 0.568)));
+    background-image: linear-gradient(rgba(0, 255, 136, 0.568), rgba(0, 255, 55, 0.568));
   }
-  70% {
+  60% {
     background-size: 100% 100%;
-  }
-  95% {
-    background: -webkit-gradient(linear, left top, left bottom, from(#39df39), to(#39df39)) center;
-    background: linear-gradient(#39df39, #39df39) center;
-    opacity: 1;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#39df39), to(#39df39));
+    background-image: linear-gradient(#39df39, #39df39);
   }
   100% {
-    opacity: 1;
-    background-size: 100% 100%;
-    background: -webkit-gradient(linear, left top, left bottom, from(aqua), to(aqua)) center;
-    background: linear-gradient(aqua, aqua) center;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(aqua), to(aqua));
+    background-image: linear-gradient(aqua, aqua);
   }
 }
 
 @keyframes visit-nodes {
   0% {
-    opacity: 1;
     background-size: 25% 25%;
   }
   50% {
-    opacity: 1;
-    background-size: 50% 50%;
-    background: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 255, 255, 0.568)), to(rgba(0, 255, 255, 0.568))) no-repeat center;
-    background: linear-gradient(rgba(0, 255, 255, 0.568), rgba(0, 255, 255, 0.568)) no-repeat center;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 255, 136, 0.568)), to(rgba(0, 255, 55, 0.568)));
+    background-image: linear-gradient(rgba(0, 255, 136, 0.568), rgba(0, 255, 55, 0.568));
   }
-  70% {
+  60% {
     background-size: 100% 100%;
-  }
-  95% {
-    background: -webkit-gradient(linear, left top, left bottom, from(#39df39), to(#39df39)) center;
-    background: linear-gradient(#39df39, #39df39) center;
-    opacity: 1;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#39df39), to(#39df39));
+    background-image: linear-gradient(#39df39, #39df39);
   }
   100% {
-    opacity: 1;
-    background-size: 100% 100%;
-    background: -webkit-gradient(linear, left top, left bottom, from(aqua), to(aqua)) center;
-    background: linear-gradient(aqua, aqua) center;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(aqua), to(aqua));
+    background-image: linear-gradient(aqua, aqua);
+  }
+}
+
+@-webkit-keyframes test {
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    background-color: rgba(218, 7, 7, 0.835);
+  }
+  60% {
+    background-color: #9be9f0;
+    -webkit-transform: scale(3);
+            transform: scale(3);
+  }
+  70% {
+    background-color: rgba(231, 251, 251, 0.692);
+    -webkit-transform: scale(3);
+            transform: scale(3);
+  }
+  100% {
+    background-color: aqua;
+    -webkit-transform: scale(3);
+            transform: scale(3);
+  }
+}
+
+@keyframes test {
+  0% {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    background-color: rgba(218, 7, 7, 0.835);
+  }
+  60% {
+    background-color: #9be9f0;
+    -webkit-transform: scale(3);
+            transform: scale(3);
+  }
+  70% {
+    background-color: rgba(231, 251, 251, 0.692);
+    -webkit-transform: scale(3);
+            transform: scale(3);
+  }
+  100% {
+    background-color: aqua;
+    -webkit-transform: scale(3);
+            transform: scale(3);
   }
 }
 
@@ -119,6 +149,7 @@
 }
 
 .normal-node {
+  position: relative;
   display: inline-block;
   height: 1.5rem;
   width: 1.5rem;
@@ -126,6 +157,7 @@
 }
 
 .start-node {
+  position: relative;
   display: inline-block;
   height: 1.5rem;
   width: 1.5rem;
@@ -138,6 +170,7 @@
 }
 
 .end-node {
+  position: relative;
   display: inline-block;
   height: 1.5rem;
   width: 1.5rem;
@@ -150,6 +183,7 @@
 }
 
 .wall-node {
+  position: relative;
   display: inline-block;
   height: 1.5rem;
   width: 1.5rem;
@@ -162,18 +196,32 @@
 }
 
 .visited-node {
+  position: relative;
   display: inline-block;
   height: 1.5rem;
   width: 1.5rem;
   outline: 0.12rem solid grey;
-  background: -webkit-gradient(linear, left top, left bottom, from(aqua), to(aqua)) no-repeat;
-  background: linear-gradient(aqua, aqua) no-repeat;
-  background-position: center;
-  -webkit-animation: visit-nodes 3000ms ease-out;
-          animation: visit-nodes 3000ms ease-out;
+  overflow: hidden;
+}
+
+.visited-node::before {
+  content: '';
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: aqua;
+  border-radius: 50%;
+  -webkit-animation: test linear 2000ms forwards;
+          animation: test linear 2000ms forwards;
 }
 
 .path-node {
+  position: relative;
   display: inline-block;
   height: 1.5rem;
   width: 1.5rem;
