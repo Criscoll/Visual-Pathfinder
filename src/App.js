@@ -25,7 +25,7 @@ class Main extends Component {
   }
 
   handleGoClick() {
-    this.gridRef.current.visualiseDijkstras();
+    this.gridRef.current.runVisualiser(this.state.algorithm);
     this.setState({ algorithmRunning: true });
   }
 
@@ -34,12 +34,10 @@ class Main extends Component {
   }
 
   setAlgorithm(value) {
-    console.log(value);
     this.setState({ algorithm: value });
   }
 
   render() {
-    console.log(this.state.algorithm);
     return (
       <React.Fragment>
         <Toolbar

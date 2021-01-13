@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import dijkstras from '../Algorithms/dijkstras';
+import DFS from '../Algorithms/DFS';
 import Node from '../components/Node';
-import Results from '../components/Results';
-
 import '../styles/main.css';
+import * as enumerations from '../constants/algorithmEnum';
 
 class Grid extends Component {
   constructor(props) {
@@ -218,7 +218,7 @@ class Grid extends Component {
         col: col,
         nodeType: 'start-node',
         adjacentNodes: [],
-        isVisited: false,
+        visited: false,
         dist: Infinity,
         prev: {},
       };
@@ -231,7 +231,7 @@ class Grid extends Component {
         col: col,
         nodeType: 'end-node',
         adjacentNodes: [],
-        isVisited: false,
+        visited: false,
         dist: Infinity,
         prev: {},
       };
@@ -243,7 +243,7 @@ class Grid extends Component {
         col: col,
         nodeType: 'normal-node',
         adjacentNodes: [],
-        isVisited: false,
+        visited: false,
         dist: Infinity,
         prev: {},
       };
@@ -268,20 +268,38 @@ class Grid extends Component {
   }
 
   // ================= PATHFINDING ALGORITHMS =====================
-  visualiseDijkstras() {
+
+  runVisualiser(algorithm) {
     let nodes = this.copyNodes();
     let startNode = nodes[this.state.startNode.row][this.state.startNode.col];
     let endNode = nodes[this.state.endNode.row][this.state.endNode.col];
     let pathFound = true;
+    let result;
 
-    let result = dijkstras(
-      nodes,
-      startNode,
-      endNode,
-      this.maxRow,
-      this.maxCol,
-      pathFound
-    );
+    if (algorithm === enumerations.algorithms.dijkstras) {
+      result = dijkstras(
+        nodes,
+        startNode,
+        endNode,
+        this.maxRow,
+        this.maxCol,
+        pathFound
+      );
+    } else if (algorithm === enumerations.algorithms.DFS) {
+      console.log(startNode);
+      result = DFS(
+        nodes,
+        startNode,
+        endNode,
+        this.maxRow,
+        this.maxCol,
+        pathFound
+      );
+    } else if (algorithm === enumerations.algorithms.AStar) {
+    } else {
+      console.log('No algorithm selected');
+      return;
+    }
 
     this.visualisePath(result, startNode, endNode);
   }
