@@ -1,20 +1,23 @@
 import React, { Component } from 'react';
 import Grid from './containers/Grid';
 import Toolbar from './containers/Toolbar';
+import * as enumerations from './constants/algorithmEnum';
 
 class Main extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      algorithmRunning: false,
-    };
-
     this.handleResetClick = this.handleResetClick.bind(this);
     this.handleGoClick = this.handleGoClick.bind(this);
+    this.setAlgorithm = this.setAlgorithm.bind(this);
     this.setAlgorithmRunning = this.setAlgorithmRunning.bind(this);
 
     this.gridRef = React.createRef(); // used to handle reseting the grid.
+
+    this.state = {
+      algorithm: enumerations.algorithms.none,
+      algorithmRunning: false,
+    };
   }
 
   handleResetClick() {
@@ -30,12 +33,20 @@ class Main extends Component {
     this.setState({ algorithmRunning: state });
   }
 
+  setAlgorithm(value) {
+    console.log(value);
+    this.setState({ algorithm: value });
+  }
+
   render() {
+    console.log(this.state.algorithm);
     return (
       <React.Fragment>
         <Toolbar
           handleResetClick={this.handleResetClick}
           handleGoClick={this.handleGoClick}
+          algorithm={this.state.algorithm}
+          setAlgorithm={this.setAlgorithm}
           algorithmRunning={this.state.algorithmRunning}
         />
 

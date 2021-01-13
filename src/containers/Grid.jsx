@@ -310,7 +310,6 @@ class Grid extends Component {
     let visitedNodes = result.visitedNodes;
 
     // visualise visited nodes
-    let temp = 0;
     for (let i = 0; i < visitedNodes.length; i++) {
       if (visitedNodes[i] !== startNode && visitedNodes[i] !== endNode) {
         setTimeout(() => {
@@ -322,7 +321,6 @@ class Grid extends Component {
           let audio = document.getElementById('loading_sound');
           audio.volume = 0.5;
           audio.play();
-          temp = i;
         }, 25 * i);
       }
     }

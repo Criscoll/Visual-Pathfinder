@@ -9,6 +9,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import { makeStyles } from '@material-ui/core/styles';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import * as enumerations from '../constants/algorithmEnum';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,7 +29,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MenuListComposition() {
+export default function MenuListComposition(props) {
+  console.log(enumerations);
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
@@ -104,6 +106,7 @@ export default function MenuListComposition() {
                       onClick={(e) => {
                         handleClose(e);
                         setAlgorithm('Dijkstras');
+                        props.setAlgorithm(enumerations.algorithms.dijkstras);
                       }}
                     >
                       Dijkstras
@@ -112,19 +115,21 @@ export default function MenuListComposition() {
                       classes={{ root: classes.root }}
                       onClick={(e) => {
                         handleClose(e);
-                        setAlgorithm('*A Star');
+                        setAlgorithm('DFS');
+                        props.setAlgorithm(enumerations.algorithms.DFS);
                       }}
                     >
-                      *A Star
+                      DFS
                     </MenuItem>
                     <MenuItem
                       classes={{ root: classes.root }}
                       onClick={(e) => {
                         handleClose(e);
-                        setAlgorithm('Swarm');
+                        setAlgorithm('*A Star');
+                        props.setAlgorithm(enumerations.algorithms.AStar);
                       }}
                     >
-                      Swarm
+                      *A Star
                     </MenuItem>
                   </MenuList>
                 </ClickAwayListener>

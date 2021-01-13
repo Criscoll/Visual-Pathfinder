@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import * as enumerations from '../constants/algorithmEnum';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -21,7 +22,10 @@ export default function ClearGridButton(props) {
     <Button
       classes={{ root: classes.root }}
       onClick={props.handleGoClick}
-      disabled={props.algorithmRunning}
+      disabled={
+        props.algorithmRunning ||
+        props.algorithm === enumerations.algorithms.none
+      }
     >
       Run Algorithm
     </Button>
