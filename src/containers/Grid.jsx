@@ -188,6 +188,14 @@ class Grid extends Component {
         }
       }
     }
+
+    document.getElementById(
+      `node-${this.state.startNode.row}-${this.state.startNode.col}`
+    ).className = 'start-node';
+
+    document.getElementById(
+      `node-${this.state.endNode.row}-${this.state.endNode.col}`
+    ).className = 'end-node';
   }
 
   setAdjacentNodes(node) {
@@ -286,7 +294,6 @@ class Grid extends Component {
         pathFound
       );
     } else if (algorithm === enumerations.algorithms.DFS) {
-      console.log(startNode);
       result = DFS(
         nodes,
         startNode,
@@ -329,18 +336,27 @@ class Grid extends Component {
 
     // visualise visited nodes
     for (let i = 0; i < visitedNodes.length; i++) {
-      if (visitedNodes[i] !== startNode && visitedNodes[i] !== endNode) {
-        setTimeout(() => {
-          let visited = visitedNodes[i];
+      setTimeout(() => {
+        let visited = visitedNodes[i];
+
+        if (visited === startNode) {
+          document.getElementById(
+            `node-${visited.row}-${visited.col}`
+          ).className = 'start-node-visited';
+        } else if (visited === endNode) {
+          document.getElementById(
+            `node-${visited.row}-${visited.col}`
+          ).className = 'end-node-visited';
+        } else {
           document.getElementById(
             `node-${visited.row}-${visited.col}`
           ).className = 'visited-node';
+        }
 
-          let audio = document.getElementById('loading_sound');
-          audio.volume = 0.5;
-          audio.play();
-        }, 25 * i);
-      }
+        let audio = document.getElementById('loading_sound');
+        audio.volume = 0.5;
+        audio.play();
+      }, 25 * i);
     }
 
     // visualise shortest path
@@ -360,19 +376,28 @@ class Grid extends Component {
         prev = prev.prev;
       }
 
+      pathNodes.push({ row: startNode.row, col: startNode.col });
+
       let i = 1;
       pathNodes.reverse().forEach((node) => {
         setTimeout(
-          (row, col) => {
-            document.getElementById(`node-${row}-${col}`).className =
-              'path-node';
+          (row, col, startNode) => {
+            if (row === startNode.row && col === startNode.col) {
+              document.getElementById(`node-${row}-${col}`).className =
+                'start-node-path';
+            } else {
+              document.getElementById(`node-${row}-${col}`).className =
+                'path-node';
+            }
+
             let audio = document.getElementById('path_sound').cloneNode(true);
             audio.volume = 0.3;
             audio.play();
           },
           70 * i,
           node.row,
-          node.col
+          node.col,
+          startNode
         );
         i++;
       });

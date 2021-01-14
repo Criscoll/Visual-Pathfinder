@@ -33,7 +33,11 @@ class Node extends Component {
         onMouseDown={this.handlePress}
         onMouseUp={this.props.handleNodeReleased}
         onMouseEnter={this.handleMouseEnter}
-      ></div>
+      >
+        <i className="material-icons walk">directions_walk</i>
+
+        <i className="material-icons flag">flag</i>
+      </div>
     );
   }
 }

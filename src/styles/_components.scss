@@ -19,23 +19,24 @@
   animation: $animation $timing $timing-fn;
 }
 
+.material-icons {
+  display: none;
+  position: absolute;
+  width: 80%;
+  height: 80%;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+
+  transform: scale(1.2);
+
+  user-select: none;
+}
+
 .normal-node {
   @include node-properties();
-}
-
-.start-node {
-  @include node-properties();
-  @include node-styles(green, 100ms);
-}
-
-.end-node {
-  @include node-properties();
-  @include node-styles(red, 100ms);
-}
-
-.end-node-found {
-  @include node-properties();
-  @include node-styles(red, 600ms, end-node-reached, ease-out);
 }
 
 .wall-node {
@@ -46,12 +47,6 @@
 .visited-node {
   @include node-properties();
   overflow: hidden;
-  // @include node-styles(aqua, 5000ms, visit-nodes);
-}
-
-.path-node {
-  @include node-properties();
-  @include node-styles(yellow, 200ms, draw-path);
 }
 
 .visited-node::before {
@@ -71,10 +66,53 @@
   animation: visit-nodes linear 2000ms forwards;
 }
 
-.results-container {
-  position: relative;
-  margin-top: 20px;
-  margin-left: 200px;
-  margin-right: 200px;
-  padding-left: 500px;
+.path-node {
+  @include node-properties();
+  @include node-styles(yellow, 200ms, draw-path);
+}
+
+.start-node {
+  @include node-properties();
+  > .material-icons.walk {
+    display: block;
+    animation: move-node ease-out 300ms;
+  }
+}
+
+.end-node {
+  @include node-properties();
+
+  > .material-icons.flag {
+    display: block;
+    animation: move-node ease-out 300ms;
+  }
+}
+
+.start-node-visited {
+  @extend .visited-node;
+  > .material-icons.walk {
+    display: block;
+  }
+}
+
+.start-node-path {
+  @extend .path-node;
+  > .material-icons.walk {
+    display: block;
+  }
+}
+
+.end-node-visited {
+  @extend .visited-node;
+  > .material-icons.flag {
+    display: block;
+  }
+}
+
+.end-node-found {
+  @extend .path-node;
+  > .material-icons.flag {
+    display: block;
+    animation: end-node-reached ease-out 500ms;
+  }
 }
