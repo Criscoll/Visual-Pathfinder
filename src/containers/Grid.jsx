@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import dijkstras from '../Algorithms/dijkstras';
 import DFS from '../Algorithms/DFS';
+import astar from '../Algorithms/astar';
 import Node from '../components/Node';
 import '../styles/main.css';
 import * as enumerations from '../constants/algorithmEnum';
@@ -11,8 +12,8 @@ class Grid extends Component {
     this.handleNodeClick = this.handleNodeClick.bind(this);
     this.handleNodePressed = this.handleNodePressed.bind(this);
     this.handleNodeReleased = this.handleNodeReleased.bind(this);
-    this.maxRow = 22;
-    this.maxCol = 55;
+    this.maxRow = 21;
+    this.maxCol = 54;
   }
 
   state = {
@@ -303,8 +304,16 @@ class Grid extends Component {
         pathFound
       );
     } else if (algorithm === enumerations.algorithms.AStar) {
-    } else {
-      console.log('No algorithm selected');
+      //   result = astar(
+      //     nodes,
+      //     startNode,
+      //     endNode,
+      //     this.maxRow,
+      //     this.maxCol,
+      //     pathFound
+      //   );
+      // } else {
+      //   console.log('No algorithm selected');
       return;
     }
 
@@ -394,7 +403,7 @@ class Grid extends Component {
             audio.volume = 0.3;
             audio.play();
           },
-          70 * i,
+          40 * i,
           node.row,
           node.col,
           startNode
@@ -406,7 +415,7 @@ class Grid extends Component {
         document.getElementById(
           `node-${this.state.endNode.row}-${this.state.endNode.col}`
         ).className = 'end-node-found';
-      }, 70 * i + 1);
+      }, 40 * i + 1);
 
       document.getElementById('loading_sound').pause();
       document.getElementById('loading_sound').currentTime = 0;
