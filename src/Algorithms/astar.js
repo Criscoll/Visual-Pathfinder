@@ -6,14 +6,20 @@ export default function astar(grid, startNode, endNode, numRows, numCols) {
   initialise(grid, numRows, numCols);
 
   openList.push(startNode);
+  startNode.inOpenList = true;
+
+  let i = 0;
 
   while (openList.length !== 0) {
+    i++;
+
     let currentNode = findLowestFCost(openList);
 
     if (currentNode === null) {
       return { visitedNodes: visitedNodes, pathFound: false };
     }
 
+    visitedNodes.push(currentNode);
     // End case -- result has been found, return the traced path
     if (currentNode.row === endNode.row && currentNode.col === endNode.col) {
       return { visitedNodes: visitedNodes, pathFound: true };
@@ -21,9 +27,7 @@ export default function astar(grid, startNode, endNode, numRows, numCols) {
 
     // Normal case -- move currentNode from open to closed, process each of its neighbours
     closedList.push(currentNode);
-
-    console.log(currentNode);
-
+    currentNode.inClosedList = true;
     for (let i = 0; i < currentNode.adjacentNodes.length; i++) {
       let adjacentRow = currentNode.adjacentNodes[i].row;
       let adjacentCol = currentNode.adjacentNodes[i].col;
@@ -31,7 +35,7 @@ export default function astar(grid, startNode, endNode, numRows, numCols) {
       let neighbour = grid[adjacentRow][adjacentCol];
 
       if (
-        isInList(closedList, neighbour) ||
+        neighbour.inClosedList ||
         document.getElementById(`node-${neighbour.row}-${neighbour.col}`)
           .className === 'wall-node'
       ) {
@@ -44,13 +48,14 @@ export default function astar(grid, startNode, endNode, numRows, numCols) {
       let gScore = currentNode.g + 1; // 1 is the distance from a node to it's neighbour
       let gScoreIsBest = false;
 
-      if (!isInList(openList, neighbour)) {
+      if (!neighbour.inOpenList) {
         // This the the first time we have arrived at this node, it must be the best
         // Also, we need to take the h (heuristic) score since we haven't done so yet
 
         gScoreIsBest = true;
-        neighbour.h = heuristicValue(neighbour, endNode);
+        neighbour.h = heuristicValue(neighbour, endNode) * (1.0 + 0.001); // tiebreaker value added
         openList.push(neighbour);
+        neighbour.inOpenList = true;
       } else if (gScore < neighbour.g) {
         // We have already seen the node, but last time it had a worse g (distance from start)
         gScoreIsBest = true;
@@ -77,6 +82,8 @@ function initialise(grid, numRows, numCols) {
       node['f'] = null;
       node['h'] = null;
       node['g'] = null;
+      node['inOpenList'] = false;
+      node['inClosedList'] = false;
     }
   }
 
@@ -92,6 +99,7 @@ function findLowestFCost(openList) {
   }
   let minFNode = openList[lowInd];
   openList.splice(lowInd, 1);
+  minFNode.inOpenList = false;
   return minFNode;
 }
 
@@ -100,13 +108,4 @@ function heuristicValue(pos0, pos1) {
   let d2 = Math.abs(pos1.col - pos0.col);
 
   return d1 + d2;
-}
-
-function isInList(list, node) {
-  list.forEach((item) => {
-    if (item.row === node.row && item.col === node.col) {
-      return true;
-    }
-  });
-  return false;
 }

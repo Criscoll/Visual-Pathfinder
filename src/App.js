@@ -11,12 +11,14 @@ class Main extends Component {
     this.handleGoClick = this.handleGoClick.bind(this);
     this.setAlgorithm = this.setAlgorithm.bind(this);
     this.setAlgorithmRunning = this.setAlgorithmRunning.bind(this);
+    this.setPathLength = this.setPathLength.bind(this);
 
     this.gridRef = React.createRef(); // used to handle reseting the grid.
 
     this.state = {
       algorithm: enumerations.algorithms.none,
       algorithmRunning: false,
+      pathLength: null,
     };
   }
 
@@ -37,6 +39,10 @@ class Main extends Component {
     this.setState({ algorithm: value });
   }
 
+  setPathLength(value) {
+    this.setState({ pathLength: value });
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -47,11 +53,11 @@ class Main extends Component {
           setAlgorithm={this.setAlgorithm}
           algorithmRunning={this.state.algorithmRunning}
         />
-
-        {/* <Results pathStatus={this.state.pathStatus} /> */}
+        {this.state.pathLength ? <p>{this.state.pathLength}</p> : null}
         <Grid
           ref={this.gridRef}
           setAlgorithmRunning={this.setAlgorithmRunning}
+          setPathLength={this.setPathLength}
         />
       </React.Fragment>
     );

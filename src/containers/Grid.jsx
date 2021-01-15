@@ -304,17 +304,16 @@ class Grid extends Component {
         pathFound
       );
     } else if (algorithm === enumerations.algorithms.AStar) {
-      //   result = astar(
-      //     nodes,
-      //     startNode,
-      //     endNode,
-      //     this.maxRow,
-      //     this.maxCol,
-      //     pathFound
-      //   );
-      // } else {
-      //   console.log('No algorithm selected');
-      return;
+      result = astar(
+        nodes,
+        startNode,
+        endNode,
+        this.maxRow,
+        this.maxCol,
+        pathFound
+      );
+    } else {
+      console.log('No algorithm selected');
     }
 
     this.visualisePath(result, startNode, endNode);
@@ -378,6 +377,7 @@ class Grid extends Component {
       }
 
       let prev = endNode.prev;
+      console.log(prev);
 
       let pathNodes = [];
       while (prev.row !== startNode.row || prev.col !== startNode.col) {
@@ -420,6 +420,7 @@ class Grid extends Component {
       document.getElementById('loading_sound').pause();
       document.getElementById('loading_sound').currentTime = 0;
       this.props.setAlgorithmRunning(false);
+      this.props.setPathLength(pathNodes.length);
     }, 25 * visitedNodes.length);
   }
 }
