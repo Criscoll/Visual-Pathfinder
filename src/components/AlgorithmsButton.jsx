@@ -124,11 +124,11 @@ export default function MenuListComposition(props) {
                       classes={{ root: classes.root }}
                       onClick={(e) => {
                         handleClose(e);
-                        setAlgorithm('*A Star');
+                        setAlgorithm('A*');
                         props.setAlgorithm(enumerations.algorithms.AStar);
                       }}
                     >
-                      *A Star
+                      A*
                     </MenuItem>
                   </MenuList>
                 </ClickAwayListener>

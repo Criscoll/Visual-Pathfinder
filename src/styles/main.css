@@ -141,17 +141,17 @@
 .normal-node {
   position: relative;
   display: inline-block;
-  height: 2rem;
-  width: 2rem;
-  outline: 0.12rem solid grey;
+  height: 1.5rem;
+  width: 1.5rem;
+  border: 0.01rem solid red;
 }
 
 .wall-node {
   position: relative;
   display: inline-block;
-  height: 2rem;
-  width: 2rem;
-  outline: 0.12rem solid grey;
+  height: 1.5rem;
+  width: 1.5rem;
+  border: 0.01rem solid red;
   background: -webkit-gradient(linear, left top, left bottom, from(black), to(black)) no-repeat;
   background: linear-gradient(black, black) no-repeat;
   background-position: center;
@@ -162,9 +162,9 @@
 .visited-node, .start-node-visited, .end-node-visited {
   position: relative;
   display: inline-block;
-  height: 2rem;
-  width: 2rem;
-  outline: 0.12rem solid grey;
+  height: 1.5rem;
+  width: 1.5rem;
+  border: 0.01rem solid red;
   overflow: hidden;
 }
 
@@ -187,9 +187,9 @@
 .path-node, .start-node-path, .end-node-found {
   position: relative;
   display: inline-block;
-  height: 2rem;
-  width: 2rem;
-  outline: 0.12rem solid grey;
+  height: 1.5rem;
+  width: 1.5rem;
+  border: 0.01rem solid red;
   background: -webkit-gradient(linear, left top, left bottom, from(yellow), to(yellow)) no-repeat;
   background: linear-gradient(yellow, yellow) no-repeat;
   background-position: center;
@@ -200,9 +200,9 @@
 .start-node {
   position: relative;
   display: inline-block;
-  height: 2rem;
-  width: 2rem;
-  outline: 0.12rem solid grey;
+  height: 1.5rem;
+  width: 1.5rem;
+  border: 0.01rem solid red;
 }
 
 .start-node > .material-icons.walk {
@@ -214,9 +214,9 @@
 .end-node {
   position: relative;
   display: inline-block;
-  height: 2rem;
-  width: 2rem;
-  outline: 0.12rem solid grey;
+  height: 1.5rem;
+  width: 1.5rem;
+  border: 0.01rem solid red;
 }
 
 .end-node > .material-icons.flag {

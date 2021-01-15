@@ -53,7 +53,9 @@ class Main extends Component {
           setAlgorithm={this.setAlgorithm}
           algorithmRunning={this.state.algorithmRunning}
         />
-        {this.state.pathLength ? <p>{this.state.pathLength}</p> : null}
+        {this.state.pathLength ? (
+          <p>Path Length: {this.state.pathLength}</p>
+        ) : null}
         <Grid
           ref={this.gridRef}
           setAlgorithmRunning={this.setAlgorithmRunning}

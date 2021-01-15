@@ -3,9 +3,10 @@
 @mixin node-properties() {
   position: relative;
   display: inline-block;
-  height: 2rem;
-  width: 2rem;
-  outline: 0.12rem solid grey;
+  height: 1.5rem;
+  width: 1.5rem;
+  // outline: 0.13rem solid rgba(15, 99, 121, 0.486);
+  border: 0.01rem solid red;
 }
 
 @mixin node-styles(
