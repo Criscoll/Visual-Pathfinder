@@ -141,17 +141,19 @@
 .normal-node {
   position: relative;
   display: inline-block;
-  height: 1.5rem;
-  width: 1.5rem;
-  border: 0.01rem solid red;
+  height: 2rem;
+  width: 2rem;
+  border: 0.05rem solid rgba(34, 97, 126, 0.479);
+  margin-bottom: -0.2rem;
 }
 
 .wall-node {
   position: relative;
   display: inline-block;
-  height: 1.5rem;
-  width: 1.5rem;
-  border: 0.01rem solid red;
+  height: 2rem;
+  width: 2rem;
+  border: 0.05rem solid rgba(34, 97, 126, 0.479);
+  margin-bottom: -0.2rem;
   background: -webkit-gradient(linear, left top, left bottom, from(black), to(black)) no-repeat;
   background: linear-gradient(black, black) no-repeat;
   background-position: center;
@@ -162,9 +164,10 @@
 .visited-node, .start-node-visited, .end-node-visited {
   position: relative;
   display: inline-block;
-  height: 1.5rem;
-  width: 1.5rem;
-  border: 0.01rem solid red;
+  height: 2rem;
+  width: 2rem;
+  border: 0.05rem solid rgba(34, 97, 126, 0.479);
+  margin-bottom: -0.2rem;
   overflow: hidden;
 }
 
@@ -187,9 +190,10 @@
 .path-node, .start-node-path, .end-node-found {
   position: relative;
   display: inline-block;
-  height: 1.5rem;
-  width: 1.5rem;
-  border: 0.01rem solid red;
+  height: 2rem;
+  width: 2rem;
+  border: 0.05rem solid rgba(34, 97, 126, 0.479);
+  margin-bottom: -0.2rem;
   background: -webkit-gradient(linear, left top, left bottom, from(yellow), to(yellow)) no-repeat;
   background: linear-gradient(yellow, yellow) no-repeat;
   background-position: center;
@@ -200,9 +204,10 @@
 .start-node {
   position: relative;
   display: inline-block;
-  height: 1.5rem;
-  width: 1.5rem;
-  border: 0.01rem solid red;
+  height: 2rem;
+  width: 2rem;
+  border: 0.05rem solid rgba(34, 97, 126, 0.479);
+  margin-bottom: -0.2rem;
 }
 
 .start-node > .material-icons.walk {
@@ -214,9 +219,10 @@
 .end-node {
   position: relative;
   display: inline-block;
-  height: 1.5rem;
-  width: 1.5rem;
-  border: 0.01rem solid red;
+  height: 2rem;
+  width: 2rem;
+  border: 0.05rem solid rgba(34, 97, 126, 0.479);
+  margin-bottom: -0.2rem;
 }
 
 .end-node > .material-icons.flag {

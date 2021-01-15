@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Grid from './containers/Grid';
 import Toolbar from './containers/Toolbar';
+import Stats from './containers/Stats';
 import * as enumerations from './constants/algorithmEnum';
-
 class Main extends Component {
   constructor(props) {
     super(props);
@@ -53,6 +53,7 @@ class Main extends Component {
           setAlgorithm={this.setAlgorithm}
           algorithmRunning={this.state.algorithmRunning}
         />
+        <Stats />
         {this.state.pathLength ? (
           <p>Path Length: {this.state.pathLength}</p>
         ) : null}
