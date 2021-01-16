@@ -105,7 +105,10 @@ export default function MenuListComposition(props) {
                       onClick={(e) => {
                         handleClose(e);
                         setAlgorithm('Dijkstras');
-                        props.setAlgorithm(enumerations.algorithms.dijkstras);
+                        props.setAlgorithm(
+                          enumerations.algorithms.dijkstras,
+                          'Dijkstras'
+                        );
                       }}
                     >
                       Dijkstras
@@ -115,7 +118,7 @@ export default function MenuListComposition(props) {
                       onClick={(e) => {
                         handleClose(e);
                         setAlgorithm('DFS');
-                        props.setAlgorithm(enumerations.algorithms.DFS);
+                        props.setAlgorithm(enumerations.algorithms.DFS, 'DFS');
                       }}
                     >
                       DFS
@@ -125,7 +128,7 @@ export default function MenuListComposition(props) {
                       onClick={(e) => {
                         handleClose(e);
                         setAlgorithm('A*');
-                        props.setAlgorithm(enumerations.algorithms.AStar);
+                        props.setAlgorithm(enumerations.algorithms.AStar, 'A*');
                       }}
                     >
                       A*

@@ -283,4 +283,31 @@
   margin-top: 90px;
   text-align: center;
 }
+
+.stats-container, .prev-stats-container {
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  height: 8vh;
+  width: 50%;
+  margin-left: 1rem;
+}
+
+.stats-container > p, .prev-stats-container > p {
+  font-family: 'Share Tech', sans-serif;
+  font-size: 1.2rem;
+  font-weight: 1rem;
+}
+
+.prev-stats-container {
+  top: 11vh;
+}
+
+.stats-container > .label, .prev-stats-container > .label {
+  font-weight: bold;
+}
 /*# sourceMappingURL=main.css.map */

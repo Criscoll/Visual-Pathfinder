@@ -45,6 +45,8 @@ class Grid extends Component {
   }
 
   handleNodeClick(row, col) {
+    this.props.setGridModified();
+
     let nodes = this.copyNodes();
     let nodeType = 'wall-node';
 
@@ -111,6 +113,10 @@ class Grid extends Component {
   }
 
   handleNodePressed(row, column) {
+    if (this.props.algorithmRunning) {
+      return;
+    }
+
     let dragNode = 'wall';
     if (
       this.state.startNode.row === row &&
@@ -420,7 +426,7 @@ class Grid extends Component {
       document.getElementById('loading_sound').pause();
       document.getElementById('loading_sound').currentTime = 0;
       this.props.setAlgorithmRunning(false);
-      this.props.setPathLength(pathNodes.length);
+      this.props.setStats(pathNodes.length, visitedNodes.length);
     }, 25 * visitedNodes.length);
   }
 }

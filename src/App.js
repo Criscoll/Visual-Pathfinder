@@ -11,36 +11,63 @@ class Main extends Component {
     this.handleGoClick = this.handleGoClick.bind(this);
     this.setAlgorithm = this.setAlgorithm.bind(this);
     this.setAlgorithmRunning = this.setAlgorithmRunning.bind(this);
-    this.setPathLength = this.setPathLength.bind(this);
+    this.setStats = this.setStats.bind(this);
+    this.setGridModified = this.setGridModified.bind(this);
 
     this.gridRef = React.createRef(); // used to handle reseting the grid.
 
     this.state = {
       algorithm: enumerations.algorithms.none,
       algorithmRunning: false,
+      algorithmName: null,
+      algorithmUsed: null,
       pathLength: null,
+      nodesChecked: null,
+      clearStats: false,
     };
   }
 
   handleResetClick() {
     this.gridRef.current.resetGrid();
+    this.setState({
+      algorithmRunning: false,
+      algorithmUsed: null,
+      pathLength: null,
+      nodesChecked: null,
+      clearStats: true,
+    });
   }
 
   handleGoClick() {
     this.gridRef.current.runVisualiser(this.state.algorithm);
-    this.setState({ algorithmRunning: true });
+    this.setState({
+      algorithmRunning: true,
+      algorithmUsed: this.state.algorithmName,
+      pathLength: null,
+      nodesChecked: null,
+    });
   }
 
   setAlgorithmRunning(state) {
     this.setState({ algorithmRunning: state });
   }
 
-  setAlgorithm(value) {
-    this.setState({ algorithm: value });
+  setAlgorithm(algorithm, algorithmName) {
+    this.setState({ algorithm: algorithm, algorithmName: algorithmName });
   }
 
-  setPathLength(value) {
-    this.setState({ pathLength: value });
+  setStats(pathLength, nodesChecked) {
+    this.setState({
+      pathLength: pathLength,
+      nodesChecked: nodesChecked,
+      clearStats: false,
+    });
+  }
+
+  setGridModified() {
+    if (!this.state.clearStats) {
+      this.setState({ clearStats: true });
+    }
   }
 
   render() {
@@ -53,14 +80,19 @@ class Main extends Component {
           setAlgorithm={this.setAlgorithm}
           algorithmRunning={this.state.algorithmRunning}
         />
-        <Stats />
-        {this.state.pathLength ? (
-          <p>Path Length: {this.state.pathLength}</p>
-        ) : null}
+        <Stats
+          algorithmUsed={this.state.algorithmUsed}
+          pathLength={this.state.pathLength}
+          nodesChecked={this.state.nodesChecked}
+          clearStats={this.state.clearStats}
+        />
+
         <Grid
           ref={this.gridRef}
           setAlgorithmRunning={this.setAlgorithmRunning}
-          setPathLength={this.setPathLength}
+          setStats={this.setStats}
+          setGridModified={this.setGridModified}
+          algorithmRunning={this.state.algorithmRunning}
         />
       </React.Fragment>
     );
