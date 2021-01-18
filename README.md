@@ -4,6 +4,8 @@ This project aims to be an informative graphical tool for anyone trying to wrap 
 
 Please note that for the project I have set my own speed for how fast the nodes are searched, in reality each algorithm will find the goal in a few miliseconds or less but then that wouldn't be very fun to look at :)
 
+The project was built using Javascript, React and styled using SASS.
+
 
 # Project Demo Pics
 ![image](https://drive.google.com/uc?export=view&id=1yNBNvlO3i5_P5TeWB8Zh935UNVtwrp3P)
