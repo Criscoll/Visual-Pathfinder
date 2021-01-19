@@ -45,7 +45,17 @@ export default function astar(grid, startNode, endNode, numRows, numCols) {
 
       // g score is the shortest distance from start to current node, we need to check if
       //   the path we have arrived at this neighbour is the shortest one we have seen yet
-      let gScore = currentNode.g + 1; // 1 is the distance from a node to it's neighbour
+
+      let neighbourDistance = 1;
+      if (
+        document.getElementById(`node-${neighbour.row}-${neighbour.col}`)
+          .className === 'weight-node'
+      ) {
+        neighbourDistance = 15;
+      }
+
+      let gScore = currentNode.g + neighbourDistance; // 1 is the distance from a node to it's neighbour
+
       let gScoreIsBest = false;
 
       if (!neighbour.inOpenList) {

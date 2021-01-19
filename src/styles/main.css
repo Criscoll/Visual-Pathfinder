@@ -161,7 +161,30 @@
           animation: create-node 200ms ease-out;
 }
 
-.visited-node, .start-node-visited, .end-node-visited {
+.weight-node {
+  position: relative;
+  display: inline-block;
+  height: 2rem;
+  width: 2rem;
+  border: 0.05rem solid rgba(34, 97, 126, 0.479);
+  margin-bottom: -0.2rem;
+}
+
+.weight-node > .material-icons.weight {
+  display: block;
+  -webkit-animation: move-node ease-out 300ms;
+          animation: move-node ease-out 300ms;
+}
+
+.weight-node-visited > .material-icons.weight {
+  display: block;
+}
+
+.weight-node-path > .material-icons.weight {
+  display: block;
+}
+
+.visited-node, .weight-node-visited, .start-node-visited, .end-node-visited {
   position: relative;
   display: inline-block;
   height: 2rem;
@@ -171,7 +194,7 @@
   overflow: hidden;
 }
 
-.visited-node::before, .start-node-visited::before, .end-node-visited::before {
+.visited-node::before, .weight-node-visited::before, .start-node-visited::before, .end-node-visited::before {
   content: '';
   position: absolute;
   width: 50%;
@@ -187,7 +210,7 @@
           animation: visit-nodes linear 2000ms forwards;
 }
 
-.path-node, .start-node-path, .end-node-found {
+.path-node, .weight-node-path, .start-node-path, .end-node-found {
   position: relative;
   display: inline-block;
   height: 2rem;

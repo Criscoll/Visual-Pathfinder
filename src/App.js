@@ -88,7 +88,7 @@ class Main extends Component {
         />
 
         <Grid
-          ref={this.gridRef}
+          forwardedRef={this.gridRef}
           setAlgorithmRunning={this.setAlgorithmRunning}
           setStats={this.setStats}
           setGridModified={this.setGridModified}

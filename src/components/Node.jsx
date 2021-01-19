@@ -35,8 +35,8 @@ class Node extends Component {
         onMouseEnter={this.handleMouseEnter}
       >
         <i className="material-icons walk">directions_walk</i>
-
         <i className="material-icons flag">flag</i>
+        <i className="material-icons weight">fitness_center</i>
       </div>
     );
   }

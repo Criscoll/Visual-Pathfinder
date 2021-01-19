@@ -1,10 +1,48 @@
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import dijkstras from '../Algorithms/dijkstras';
 import DFS from '../Algorithms/DFS';
 import astar from '../Algorithms/astar';
 import Node from '../components/Node';
 import '../styles/main.css';
 import * as enumerations from '../constants/algorithmEnum';
+
+function useKeyPressed(targetKey) {
+  const [keyPressed, setKeyPressed] = useState(false);
+
+  function downHandler({ key }) {
+    if (key === targetKey) {
+      setKeyPressed(true);
+    }
+  }
+
+  const upHandler = ({ key }) => {
+    if (key === targetKey) {
+      setKeyPressed(false);
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener('keydown', downHandler);
+    window.addEventListener('keyup', upHandler);
+
+    return () => {
+      window.removeEventListener('keydown', downHandler);
+      window.removeEventListener('keyup', upHandler);
+    };
+  }, []);
+
+  return keyPressed;
+}
+
+function withMyHook(Component) {
+  return function WrappedComponent(props) {
+    const hookValue = useKeyPressed('w');
+    const { forwardedRef, ...rest } = props;
+    return (
+      <Component ref={forwardedRef} {...rest} weightKeyPressed={hookValue} />
+    );
+  };
+}
 
 class Grid extends Component {
   constructor(props) {
@@ -100,11 +138,19 @@ class Grid extends Component {
       ) {
         return;
       } else if (
-        document.getElementById(`node-${row}-${col}`).className === 'wall-node'
+        document.getElementById(`node-${row}-${col}`).className ===
+          'wall-node' ||
+        document.getElementById(`node-${row}-${col}`).className ===
+          'weight-node'
       ) {
         document.getElementById(`node-${row}-${col}`).className = 'normal-node';
       } else {
-        document.getElementById(`node-${row}-${col}`).className = 'wall-node';
+        if (this.props.weightKeyPressed) {
+          document.getElementById(`node-${row}-${col}`).className =
+            'weight-node';
+        } else {
+          document.getElementById(`node-${row}-${col}`).className = 'wall-node';
+        }
       }
     }
     let audio = document.getElementById('click_sound').cloneNode(true);
@@ -186,9 +232,14 @@ class Grid extends Component {
     for (let row = 0; row < this.maxRow; row++) {
       for (let col = 0; col < this.maxCol; col++) {
         if (
-          ['wall-node', 'visited-node', 'path-node'].includes(
-            document.getElementById(`node-${row}-${col}`).className
-          )
+          [
+            'wall-node',
+            'visited-node',
+            'path-node',
+            'weight-node',
+            'weight-node-visited',
+            'weight-node-path',
+          ].includes(document.getElementById(`node-${row}-${col}`).className)
         ) {
           document.getElementById(`node-${row}-${col}`).className =
             'normal-node';
@@ -291,6 +342,31 @@ class Grid extends Component {
     let pathFound = true;
     let result;
 
+    for (let row = 0; row < this.maxRow; row++) {
+      for (let col = 0; col < this.maxCol; col++) {
+        if (
+          ['weight-node-visited', 'weight-node-path'].includes(
+            document.getElementById(`node-${row}-${col}`).className
+          )
+        ) {
+          document.getElementById(`node-${row}-${col}`).className =
+            'weight-node';
+        } else if (
+          ['visited-node', 'path-node'].includes(
+            document.getElementById(`node-${row}-${col}`).className
+          )
+        ) {
+          document.getElementById(`node-${row}-${col}`).className =
+            'normal-node';
+        } else if (
+          document.getElementById(`node-${row}-${col}`).className ===
+          'end-node-found'
+        ) {
+          document.getElementById(`node-${row}-${col}`).className = 'end-node';
+        }
+      }
+    }
+
     if (algorithm === enumerations.algorithms.dijkstras) {
       result = dijkstras(
         nodes,
@@ -326,26 +402,6 @@ class Grid extends Component {
   }
 
   visualisePath(result, startNode, endNode) {
-    for (let row = 0; row < this.maxRow; row++) {
-      for (let col = 0; col < this.maxCol; col++) {
-        if (
-          ['visited-node', 'path-node'].includes(
-            document.getElementById(`node-${row}-${col}`).className
-          )
-        ) {
-          document.getElementById(`node-${row}-${col}`).className =
-            'normal-node';
-        }
-
-        if (
-          document.getElementById(`node-${row}-${col}`).className ===
-          'end-node-found'
-        ) {
-          document.getElementById(`node-${row}-${col}`).className = 'end-node';
-        }
-      }
-    }
-
     let visitedNodes = result.visitedNodes;
 
     // visualise visited nodes
@@ -361,6 +417,13 @@ class Grid extends Component {
           document.getElementById(
             `node-${visited.row}-${visited.col}`
           ).className = 'end-node-visited';
+        } else if (
+          document.getElementById(`node-${visited.row}-${visited.col}`)
+            .className === 'weight-node'
+        ) {
+          document.getElementById(
+            `node-${visited.row}-${visited.col}`
+          ).className = 'weight-node-visited';
         } else {
           document.getElementById(
             `node-${visited.row}-${visited.col}`
@@ -383,7 +446,6 @@ class Grid extends Component {
       }
 
       let prev = endNode.prev;
-      console.log(prev);
 
       let pathNodes = [];
       while (prev.row !== startNode.row || prev.col !== startNode.col) {
@@ -400,6 +462,12 @@ class Grid extends Component {
             if (row === startNode.row && col === startNode.col) {
               document.getElementById(`node-${row}-${col}`).className =
                 'start-node-path';
+            } else if (
+              document.getElementById(`node-${row}-${col}`).className ===
+              'weight-node-visited'
+            ) {
+              document.getElementById(`node-${row}-${col}`).className =
+                'weight-node-path';
             } else {
               document.getElementById(`node-${row}-${col}`).className =
                 'path-node';
@@ -431,4 +499,4 @@ class Grid extends Component {
   }
 }
 
-export default Grid;
+export default withMyHook(Grid);

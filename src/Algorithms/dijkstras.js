@@ -53,7 +53,13 @@ export default function dikstrasAlgorithm(
 
 // change this when weights are implemented
 function distance(u, v) {
-  return 1;
+  if (
+    document.getElementById(`node-${v.row}-${v.col}`).className == 'weight-node'
+  ) {
+    return 15;
+  } else {
+    return 1;
+  }
 }
 
 function findMinimum(queue) {

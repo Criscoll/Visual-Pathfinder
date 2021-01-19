@@ -46,6 +46,27 @@
   @include node-styles(black);
 }
 
+.weight-node {
+  @include node-properties();
+  > .material-icons.weight {
+    display: block;
+    animation: move-node ease-out 300ms;
+  }
+}
+
+.weight-node-visited {
+  @extend .visited-node;
+  > .material-icons.weight {
+    display: block;
+  }
+}
+.weight-node-path {
+  @extend .path-node;
+  > .material-icons.weight {
+    display: block;
+  }
+}
+
 .visited-node {
   @include node-properties();
   overflow: hidden;
