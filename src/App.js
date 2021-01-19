@@ -25,6 +25,7 @@ class Main extends Component {
       pathLength: null,
       nodesChecked: null,
       clearStats: false,
+      weightsDisabled: false,
     };
   }
 
@@ -55,6 +56,17 @@ class Main extends Component {
 
   setAlgorithm(algorithm, algorithmName) {
     this.setState({ algorithm: algorithm, algorithmName: algorithmName });
+
+    if (this.state.algorithm !== enumerations.algorithms.none) {
+      this.gridRef.current.clearPaths();
+    }
+    if (algorithm === enumerations.algorithms.DFS) {
+      this.setState({ weightsDisabled: true });
+      this.gridRef.current.removeWeights();
+      this.setGridModified();
+    } else {
+      this.setState({ weightsDisabled: false });
+    }
   }
 
   setStats(pathLength, nodesChecked) {
@@ -94,6 +106,7 @@ class Main extends Component {
           setStats={this.setStats}
           setGridModified={this.setGridModified}
           algorithmRunning={this.state.algorithmRunning}
+          weightsDisabled={this.state.weightsDisabled}
         />
       </React.Fragment>
     );

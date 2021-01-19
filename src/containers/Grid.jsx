@@ -145,7 +145,7 @@ class Grid extends Component {
       ) {
         document.getElementById(`node-${row}-${col}`).className = 'normal-node';
       } else {
-        if (this.props.weightKeyPressed) {
+        if (this.props.weightKeyPressed && !this.props.weightsDisabled) {
           document.getElementById(`node-${row}-${col}`).className =
             'weight-node';
         } else {
@@ -331,6 +331,56 @@ class Grid extends Component {
     });
 
     return clone;
+  }
+
+  removeWeights() {
+    for (let row = 0; row < this.maxRow; row++) {
+      for (let col = 0; col < this.maxCol; col++) {
+        if (
+          ['weight-node', 'weight-node-visited', 'weight-node-path'].includes(
+            document.getElementById(`node-${row}-${col}`).className
+          )
+        ) {
+          document.getElementById(`node-${row}-${col}`).className =
+            'normal-node';
+        }
+      }
+    }
+  }
+
+  clearPaths() {
+    for (let row = 0; row < this.maxRow; row++) {
+      for (let col = 0; col < this.maxCol; col++) {
+        if (
+          ['path-node', 'visited-node'].includes(
+            document.getElementById(`node-${row}-${col}`).className
+          )
+        ) {
+          document.getElementById(`node-${row}-${col}`).className =
+            'normal-node';
+        } else if (
+          ['weight-node-visited', 'weight-node-path'].includes(
+            document.getElementById(`node-${row}-${col}`).className
+          )
+        ) {
+          document.getElementById(`node-${row}-${col}`).className =
+            'weight-node';
+        } else if (
+          ['start-node-path'].includes(
+            document.getElementById(`node-${row}-${col}`).className
+          )
+        ) {
+          document.getElementById(`node-${row}-${col}`).className =
+            'start-node';
+        } else if (
+          ['end-node-found'].includes(
+            document.getElementById(`node-${row}-${col}`).className
+          )
+        ) {
+          document.getElementById(`node-${row}-${col}`).className = 'end-node';
+        }
+      }
+    }
   }
 
   // ================= PATHFINDING ALGORITHMS =====================

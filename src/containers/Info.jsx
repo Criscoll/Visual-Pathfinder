@@ -12,7 +12,8 @@ export default function Info(props) {
     } else if (props.selectedAlgorithm === enumerations.algorithms.dijkstras) {
       setRenderedText(
         <p>
-          Dijkstras algorithm is a <span className="bold">weighted</span> search
+          Dijkstras algorithm is a <span className="bold">weighted</span>{' '}
+          search.
           <br />
           Weight nodes are <span className="bold">enabled</span>
         </p>
@@ -20,7 +21,7 @@ export default function Info(props) {
     } else if (props.selectedAlgorithm === enumerations.algorithms.DFS) {
       setRenderedText(
         <p>
-          DFS is an <span className="bold">unweighted</span> search
+          DFS is an <span className="bold">unweighted</span> search.
           <br />
           Weight nodes are <span className="bold">disabled</span>
         </p>
@@ -28,7 +29,7 @@ export default function Info(props) {
     } else if (props.selectedAlgorithm === enumerations.algorithms.AStar) {
       setRenderedText(
         <p>
-          A* is a <span className="bold">weighted</span> search
+          A* is a <span className="bold">weighted</span> search.
           <br />
           Weight nodes are <span className="bold">enabled</span>
         </p>
