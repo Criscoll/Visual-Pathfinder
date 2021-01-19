@@ -333,4 +333,29 @@
 .stats-container > .label, .prev-stats-container > .label {
   font-weight: bold;
 }
+
+#info-container {
+  position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  right: 0;
+  width: 50%;
+  height: 9%;
+}
+
+#info-container > p {
+  font-family: 'Share Tech', sans-serif;
+  font-size: 1.2rem;
+}
+
+.bold {
+  font-weight: bold;
+}
 /*# sourceMappingURL=main.css.map */

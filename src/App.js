@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Grid from './containers/Grid';
 import Toolbar from './containers/Toolbar';
 import Stats from './containers/Stats';
+import Info from './containers/Info';
 import * as enumerations from './constants/algorithmEnum';
 class Main extends Component {
   constructor(props) {
@@ -86,7 +87,7 @@ class Main extends Component {
           nodesChecked={this.state.nodesChecked}
           clearStats={this.state.clearStats}
         />
-
+        <Info selectedAlgorithm={this.state.algorithm} />
         <Grid
           forwardedRef={this.gridRef}
           setAlgorithmRunning={this.setAlgorithmRunning}

@@ -1,0 +1,19 @@
+#info-container {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  right: 0;
+  width: 50%;
+  height: 9%;
+}
+
+#info-container > p {
+  font-family: 'Share Tech', sans-serif;
+  font-size: 1.2rem;
+}
+
+.bold {
+  font-weight: bold;
+}
