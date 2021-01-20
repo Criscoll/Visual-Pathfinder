@@ -14,6 +14,7 @@ class Main extends Component {
     this.setAlgorithmRunning = this.setAlgorithmRunning.bind(this);
     this.setStats = this.setStats.bind(this);
     this.setGridModified = this.setGridModified.bind(this);
+    this.generateMaze = this.generateMaze.bind(this);
 
     this.gridRef = React.createRef(); // used to handle reseting the grid.
 
@@ -83,6 +84,10 @@ class Main extends Component {
     }
   }
 
+  generateMaze(mazeType) {
+    this.gridRef.current.generateMaze(mazeType);
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -92,6 +97,7 @@ class Main extends Component {
           algorithm={this.state.algorithm}
           setAlgorithm={this.setAlgorithm}
           algorithmRunning={this.state.algorithmRunning}
+          generateMaze={this.generateMaze}
         />
         <Stats
           algorithmUsed={this.state.algorithmUsed}

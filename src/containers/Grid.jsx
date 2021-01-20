@@ -383,6 +383,28 @@ class Grid extends Component {
     }
   }
 
+  generateMaze(mazeType) {
+    this.resetGrid();
+
+    if (mazeType === enumerations.mazes.random) {
+      for (let row = 0; row < this.maxRow; row++) {
+        for (let col = 0; col < this.maxCol; col++) {
+          if (
+            Math.random() * 100 > 65 &&
+            !['start-node', 'end-node'].includes(
+              document.getElementById(`node-${row}-${col}`).className
+            )
+          ) {
+            setTimeout(() => {
+              document.getElementById(`node-${row}-${col}`).className =
+                'wall-node';
+            }, 25 * col);
+          }
+        }
+      }
+    }
+  }
+
   // ================= PATHFINDING ALGORITHMS =====================
 
   runVisualiser(algorithm) {

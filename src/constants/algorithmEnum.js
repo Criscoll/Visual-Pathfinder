@@ -4,3 +4,9 @@ export const algorithms = Object.freeze({
   DFS: 2,
   AStar: 3,
 });
+
+export const mazes = Object.freeze({
+  none: 0,
+  random: 1,
+  maze: 2,
+});
