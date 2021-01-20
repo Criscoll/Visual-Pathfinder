@@ -74,6 +74,7 @@ export default function MazeGeneratorButton(props) {
           aria-controls={open ? 'menu-list-grow' : undefined}
           aria-haspopup="true"
           onClick={handleToggle}
+          disabled={props.algorithmRunning}
         >
           {maze}
           <ArrowDropDownIcon />
@@ -108,6 +109,15 @@ export default function MazeGeneratorButton(props) {
                       }}
                     >
                       Random Allocation
+                    </MenuItem>
+                    <MenuItem
+                      classes={{ root: classes.root }}
+                      onClick={(e) => {
+                        handleClose(e);
+                        props.generateMaze(enumerations.mazes.maze);
+                      }}
+                    >
+                      Maze
                     </MenuItem>
                   </MenuList>
                 </ClickAwayListener>

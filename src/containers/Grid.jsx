@@ -402,6 +402,86 @@ class Grid extends Component {
           }
         }
       }
+    } else if (mazeType === enumerations.mazes.maze) {
+      // for (let col = 0; col < this.maxCol; col++) {
+      //   setTimeout(() => {
+      //     document.getElementById(`node-${0}-${col}`).className = 'wall-node';
+      //     document.getElementById(`node-${this.maxRow - 1}-${col}`).className =
+      //       'wall-node';
+      //   }, 25 * col);
+      // }
+      // for (let row = 0; row < this.maxRow; row++) {
+      //   setTimeout(() => {
+      //     document.getElementById(`node-${row}-${0}`).className = 'wall-node';
+      //     document.getElementById(`node-${row}-${this.maxCol - 1}`).className =
+      //       'wall-node';
+      //   }, 25 * row);
+      // }
+      this.recursiveDivision({ row: 0, col: 0 }, this.maxCol, this.maxRow);
+    }
+  }
+
+  recursiveDivision(origin, width, height) {
+    // Recursion termination
+    if (width < 4 || height < 4) {
+      return;
+    }
+
+    // let isHorizontal = Math.floor((Math.random() * 100) % 2);
+    let isHorizontal = 1;
+
+    let wallIdx = isHorizontal
+      ? Math.floor(Math.random() * (height - 4)) + origin.row
+      : Math.floor(Math.random() * (width - 1)) + origin.col;
+
+    console.log(wallIdx);
+
+    if (isHorizontal) {
+      if (wallIdx >= this.maxRow - 1) {
+        return;
+      }
+      this.mazeBuildWall(wallIdx, width, height, isHorizontal);
+      this.recursiveDivision(origin, width, wallIdx - 1);
+      this.recursiveDivision(
+        { row: origin.row + wallIdx + 1, col: origin.col },
+        width,
+        height - wallIdx + 1
+      );
+    } else {
+      if (origin.col + wallIdx >= this.maxCol - 2) {
+        return;
+      }
+      this.mazeBuildWall(wallIdx, width, height, isHorizontal);
+      this.recursiveDivision(wallIdx, height - 1);
+      this.recursiveDivision(width - wallIdx - 1, height);
+    }
+  }
+
+  mazeBuildWall(wallIdx, width, height, isHorizontal) {
+    if (isHorizontal) {
+      for (let col = 0; col < width; col++) {
+        if (
+          !['start-node', 'end-node'].includes(
+            document.getElementById(`node-${wallIdx}-${col}`).className
+          ) &&
+          col !== Math.floor(Math.random() * width)
+        ) {
+          document.getElementById(`node-${wallIdx}-${col}`).className =
+            'wall-node';
+        }
+      }
+    } else {
+      for (let row = 0; row < height; row++) {
+        if (
+          !['start-node', 'end-node', 'wall-node'].includes(
+            document.getElementById(`node-${row}-${wallIdx}`).className
+          ) &&
+          row !== Math.floor(Math.random() * height)
+        ) {
+          document.getElementById(`node-${row}-${wallIdx}`).className =
+            'wall-node';
+        }
+      }
     }
   }
 

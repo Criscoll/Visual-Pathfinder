@@ -4,8 +4,6 @@ import * as enumerations from '../constants/algorithmEnum';
 export default function Info(props) {
   const [renderedText, setRenderedText] = useState('No Algorithm Selected');
 
-  console.log(props);
-
   useEffect(() => {
     if (props.selectedAlgorithm === enumerations.algorithms.none) {
       setRenderedText(<p>No Algorithm Selected</p>);
@@ -39,9 +37,7 @@ export default function Info(props) {
 
   return (
     <React.Fragment>
-      <div id="info-container">
-        <p>{renderedText}</p>
-      </div>
+      <div id="info-container">{renderedText}</div>
     </React.Fragment>
   );
 }

@@ -74,6 +74,7 @@ export default function MenuListComposition(props) {
           aria-controls={open ? 'menu-list-grow' : undefined}
           aria-haspopup="true"
           onClick={handleToggle}
+          disabled={props.algorithmRunning}
         >
           {algorithm}
           <ArrowDropDownIcon />

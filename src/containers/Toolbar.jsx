@@ -11,8 +11,14 @@ export default function Toolbar(props) {
       <div id="toolbar">
         <div className="app-heading-name">Visual Pathfinder</div>
         <div className="buttons">
-          <AlgorithmsButton setAlgorithm={props.setAlgorithm} />
-          <MazeGeneratorButton generateMaze={props.generateMaze} />
+          <AlgorithmsButton
+            setAlgorithm={props.setAlgorithm}
+            algorithmRunning={props.algorithmRunning}
+          />
+          <MazeGeneratorButton
+            generateMaze={props.generateMaze}
+            algorithmRunning={props.algorithmRunning}
+          />
           <ClearGridButton
             handleResetClick={props.handleResetClick}
             algorithmRunning={props.algorithmRunning}
