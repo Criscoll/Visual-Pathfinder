@@ -83,6 +83,7 @@ class Grid extends Component {
   }
 
   handleNodeClick(row, col) {
+    console.log(`row: ${row}, col: ${col}`);
     this.props.setGridModified();
 
     let nodes = this.copyNodes();
@@ -417,72 +418,117 @@ class Grid extends Component {
       //       'wall-node';
       //   }, 25 * row);
       // }
-      this.recursiveDivision({ row: 0, col: 0 }, this.maxCol, this.maxRow);
+      this.recursiveDivision({ row: 0, col: 0 }, this.maxCol, this.maxRow, 0);
     }
   }
 
-  recursiveDivision(origin, width, height) {
+  recursiveDivision(origin, width, height, globalCounter) {
     // Recursion termination
     if (width < 4 || height < 4) {
       return;
     }
 
-    // let isHorizontal = Math.floor((Math.random() * 100) % 2);
-    let isHorizontal = 1;
+    let isHorizontal = Math.floor((Math.random() * 100) % 2);
+    // let isHorizontal = 0;
 
     let wallIdx = isHorizontal
-      ? Math.floor(Math.random() * (height - 4)) + origin.row
-      : Math.floor(Math.random() * (width - 1)) + origin.col;
-
-    console.log(wallIdx);
+      ? Math.floor(
+          Math.random() * (height + origin.row - 2 - (origin.row + 1) + 1)
+        ) +
+        (origin.row + 1)
+      : Math.floor(
+          Math.random() * (width + origin.col - 2 - (origin.col + 1) + 1)
+        ) +
+        (origin.col + 1);
+    // console.log(origin);
+    // console.log(`wallIdx: ${wallIdx}, height: ${height}`);
 
     if (isHorizontal) {
-      if (wallIdx >= this.maxRow - 1) {
+      if (wallIdx >= this.maxRow) {
         return;
       }
-      this.mazeBuildWall(wallIdx, width, height, isHorizontal);
-      this.recursiveDivision(origin, width, wallIdx - 1);
-      this.recursiveDivision(
-        { row: origin.row + wallIdx + 1, col: origin.col },
+      globalCounter = this.mazeBuildWall(
+        origin,
+        wallIdx,
         width,
-        height - wallIdx + 1
+        height,
+        isHorizontal,
+        globalCounter
+      );
+      this.recursiveDivision(
+        origin,
+        width,
+        Math.abs(wallIdx - origin.row),
+        globalCounter
+      );
+      this.recursiveDivision(
+        { row: wallIdx + 1, col: origin.col },
+        width,
+        height - wallIdx - 1,
+        globalCounter
       );
     } else {
-      if (origin.col + wallIdx >= this.maxCol - 2) {
+      if (wallIdx >= this.maxCol) {
         return;
       }
-      this.mazeBuildWall(wallIdx, width, height, isHorizontal);
-      this.recursiveDivision(wallIdx, height - 1);
-      this.recursiveDivision(width - wallIdx - 1, height);
+      globalCounter = this.mazeBuildWall(
+        origin,
+        wallIdx,
+        width,
+        height,
+        isHorizontal,
+        globalCounter
+      );
+      this.recursiveDivision(
+        origin,
+        Math.abs(wallIdx - origin.col),
+        height,
+        globalCounter
+      );
+      this.recursiveDivision(
+        { row: origin.row, col: wallIdx + 1 },
+        width - wallIdx - 1,
+        height,
+        globalCounter
+      );
     }
   }
 
-  mazeBuildWall(wallIdx, width, height, isHorizontal) {
+  mazeBuildWall(origin, wallIdx, width, height, isHorizontal, globalCounter) {
     if (isHorizontal) {
-      for (let col = 0; col < width; col++) {
+      const wallHole = Math.floor(Math.random() * (width - 1)) + origin.col;
+      for (let col = origin.col; col < width + origin.col; col++) {
         if (
           !['start-node', 'end-node'].includes(
             document.getElementById(`node-${wallIdx}-${col}`).className
           ) &&
-          col !== Math.floor(Math.random() * width)
+          col !== wallHole
         ) {
-          document.getElementById(`node-${wallIdx}-${col}`).className =
-            'wall-node';
+          setTimeout(() => {
+            document.getElementById(`node-${wallIdx}-${col}`).className =
+              'wall-node';
+          }, 50 * globalCounter);
+          globalCounter++;
         }
       }
     } else {
-      for (let row = 0; row < height; row++) {
+      const wallHole = Math.floor(Math.random() * (height - 1)) + origin.row;
+      for (let row = origin.row; row < height + origin.row; row++) {
         if (
-          !['start-node', 'end-node', 'wall-node'].includes(
+          !['start-node', 'end-node'].includes(
             document.getElementById(`node-${row}-${wallIdx}`).className
           ) &&
-          row !== Math.floor(Math.random() * height)
+          row !== wallHole
         ) {
-          document.getElementById(`node-${row}-${wallIdx}`).className =
-            'wall-node';
+          setTimeout(() => {
+            document.getElementById(`node-${row}-${wallIdx}`).className =
+              'wall-node';
+          }, 50 * globalCounter);
+          globalCounter++;
         }
       }
     }
+    return globalCounter;
   }
 
   // ================= PATHFINDING ALGORITHMS =====================
