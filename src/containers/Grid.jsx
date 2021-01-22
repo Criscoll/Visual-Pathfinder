@@ -420,7 +420,13 @@ class Grid extends Component {
       //       'wall-node';
       //   }, 25 * row);
       // }
-      recursiveDivision({ row: 0, col: 0 }, this.maxCol, this.maxRow, 0);
+      recursiveDivision(
+        { row: 0, col: 0 },
+        this.maxCol,
+        this.maxRow,
+        { isHorizontal: null, holeIdx: null },
+        0
+      );
     }
   }
 
