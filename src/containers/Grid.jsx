@@ -3,8 +3,10 @@ import dijkstras from '../Algorithms/dijkstras';
 import DFS from '../Algorithms/DFS';
 import astar from '../Algorithms/astar';
 import Node from '../components/Node';
+import recursiveDivision from '../Algorithms/recursiveDivision';
 import '../styles/main.css';
 import * as enumerations from '../constants/algorithmEnum';
+import * as constants from '../constants/constants';
 
 function useKeyPressed(targetKey) {
   const [keyPressed, setKeyPressed] = useState(false);
@@ -50,8 +52,8 @@ class Grid extends Component {
     this.handleNodeClick = this.handleNodeClick.bind(this);
     this.handleNodePressed = this.handleNodePressed.bind(this);
     this.handleNodeReleased = this.handleNodeReleased.bind(this);
-    this.maxRow = 21;
-    this.maxCol = 54;
+    this.maxRow = constants.maxRow;
+    this.maxCol = constants.maxCol;
   }
 
   state = {
@@ -418,117 +420,8 @@ class Grid extends Component {
       //       'wall-node';
       //   }, 25 * row);
       // }
-      this.recursiveDivision({ row: 0, col: 0 }, this.maxCol, this.maxRow, 0);
+      recursiveDivision({ row: 0, col: 0 }, this.maxCol, this.maxRow, 0);
     }
-  }
-
-  recursiveDivision(origin, width, height, globalCounter) {
-    // Recursion termination
-    if (width < 4 || height < 4) {
-      return;
-    }
-
-    let isHorizontal = Math.floor((Math.random() * 100) % 2);
-    // let isHorizontal = 0;
-
-    let wallIdx = isHorizontal
-      ? Math.floor(
-          Math.random() * (height + origin.row - 2 - (origin.row + 1) + 1)
-        ) +
-        (origin.row + 1)
-      : Math.floor(
-          Math.random() * (width + origin.col - 2 - (origin.col + 1) + 1)
-        ) +
-        (origin.col + 1);
-    // console.log(origin);
-    // console.log(`wallIdx: ${wallIdx}, height: ${height}`);
-
-    if (isHorizontal) {
-      if (wallIdx >= this.maxRow) {
-        return;
-      }
-      globalCounter = this.mazeBuildWall(
-        origin,
-        wallIdx,
-        width,
-        height,
-        isHorizontal,
-        globalCounter
-      );
-      this.recursiveDivision(
-        origin,
-        width,
-        Math.abs(wallIdx - origin.row),
-        globalCounter
-      );
-      this.recursiveDivision(
-        { row: wallIdx + 1, col: origin.col },
-        width,
-        height - wallIdx - 1,
-        globalCounter
-      );
-    } else {
-      if (wallIdx >= this.maxCol) {
-        return;
-      }
-      globalCounter = this.mazeBuildWall(
-        origin,
-        wallIdx,
-        width,
-        height,
-        isHorizontal,
-        globalCounter
-      );
-      this.recursiveDivision(
-        origin,
-        Math.abs(wallIdx - origin.col),
-        height,
-        globalCounter
-      );
-      this.recursiveDivision(
-        { row: origin.row, col: wallIdx + 1 },
-        width - wallIdx - 1,
-        height,
-        globalCounter
-      );
-    }
-  }
-
-  mazeBuildWall(origin, wallIdx, width, height, isHorizontal, globalCounter) {
-    if (isHorizontal) {
-      const wallHole = Math.floor(Math.random() * (width - 1)) + origin.col;
-      for (let col = origin.col; col < width + origin.col; col++) {
-        if (
-          !['start-node', 'end-node'].includes(
-            document.getElementById(`node-${wallIdx}-${col}`).className
-          ) &&
-          col !== wallHole
-        ) {
-          setTimeout(() => {
-            document.getElementById(`node-${wallIdx}-${col}`).className =
-              'wall-node';
-          }, 50 * globalCounter);
-          globalCounter++;
-        }
-      }
-    } else {
-      const wallHole = Math.floor(Math.random() * (height - 1)) + origin.row;
-      for (let row = origin.row; row < height + origin.row; row++) {
-        if (
-          !['start-node', 'end-node'].includes(
-            document.getElementById(`node-${row}-${wallIdx}`).className
-          ) &&
-          row !== wallHole
-        ) {
-          setTimeout(() => {
-            document.getElementById(`node-${row}-${wallIdx}`).className =
-              'wall-node';
-          }, 50 * globalCounter);
-          globalCounter++;
-        }
-      }
-    }
-    return globalCounter;
   }
 
   // ================= PATHFINDING ALGORITHMS =====================
