@@ -6,7 +6,7 @@
   height: 2rem;
   width: 2rem;
   // outline: 0.13rem solid rgba(15, 99, 121, 0.486);
-  border: 0.05rem solid rgba(34, 97, 126, 0.479);
+  border: 0.05rem solid rgb(75, 75, 75);
   margin-bottom: -0.2rem;
 }
 
@@ -43,7 +43,7 @@
 
 .wall-node {
   @include node-properties();
-  @include node-styles(black);
+  @include node-styles(rgb(75, 75, 75));
 }
 
 .weight-node {

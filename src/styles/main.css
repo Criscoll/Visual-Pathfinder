@@ -143,7 +143,7 @@
   display: inline-block;
   height: 2rem;
   width: 2rem;
-  border: 0.05rem solid rgba(34, 97, 126, 0.479);
+  border: 0.05rem solid #4b4b4b;
   margin-bottom: -0.2rem;
 }
 
@@ -152,10 +152,10 @@
   display: inline-block;
   height: 2rem;
   width: 2rem;
-  border: 0.05rem solid rgba(34, 97, 126, 0.479);
+  border: 0.05rem solid #4b4b4b;
   margin-bottom: -0.2rem;
-  background: -webkit-gradient(linear, left top, left bottom, from(black), to(black)) no-repeat;
-  background: linear-gradient(black, black) no-repeat;
+  background: -webkit-gradient(linear, left top, left bottom, from(#4b4b4b), to(#4b4b4b)) no-repeat;
+  background: linear-gradient(#4b4b4b, #4b4b4b) no-repeat;
   background-position: center;
   -webkit-animation: create-node 200ms ease-out;
           animation: create-node 200ms ease-out;
@@ -166,7 +166,7 @@
   display: inline-block;
   height: 2rem;
   width: 2rem;
-  border: 0.05rem solid rgba(34, 97, 126, 0.479);
+  border: 0.05rem solid #4b4b4b;
   margin-bottom: -0.2rem;
 }
 
@@ -189,7 +189,7 @@
   display: inline-block;
   height: 2rem;
   width: 2rem;
-  border: 0.05rem solid rgba(34, 97, 126, 0.479);
+  border: 0.05rem solid #4b4b4b;
   margin-bottom: -0.2rem;
   overflow: hidden;
 }
@@ -215,7 +215,7 @@
   display: inline-block;
   height: 2rem;
   width: 2rem;
-  border: 0.05rem solid rgba(34, 97, 126, 0.479);
+  border: 0.05rem solid #4b4b4b;
   margin-bottom: -0.2rem;
   background: -webkit-gradient(linear, left top, left bottom, from(yellow), to(yellow)) no-repeat;
   background: linear-gradient(yellow, yellow) no-repeat;
@@ -229,7 +229,7 @@
   display: inline-block;
   height: 2rem;
   width: 2rem;
-  border: 0.05rem solid rgba(34, 97, 126, 0.479);
+  border: 0.05rem solid #4b4b4b;
   margin-bottom: -0.2rem;
 }
 
@@ -244,7 +244,7 @@
   display: inline-block;
   height: 2rem;
   width: 2rem;
-  border: 0.05rem solid rgba(34, 97, 126, 0.479);
+  border: 0.05rem solid #4b4b4b;
   margin-bottom: -0.2rem;
 }
 
