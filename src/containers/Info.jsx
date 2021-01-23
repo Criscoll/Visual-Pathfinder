@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import * as enumerations from '../constants/algorithmEnum';
+import * as enumerations from '../constants/enumerations';
 
 export default function Info(props) {
   const [renderedText, setRenderedText] = useState('No Algorithm Selected');

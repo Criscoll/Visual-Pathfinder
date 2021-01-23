@@ -2,10 +2,10 @@ import React, { Component, useState, useEffect } from 'react';
 import dijkstras from '../Algorithms/dijkstras';
 import DFS from '../Algorithms/DFS';
 import astar from '../Algorithms/astar';
-import Node from '../components/Node';
 import recursiveDivision from '../Algorithms/recursiveDivision';
+import Node from '../components/Node';
 import '../styles/main.css';
-import * as enumerations from '../constants/algorithmEnum';
+import * as enumerations from '../constants/enumerations';
 import * as constants from '../constants/constants';
 
 function useKeyPressed(targetKey) {
@@ -388,6 +388,7 @@ class Grid extends Component {
 
   generateMaze(mazeType) {
     this.resetGrid();
+    this.props.setAlgorithmRunning(true);
 
     if (mazeType === enumerations.mazes.random) {
       for (let row = 0; row < this.maxRow; row++) {
@@ -405,6 +406,10 @@ class Grid extends Component {
           }
         }
       }
+
+      setTimeout(() => {
+        this.props.setAlgorithmRunning(false);
+      }, 25 * this.maxCol);
     } else if (mazeType === enumerations.mazes.maze) {
       // for (let col = 0; col < this.maxCol; col++) {
       //   setTimeout(() => {
@@ -420,13 +425,18 @@ class Grid extends Component {
       //       'wall-node';
       //   }, 25 * row);
       // }
-      recursiveDivision(
+
+      const mazeDelay = recursiveDivision(
         { row: 0, col: 0 },
         this.maxCol,
         this.maxRow,
         { isHorizontal: null, holeIdx: null },
         0
       );
+
+      setTimeout(() => {
+        this.props.setAlgorithmRunning(false);
+      }, 70 * mazeDelay);
     }
   }
 

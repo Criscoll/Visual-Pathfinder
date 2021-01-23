@@ -99,6 +99,8 @@
   > .material-icons.walk {
     display: block;
     animation: move-node ease-out 300ms;
+
+    cursor: pointer;
   }
 }
 
@@ -108,6 +110,7 @@
   > .material-icons.flag {
     display: block;
     animation: move-node ease-out 300ms;
+    cursor: pointer;
   }
 }
 

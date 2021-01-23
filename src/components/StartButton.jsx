@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
-import * as enumerations from '../constants/algorithmEnum';
+import * as enumerations from '../constants/enumerations';
 
 const useStyles = makeStyles(() => ({
   root: {

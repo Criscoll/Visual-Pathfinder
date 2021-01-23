@@ -237,6 +237,7 @@
   display: block;
   -webkit-animation: move-node ease-out 300ms;
           animation: move-node ease-out 300ms;
+  cursor: pointer;
 }
 
 .end-node {
@@ -252,6 +253,7 @@
   display: block;
   -webkit-animation: move-node ease-out 300ms;
           animation: move-node ease-out 300ms;
+  cursor: pointer;
 }
 
 .start-node-visited > .material-icons.walk {
@@ -288,6 +290,10 @@
   font-size: 30px;
   font-weight: bold;
   color: white;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 #toolbar > .buttons {

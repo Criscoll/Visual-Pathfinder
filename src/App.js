@@ -3,7 +3,7 @@ import Grid from './containers/Grid';
 import Toolbar from './containers/Toolbar';
 import Stats from './containers/Stats';
 import Info from './containers/Info';
-import * as enumerations from './constants/algorithmEnum';
+import * as enumerations from './constants/enumerations';
 class Main extends Component {
   constructor(props) {
     super(props);

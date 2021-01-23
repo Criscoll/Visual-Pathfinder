@@ -9,7 +9,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import { makeStyles } from '@material-ui/core/styles';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import * as enumerations from '../constants/algorithmEnum';
+import * as enumerations from '../constants/enumerations';
 
 const useStyles = makeStyles((theme) => ({
   root: {

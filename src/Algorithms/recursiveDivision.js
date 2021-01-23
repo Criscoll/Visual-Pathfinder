@@ -11,7 +11,7 @@ export default function recursiveDivision(
   if (width < 2 || height < 2) {
     console.log(origin);
     console.log(`width: ${width}, height: ${height}`);
-    return;
+    return timer;
   }
 
   let isHorizontal = Boolean(width < height);
@@ -42,45 +42,52 @@ export default function recursiveDivision(
   wallInfo.isHorizontal = isHorizontal;
   wallInfo.holeIdx = holeIdx;
 
+  let mazeDelay;
   if (isHorizontal) {
     if (wallIdx >= constants.maxRow) {
       return;
     }
     timer = buildHorizontalWall(origin, wallIdx, wallInfo, width, timer);
-    recursiveDivision(
+    let mazeDelayOne = recursiveDivision(
       origin,
       width,
       Math.abs(wallIdx - origin.row),
       wallInfo,
       timer
     );
-    recursiveDivision(
+    let mazeDelayTwo = recursiveDivision(
       { row: wallIdx + 1, col: origin.col },
       width,
       height + origin.row - wallIdx - 1,
       wallInfo,
       timer
     );
+
+    mazeDelay = mazeDelayOne > mazeDelayTwo ? mazeDelayOne : mazeDelayTwo;
   } else {
     if (wallIdx >= constants.maxCol) {
       return;
     }
     timer = buildVerticalWall(origin, wallIdx, wallInfo, height, timer);
-    recursiveDivision(
+    let mazeDelayOne = recursiveDivision(
       origin,
       Math.abs(wallIdx - origin.col),
       height,
       wallInfo,
       timer
     );
-    recursiveDivision(
+    let mazeDelayTwo = recursiveDivision(
       { row: origin.row, col: wallIdx + 1 },
       width + origin.col - wallIdx - 1,
       height,
       wallInfo,
       timer
     );
+
+    mazeDelay = mazeDelayOne > mazeDelayTwo ? mazeDelayOne : mazeDelayTwo;
   }
+
+  return mazeDelay;
 }
 
 function randomIntFromInterval(min, max) {
@@ -103,10 +110,7 @@ function buildHorizontalWall(origin, wallIdx, wallInfo, width, timer) {
       timer++;
     }
   }
-  //   console.log(origin);
-  //   console.log(
-  //     `horizontal, wallIdx: ${wallIdx}, width: ${width}, holeIdx: ${wallInfo.holeIdx}`
-  //   );
+
   return timer;
 }
 
@@ -125,9 +129,6 @@ function buildVerticalWall(origin, wallIdx, wallInfo, height, timer) {
       timer++;
     }
   }
-  //   console.log(origin);
-  //   console.log(
-  //     `vertical, wallIdx: ${wallIdx}, height: ${height} holeIdx: ${wallInfo.holeIdx}`
-  //   );
+
   return timer;
 }
