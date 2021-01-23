@@ -208,7 +208,7 @@ class Grid extends Component {
         >
           {nodes.map((row, rowIndex) => {
             return (
-              <div key={rowIndex}>
+              <div key={rowIndex} className="grid-container">
                 {row.map((node, colIndex) => {
                   return (
                     <Node
@@ -337,6 +337,7 @@ class Grid extends Component {
   }
 
   removeWeights() {
+    let weightsRemoved = false;
     for (let row = 0; row < this.maxRow; row++) {
       for (let col = 0; col < this.maxCol; col++) {
         if (
@@ -346,9 +347,11 @@ class Grid extends Component {
         ) {
           document.getElementById(`node-${row}-${col}`).className =
             'normal-node';
+          weightsRemoved = true;
         }
       }
     }
+    return weightsRemoved;
   }
 
   clearPaths() {
@@ -411,21 +414,6 @@ class Grid extends Component {
         this.props.setAlgorithmRunning(false);
       }, 25 * this.maxCol);
     } else if (mazeType === enumerations.mazes.maze) {
-      // for (let col = 0; col < this.maxCol; col++) {
-      //   setTimeout(() => {
-      //     document.getElementById(`node-${0}-${col}`).className = 'wall-node';
-      //     document.getElementById(`node-${this.maxRow - 1}-${col}`).className =
-      //       'wall-node';
-      //   }, 25 * col);
-      // }
-      // for (let row = 0; row < this.maxRow; row++) {
-      //   setTimeout(() => {
-      //     document.getElementById(`node-${row}-${0}`).className = 'wall-node';
-      //     document.getElementById(`node-${row}-${this.maxCol - 1}`).className =
-      //       'wall-node';
-      //   }, 25 * row);
-      // }
-
       const mazeDelay = recursiveDivision(
         { row: 0, col: 0 },
         this.maxCol,

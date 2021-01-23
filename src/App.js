@@ -63,8 +63,10 @@ class Main extends Component {
     }
     if (algorithm === enumerations.algorithms.DFS) {
       this.setState({ weightsDisabled: true });
-      this.gridRef.current.removeWeights();
-      this.setGridModified();
+      const weightsRemoved = this.gridRef.current.removeWeights();
+      if (weightsRemoved) {
+        this.setGridModified();
+      }
     } else {
       this.setState({ weightsDisabled: false });
     }
@@ -85,6 +87,7 @@ class Main extends Component {
   }
 
   generateMaze(mazeType) {
+    this.setGridModified();
     this.gridRef.current.generateMaze(mazeType);
   }
 

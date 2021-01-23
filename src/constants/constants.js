@@ -1,2 +1,2 @@
-export const maxRow = 21;
-export const maxCol = 54;
+export const maxRow = 24;
+export const maxCol = 60;

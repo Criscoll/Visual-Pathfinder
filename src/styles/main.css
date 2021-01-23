@@ -122,16 +122,15 @@
 
 .material-icons {
   display: none;
-  position: absolute;
-  width: 80%;
-  height: 80%;
+  position: relative;
+  width: 95%;
+  height: 40%;
   margin: auto;
   top: 0;
   left: 0;
   bottom: 0;
   right: 0;
-  -webkit-transform: scale(1.3);
-          transform: scale(1.3);
+  font-size: 2.7vh;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
@@ -140,20 +139,16 @@
 
 .normal-node {
   position: relative;
-  display: inline-block;
-  height: 2rem;
-  width: 2rem;
-  border: 0.05rem solid #4b4b4b;
-  margin-bottom: -0.2rem;
+  height: 3.1vh;
+  width: 3.1vh;
+  border: 0.01rem solid #4b4b4b;
 }
 
 .wall-node {
   position: relative;
-  display: inline-block;
-  height: 2rem;
-  width: 2rem;
-  border: 0.05rem solid #4b4b4b;
-  margin-bottom: -0.2rem;
+  height: 3.1vh;
+  width: 3.1vh;
+  border: 0.01rem solid #4b4b4b;
   background: -webkit-gradient(linear, left top, left bottom, from(#4b4b4b), to(#4b4b4b)) no-repeat;
   background: linear-gradient(#4b4b4b, #4b4b4b) no-repeat;
   background-position: center;
@@ -163,11 +158,9 @@
 
 .weight-node {
   position: relative;
-  display: inline-block;
-  height: 2rem;
-  width: 2rem;
-  border: 0.05rem solid #4b4b4b;
-  margin-bottom: -0.2rem;
+  height: 3.1vh;
+  width: 3.1vh;
+  border: 0.01rem solid #4b4b4b;
 }
 
 .weight-node > .material-icons.weight {
@@ -186,11 +179,9 @@
 
 .visited-node, .weight-node-visited, .start-node-visited, .end-node-visited {
   position: relative;
-  display: inline-block;
-  height: 2rem;
-  width: 2rem;
-  border: 0.05rem solid #4b4b4b;
-  margin-bottom: -0.2rem;
+  height: 3.1vh;
+  width: 3.1vh;
+  border: 0.01rem solid #4b4b4b;
   overflow: hidden;
 }
 
@@ -212,11 +203,9 @@
 
 .path-node, .weight-node-path, .start-node-path, .end-node-found {
   position: relative;
-  display: inline-block;
-  height: 2rem;
-  width: 2rem;
-  border: 0.05rem solid #4b4b4b;
-  margin-bottom: -0.2rem;
+  height: 3.1vh;
+  width: 3.1vh;
+  border: 0.01rem solid #4b4b4b;
   background: -webkit-gradient(linear, left top, left bottom, from(yellow), to(yellow)) no-repeat;
   background: linear-gradient(yellow, yellow) no-repeat;
   background-position: center;
@@ -226,11 +215,9 @@
 
 .start-node {
   position: relative;
-  display: inline-block;
-  height: 2rem;
-  width: 2rem;
-  border: 0.05rem solid #4b4b4b;
-  margin-bottom: -0.2rem;
+  height: 3.1vh;
+  width: 3.1vh;
+  border: 0.01rem solid #4b4b4b;
 }
 
 .start-node > .material-icons.walk {
@@ -242,11 +229,9 @@
 
 .end-node {
   position: relative;
-  display: inline-block;
-  height: 2rem;
-  width: 2rem;
-  border: 0.05rem solid #4b4b4b;
-  margin-bottom: -0.2rem;
+  height: 3.1vh;
+  width: 3.1vh;
+  border: 0.01rem solid #4b4b4b;
 }
 
 .end-node > .material-icons.flag {
@@ -287,7 +272,7 @@
   padding: 1.5rem 0;
   width: 25%;
   font-family: 'Share Tech', sans-serif;
-  font-size: 30px;
+  font-size: 3vh;
   font-weight: bold;
   color: white;
   -webkit-user-select: none;
@@ -309,8 +294,20 @@
 }
 
 .grid {
-  margin-top: 90px;
-  text-align: center;
+  position: absolute;
+  width: 99%;
+  height: 70%;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.grid-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .stats-container, .prev-stats-container {
