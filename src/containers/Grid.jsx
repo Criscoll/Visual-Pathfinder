@@ -86,7 +86,6 @@ class Grid extends Component {
   }
 
   handleNodeClick(row, col) {
-    console.log(`row: ${row}, col: ${col}`);
     this.props.setGridModified();
 
     let nodes = this.copyNodes();
@@ -121,10 +120,14 @@ class Grid extends Component {
         document.getElementById(`node-${row}-${col}`).className = nodeType;
 
         if (nodeType === 'start-node') {
+          document.getElementById(`node-${row}-${col}`).className =
+            'start-node-dragged';
           this.setState({
             startNode: nodes[row][col],
           });
         } else {
+          document.getElementById(`node-${row}-${col}`).className =
+            'end-node-dragged';
           this.setState({
             endNode: nodes[row][col],
           });
@@ -157,9 +160,9 @@ class Grid extends Component {
         }
       }
     }
-    let audio = document.getElementById('click_sound').cloneNode(true);
-    audio.volume = 0.1;
-    audio.play();
+    // let audio = document.getElementById('click_sound').cloneNode(true);
+    // audio.volume = 0.1;
+    // audio.play();
   }
 
   handleNodePressed(row, column) {
@@ -173,11 +176,16 @@ class Grid extends Component {
       this.state.startNode.col === column
     ) {
       dragNode = 'start';
+      document.getElementById(`node-${row}-${column}`).className =
+        'start-node-dragged';
+      console.log(document.getElementById(`node-${row}-${column}`).className);
     } else if (
       this.state.endNode.row === row &&
       this.state.endNode.col === column
     ) {
       dragNode = 'end';
+      document.getElementById(`node-${row}-${column}`).className =
+        'end-node-dragged';
     }
 
     this.setState({ isDragging: true, dragNode: dragNode }, () => {
@@ -189,6 +197,18 @@ class Grid extends Component {
     if (this.state.isDragging) {
       this.setState({ isDragging: false });
     }
+
+    if (this.state.dragNode === 'start') {
+      document.getElementById(
+        `node-${this.state.startNode.row}-${this.state.startNode.col}`
+      ).className = 'start-node';
+      console.log('here2');
+    } else {
+      document.getElementById(
+        `node-${this.state.endNode.row}-${this.state.endNode.col}`
+      ).className = 'end-node';
+    }
+
     this.setState({ dragNode: 'wall' });
   }
 
@@ -535,9 +555,9 @@ class Grid extends Component {
           ).className = 'visited-node';
         }
 
-        let audio = document.getElementById('loading_sound');
-        audio.volume = 0.5;
-        audio.play();
+        // let audio = document.getElementById('loading_sound');
+        // audio.volume = 0.5;
+        // audio.play();
       }, 25 * i);
     }
 
@@ -578,9 +598,9 @@ class Grid extends Component {
                 'path-node';
             }
 
-            let audio = document.getElementById('path_sound').cloneNode(true);
-            audio.volume = 0.3;
-            audio.play();
+            // let audio = document.getElementById('path_sound').cloneNode(true);
+            // audio.volume = 0.3;
+            // audio.play();
           },
           40 * i,
           node.row,
@@ -596,8 +616,8 @@ class Grid extends Component {
         ).className = 'end-node-found';
       }, 40 * i + 1);
 
-      document.getElementById('loading_sound').pause();
-      document.getElementById('loading_sound').currentTime = 0;
+      // document.getElementById('loading_sound').pause();
+      // document.getElementById('loading_sound').currentTime = 0;
       this.props.setAlgorithmRunning(false);
       this.props.setStats(pathNodes.length, visitedNodes.length);
     }, 25 * visitedNodes.length);

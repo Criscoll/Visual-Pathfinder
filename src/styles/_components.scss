@@ -95,7 +95,7 @@
   @include node-properties();
   > .material-icons.walk {
     display: block;
-    animation: move-node ease-out 300ms;
+    animation: drag-node ease-out 300ms;
 
     cursor: pointer;
   }
@@ -111,6 +111,15 @@
   }
 }
 
+.start-node-dragged {
+  @include node-properties();
+  > .material-icons.walk {
+    display: block;
+    animation: drag-node ease-in 1200ms infinite;
+    cursor: pointer;
+  }
+}
+
 .start-node-visited {
   @extend .visited-node;
   > .material-icons.walk {
@@ -122,6 +131,15 @@
   @extend .path-node;
   > .material-icons.walk {
     display: block;
+  }
+}
+
+.end-node-dragged {
+  @include node-properties();
+  > .material-icons.flag {
+    display: block;
+    animation: drag-node ease-in 1200ms infinite;
+    cursor: pointer;
   }
 }
 

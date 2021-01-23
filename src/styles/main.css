@@ -34,6 +34,36 @@
   }
 }
 
+@-webkit-keyframes drag-node {
+  0% {
+    -webkit-transform: scale(0.7);
+            transform: scale(0.7);
+  }
+  50% {
+    -webkit-transform: scale(1.3);
+            transform: scale(1.3);
+  }
+  100% {
+    -webkit-transform: scale(0.7);
+            transform: scale(0.7);
+  }
+}
+
+@keyframes drag-node {
+  0% {
+    -webkit-transform: scale(0.7);
+            transform: scale(0.7);
+  }
+  50% {
+    -webkit-transform: scale(1.3);
+            transform: scale(1.3);
+  }
+  100% {
+    -webkit-transform: scale(0.7);
+            transform: scale(0.7);
+  }
+}
+
 @-webkit-keyframes visit-nodes {
   0% {
     -webkit-transform: scale(0);
@@ -222,8 +252,8 @@
 
 .start-node > .material-icons.walk {
   display: block;
-  -webkit-animation: move-node ease-out 300ms;
-          animation: move-node ease-out 300ms;
+  -webkit-animation: drag-node ease-out 300ms;
+          animation: drag-node ease-out 300ms;
   cursor: pointer;
 }
 
@@ -241,12 +271,40 @@
   cursor: pointer;
 }
 
+.start-node-dragged {
+  position: relative;
+  height: 3.1vh;
+  width: 3.1vh;
+  border: 0.01rem solid #4b4b4b;
+}
+
+.start-node-dragged > .material-icons.walk {
+  display: block;
+  -webkit-animation: drag-node ease-in 1200ms infinite;
+          animation: drag-node ease-in 1200ms infinite;
+  cursor: pointer;
+}
+
 .start-node-visited > .material-icons.walk {
   display: block;
 }
 
 .start-node-path > .material-icons.walk {
   display: block;
+}
+
+.end-node-dragged {
+  position: relative;
+  height: 3.1vh;
+  width: 3.1vh;
+  border: 0.01rem solid #4b4b4b;
+}
+
+.end-node-dragged > .material-icons.flag {
+  display: block;
+  -webkit-animation: drag-node ease-in 1200ms infinite;
+          animation: drag-node ease-in 1200ms infinite;
+  cursor: pointer;
 }
 
 .end-node-visited > .material-icons.flag {
