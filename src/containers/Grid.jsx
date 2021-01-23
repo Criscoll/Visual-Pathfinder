@@ -195,14 +195,15 @@ class Grid extends Component {
 
   handleNodeReleased() {
     if (this.state.isDragging) {
-      this.setState({ isDragging: false });
+      setTimeout(() => {
+        this.setState({ isDragging: false });
+      }, 50);
     }
 
     if (this.state.dragNode === 'start') {
       document.getElementById(
         `node-${this.state.startNode.row}-${this.state.startNode.col}`
       ).className = 'start-node';
-      console.log('here2');
     } else {
       document.getElementById(
         `node-${this.state.endNode.row}-${this.state.endNode.col}`

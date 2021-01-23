@@ -252,8 +252,8 @@
 
 .start-node > .material-icons.walk {
   display: block;
-  -webkit-animation: drag-node ease-out 300ms;
-          animation: drag-node ease-out 300ms;
+  -webkit-animation: move-node ease-out 300ms;
+          animation: move-node ease-out 300ms;
   cursor: pointer;
 }
 
@@ -418,5 +418,27 @@
 
 .bold {
   font-weight: bold;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+}
+
+.modal-styles {
+  position: absolute;
+  height: 70%;
+  width: 50%;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: white;
 }
 /*# sourceMappingURL=main.css.map */

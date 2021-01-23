@@ -3,6 +3,7 @@ import Grid from './containers/Grid';
 import Toolbar from './containers/Toolbar';
 import Stats from './containers/Stats';
 import Info from './containers/Info';
+import TutorialModal from './containers/TutorialModal';
 import * as enumerations from './constants/enumerations';
 class Main extends Component {
   constructor(props) {
@@ -27,6 +28,7 @@ class Main extends Component {
       nodesChecked: null,
       clearStats: false,
       weightsDisabled: false,
+      tutorialModalOpen: true,
     };
   }
 
@@ -121,6 +123,15 @@ class Main extends Component {
           algorithmRunning={this.state.algorithmRunning}
           weightsDisabled={this.state.weightsDisabled}
         />
+        {this.state.tutorialModalOpen ? (
+          <div
+            onClick={() => {
+              this.setState({ tutorialModalOpen: false });
+            }}
+          >
+            <TutorialModal />
+          </div>
+        ) : null}
       </React.Fragment>
     );
   }

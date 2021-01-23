@@ -95,8 +95,7 @@
   @include node-properties();
   > .material-icons.walk {
     display: block;
-    animation: drag-node ease-out 300ms;
-
+    animation: move-node ease-out 300ms;
     cursor: pointer;
   }
 }
