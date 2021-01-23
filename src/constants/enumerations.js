@@ -3,6 +3,7 @@ export const algorithms = Object.freeze({
   dijkstras: 1,
   DFS: 2,
   AStar: 3,
+  BFS: 4,
 });
 
 export const mazes = Object.freeze({

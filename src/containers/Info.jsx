@@ -19,7 +19,8 @@ export default function Info(props) {
     } else if (props.selectedAlgorithm === enumerations.algorithms.DFS) {
       setRenderedText(
         <p>
-          DFS is an <span className="bold">unweighted</span> search.
+          DFS (Depth First Search) is an{' '}
+          <span className="bold">unweighted</span> search.
           <br />
           Weight nodes are <span className="bold">disabled</span>
         </p>
@@ -30,6 +31,15 @@ export default function Info(props) {
           A* is a <span className="bold">weighted</span> search.
           <br />
           Weight nodes are <span className="bold">enabled</span>
+        </p>
+      );
+    } else if (props.selectedAlgorithm === enumerations.algorithms.BFS) {
+      setRenderedText(
+        <p>
+          BFS (Breadth First Search) is an{' '}
+          <span className="bold">unweighted</span> search.
+          <br />
+          Weight nodes are <span className="bold">disabled</span>
         </p>
       );
     }

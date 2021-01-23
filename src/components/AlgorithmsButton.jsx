@@ -114,16 +114,7 @@ export default function MenuListComposition(props) {
                     >
                       Dijkstras
                     </MenuItem>
-                    <MenuItem
-                      classes={{ root: classes.root }}
-                      onClick={(e) => {
-                        handleClose(e);
-                        setAlgorithm('DFS');
-                        props.setAlgorithm(enumerations.algorithms.DFS, 'DFS');
-                      }}
-                    >
-                      DFS
-                    </MenuItem>
+
                     <MenuItem
                       classes={{ root: classes.root }}
                       onClick={(e) => {
@@ -133,6 +124,26 @@ export default function MenuListComposition(props) {
                       }}
                     >
                       A*
+                    </MenuItem>
+                    <MenuItem
+                      classes={{ root: classes.root }}
+                      onClick={(e) => {
+                        handleClose(e);
+                        setAlgorithm('BFS');
+                        props.setAlgorithm(enumerations.algorithms.BFS, 'BFS');
+                      }}
+                    >
+                      BFS
+                    </MenuItem>
+                    <MenuItem
+                      classes={{ root: classes.root }}
+                      onClick={(e) => {
+                        handleClose(e);
+                        setAlgorithm('DFS');
+                        props.setAlgorithm(enumerations.algorithms.DFS, 'DFS');
+                      }}
+                    >
+                      DFS
                     </MenuItem>
                   </MenuList>
                 </ClickAwayListener>

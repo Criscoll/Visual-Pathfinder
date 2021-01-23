@@ -61,7 +61,11 @@ class Main extends Component {
     if (this.state.algorithm !== enumerations.algorithms.none) {
       this.gridRef.current.clearPaths();
     }
-    if (algorithm === enumerations.algorithms.DFS) {
+    if (
+      [enumerations.algorithms.DFS, enumerations.algorithms.BFS].includes(
+        algorithm
+      )
+    ) {
       this.setState({ weightsDisabled: true });
       const weightsRemoved = this.gridRef.current.removeWeights();
       if (weightsRemoved) {

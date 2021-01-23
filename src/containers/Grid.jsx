@@ -1,6 +1,7 @@
 import React, { Component, useState, useEffect } from 'react';
 import dijkstras from '../Algorithms/dijkstras';
 import DFS from '../Algorithms/DFS';
+import BFS from '../Algorithms/BFS';
 import astar from '../Algorithms/astar';
 import recursiveDivision from '../Algorithms/recursiveDivision';
 import Node from '../components/Node';
@@ -473,6 +474,15 @@ class Grid extends Component {
       );
     } else if (algorithm === enumerations.algorithms.DFS) {
       result = DFS(
+        nodes,
+        startNode,
+        endNode,
+        this.maxRow,
+        this.maxCol,
+        pathFound
+      );
+    } else if (algorithm === enumerations.algorithms.BFS) {
+      result = BFS(
         nodes,
         startNode,
         endNode,

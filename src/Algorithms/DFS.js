@@ -1,4 +1,4 @@
-export default function DFS(grid, startNode, endNode, numRows, numCols) {
+export default function DFS(grid, startNode, endNode) {
   let visitedNodes = [];
   let stack = [];
 
