@@ -432,6 +432,19 @@
 
 .modal-styles {
   position: absolute;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   height: 70%;
   width: 50%;
   margin: auto;
@@ -440,5 +453,20 @@
   left: 0;
   right: 0;
   background-color: white;
+  border: 0.5vh solid black;
+}
+
+.modal-styles h1 {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-weight: bold;
+  font-size: 4.4vh;
+  color: rgba(11, 105, 117, 0.924);
+}
+
+.modal-styles p {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 3vh;
+  text-align: center;
+  color: rgba(10, 66, 73, 0.924);
 }
 /*# sourceMappingURL=main.css.map */

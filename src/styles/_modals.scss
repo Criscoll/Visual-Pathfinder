@@ -10,6 +10,12 @@
 
 .modal-styles {
   position: absolute;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
   height: 70%;
   width: 50%;
 
@@ -20,4 +26,19 @@
   right: 0;
 
   background-color: white;
+  border: 0.5vh solid black;
+
+  h1 {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: bold;
+    font-size: 4.4vh;
+    color: rgba(11, 105, 117, 0.924);
+  }
+
+  p {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 3vh;
+    text-align: center;
+    color: rgba(10, 66, 73, 0.924);
+  }
 }
