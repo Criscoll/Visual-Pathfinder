@@ -11,11 +11,6 @@
 .modal-styles {
   position: absolute;
 
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-
   height: 70%;
   width: 50%;
 
@@ -41,4 +36,50 @@
     text-align: center;
     color: rgba(10, 66, 73, 0.924);
   }
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 80%;
+  margin: auto;
+  margin-top: 1vh;
+}
+
+.page-number {
+  position: absolute;
+  right: 0;
+  margin-right: 2vh;
+  margin-top: 1vh;
+
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 3vh;
+}
+
+.arrow-icons {
+  position: absolute;
+  top: 50%;
+
+  font-size: 6vh;
+  cursor: pointer;
+  transition: background-color ease-in 200ms;
+  border-radius: 50%;
+
+  &:hover {
+    background-color: rgba(207, 207, 207, 0.5);
+  }
+
+  &:active {
+    background-color: rgba(51, 51, 51, 0.534);
+  }
+}
+
+.right {
+  right: 0;
+}
+
+.left {
+  left: 0;
 }
