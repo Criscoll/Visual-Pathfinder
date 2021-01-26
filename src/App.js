@@ -16,6 +16,7 @@ class Main extends Component {
     this.setStats = this.setStats.bind(this);
     this.setGridModified = this.setGridModified.bind(this);
     this.generateMaze = this.generateMaze.bind(this);
+    this.setTutorialModalOpen = this.setTutorialModalOpen.bind(this);
 
     this.gridRef = React.createRef(); // used to handle reseting the grid.
 
@@ -92,6 +93,10 @@ class Main extends Component {
     }
   }
 
+  setTutorialModalOpen(val) {
+    this.setState({ tutorialModalOpen: val });
+  }
+
   generateMaze(mazeType) {
     this.setGridModified();
     this.gridRef.current.generateMaze(mazeType);
@@ -129,7 +134,7 @@ class Main extends Component {
               this.setState({ tutorialModalOpen: false });
             }}
           >
-            <TutorialModal />
+            <TutorialModal setModalOpen={this.setTutorialModalOpen} />
           </div>
         ) : null}
       </React.Fragment>

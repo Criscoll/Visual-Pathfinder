@@ -426,7 +426,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.185);
   z-index: 1000;
 }
 
@@ -440,7 +440,12 @@
   left: 0;
   right: 0;
   background-color: white;
-  border: 0.5vh solid black;
+  -webkit-box-shadow: 0 0 1rem rgba(0, 0, 0, 0.548);
+          box-shadow: 0 0 1rem rgba(0, 0, 0, 0.548);
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 .modal-styles h1 {
@@ -457,7 +462,27 @@
   color: rgba(10, 66, 73, 0.924);
 }
 
-.modal-content {
+.page-one {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  width: 80%;
+  height: 60vh;
+  margin: auto;
+  margin-top: 1vh;
+}
+
+.page-two {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -471,6 +496,25 @@
   width: 80%;
   margin: auto;
   margin-top: 1vh;
+}
+
+.page-three {
+  position: absolute;
+  left: 5%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  width: 70%;
+  margin: auto;
+  margin-top: 1vh;
+  border: 3px solid red;
 }
 
 .page-number {
@@ -500,11 +544,34 @@
   background-color: rgba(51, 51, 51, 0.534);
 }
 
+.arrow-icons-disabled {
+  position: absolute;
+  top: 50%;
+  font-size: 6vh;
+  opacity: 0.5;
+}
+
 .right {
   right: 0;
 }
 
 .left {
   left: 0;
+}
+
+.close-button {
+  position: absolute;
+  font-size: 2rem;
+  top: 1vh;
+  left: 1vh;
+  color: rgba(0, 88, 122, 0.733);
+  border-radius: 50%;
+  cursor: pointer;
+  -webkit-transition: color ease-out 300ms;
+  transition: color ease-out 300ms;
+}
+
+.close-button:hover {
+  color: rgba(124, 124, 124, 0.76);
 }
 /*# sourceMappingURL=main.css.map */
