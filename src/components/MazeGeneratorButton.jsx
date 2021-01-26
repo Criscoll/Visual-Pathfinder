@@ -20,12 +20,20 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(2),
   },
   button: {
-    fontFamily: 'Share Tech',
-    fontSize: 25,
+    fontFamily: 'Ubuntu',
+    fontSize: '2.8vh',
+    color: 'white',
+  },
+  dropDownMenu: {
+    alignItems: 'center',
+    zIndex: 1000,
+    width: '25vh',
+    backgroundColor: '#3775A0',
     color: 'white',
   },
   dropDownText: {
-    fontFamily: 'Share Tech',
+    fontFamily: 'Ubuntu',
+    fontSize: '2.5vh',
   },
 }));
 
@@ -100,9 +108,10 @@ export default function MazeGeneratorButton(props) {
                     autoFocusItem={open}
                     id="menu-list-grow"
                     onKeyDown={handleListKeyDown}
+                    classes={{ root: classes.dropDownMenu }}
                   >
                     <MenuItem
-                      classes={{ root: classes.root }}
+                      classes={{ root: classes.dropDownText }}
                       onClick={(e) => {
                         handleClose(e);
                         props.generateMaze(enumerations.mazes.random);
@@ -111,7 +120,7 @@ export default function MazeGeneratorButton(props) {
                       Random Allocation
                     </MenuItem>
                     <MenuItem
-                      classes={{ root: classes.root }}
+                      classes={{ root: classes.dropDownText }}
                       onClick={(e) => {
                         handleClose(e);
                         props.generateMaze(enumerations.mazes.maze);

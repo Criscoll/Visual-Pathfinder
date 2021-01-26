@@ -9,7 +9,15 @@ export default function Toolbar(props) {
   return (
     <React.Fragment>
       <div id="toolbar">
-        <div className="app-heading-name">Visual Pathfinder</div>
+        <div
+          className="app-heading-name"
+          onClick={() => {
+            props.setTutorialModalOpen(true);
+          }}
+          style={{ opacity: '1' }}
+        >
+          Visual Pathfinder
+        </div>
         <div className="buttons">
           <AlgorithmsButton
             setAlgorithm={props.setAlgorithm}

@@ -112,6 +112,7 @@ class Main extends Component {
           setAlgorithm={this.setAlgorithm}
           algorithmRunning={this.state.algorithmRunning}
           generateMaze={this.generateMaze}
+          setTutorialModalOpen={this.setTutorialModalOpen}
         />
         <Stats
           algorithmUsed={this.state.algorithmUsed}

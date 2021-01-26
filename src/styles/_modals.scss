@@ -1,3 +1,5 @@
+@import 'keyframes.scss';
+
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -23,6 +25,8 @@
   background-color: white;
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.548);
   user-select: none;
+
+  animation: slide-in ease-out 300ms;
 
   h1 {
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;

@@ -5,10 +5,10 @@ import * as enumerations from '../constants/enumerations';
 
 const useStyles = makeStyles(() => ({
   root: {
-    fontFamily: ['Share Tech', 'Sans Serif'],
-    fontSize: 25,
-    backgroundColor: 'rgb(212, 23, 58)',
-    borderColor: 'red',
+    fontFamily: 'Ubuntu',
+    fontSize: '2.8vh',
+    backgroundColor: '#8F3131',
+    boxShadow: '0 0 0.4rem black',
     color: 'white',
     '&:hover': {
       backgroundColor: 'rgb(189, 15, 47)',

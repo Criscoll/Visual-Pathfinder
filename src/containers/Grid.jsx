@@ -204,7 +204,7 @@ class Grid extends Component {
       document.getElementById(
         `node-${this.state.startNode.row}-${this.state.startNode.col}`
       ).className = 'start-node';
-    } else {
+    } else if (this.state.dragNode === 'end') {
       document.getElementById(
         `node-${this.state.endNode.row}-${this.state.endNode.col}`
       ).className = 'end-node';

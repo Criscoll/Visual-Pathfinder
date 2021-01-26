@@ -1,21 +1,41 @@
+@import 'variables.scss';
+
 #toolbar {
   display: flex;
-
-  background-color: rgb(15, 104, 107);
+  background-color: $primary-color;
   height: 8vh;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+
+    height: 8vh;
+    width: 100%;
+
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    background: url('../images/circuit-board.svg') repeat;
+    opacity: 0.5;
+    z-index: -1;
+  }
 }
 
 #toolbar > .app-heading-name {
-  margin-left: 1rem;
-  padding: 1.5rem 0;
+  margin-top: 1.8vh;
+  margin-left: 1vh;
 
   width: 25%;
+  color: $text-color;
+  z-index: 1000;
 
-  font-family: 'Share Tech', sans-serif;
-  font-size: 3vh;
-  font-weight: bold;
-  color: white;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 4vh;
   user-select: none;
+  cursor: pointer;
 }
 
 #toolbar > .buttons {

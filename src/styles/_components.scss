@@ -1,11 +1,12 @@
 @import 'keyframes.scss';
+@import 'variables.scss';
 
 @mixin node-properties() {
   position: relative;
   // display: inline-block;
   height: 3.1vh;
   width: 3.1vh;
-  border: 0.01rem solid rgb(75, 75, 75);
+  border: 0.01rem solid $grid-color;
 }
 
 @mixin node-styles(
@@ -40,7 +41,7 @@
 
 .wall-node {
   @include node-properties();
-  @include node-styles(rgb(75, 75, 75));
+  @include node-styles($grid-color);
 }
 
 .weight-node {
@@ -80,7 +81,7 @@
   bottom: 0;
   right: 0;
 
-  background-color: aqua;
+  background-color: $visited-color;
   border-radius: 50%;
 
   animation: visit-nodes linear 2000ms forwards;
@@ -88,7 +89,7 @@
 
 .path-node {
   @include node-properties();
-  @include node-styles(yellow, 200ms, draw-path);
+  @include node-styles(rgba(255, 255, 0, 0.466), 200ms, draw-path);
 }
 
 .start-node {

@@ -99,10 +99,11 @@ function PageThree() {
   return (
     <React.Fragment>
       <div className="page-three">
-        <h1>Legend</h1>
-        <p>Start Node - The starting position of the algorithm</p>
-        <p>End Node - The destination position for the algorithm to find</p>
-        <p>Wall - An obstacle that blocks the cell, impossible to go through</p>
+        <h1>How to Use</h1>
+        <p>
+          Start and end locations can be changed by clicking and dragging the
+          start and end nodes anywhere on the grid
+        </p>
       </div>
     </React.Fragment>
   );

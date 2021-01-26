@@ -9,6 +9,21 @@
   src: url(./fonts/Padauk-Regular.ttf) format('truetype');
 }
 
+@font-face {
+  font-family: 'Ubuntu';
+  src: url(./fonts/Ubuntu-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Ubuntu-Bold';
+  src: url(./fonts/Ubuntu-Bold.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Ubuntu-Medium';
+  src: url(./fonts/Ubuntu-Medium.ttf) format('truetype');
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',

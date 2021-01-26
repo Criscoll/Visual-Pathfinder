@@ -20,12 +20,20 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(2),
   },
   button: {
-    fontFamily: 'Share Tech',
-    fontSize: 25,
+    fontFamily: 'Ubuntu',
+    fontSize: '2.8vh',
+    color: 'white',
+  },
+  dropDownMenu: {
+    alignItems: 'center',
+    zIndex: 1000,
+    width: '25vh',
+    backgroundColor: '#3775A0',
     color: 'white',
   },
   dropDownText: {
-    fontFamily: 'Share Tech',
+    fontFamily: 'Ubuntu',
+    fontSize: '2.5vh',
   },
 }));
 
@@ -100,9 +108,10 @@ export default function MenuListComposition(props) {
                     autoFocusItem={open}
                     id="menu-list-grow"
                     onKeyDown={handleListKeyDown}
+                    classes={{ root: classes.dropDownMenu }}
                   >
                     <MenuItem
-                      classes={{ root: classes.root }}
+                      classes={{ root: classes.dropDownText }}
                       onClick={(e) => {
                         handleClose(e);
                         setAlgorithm('Dijkstras');
@@ -116,7 +125,7 @@ export default function MenuListComposition(props) {
                     </MenuItem>
 
                     <MenuItem
-                      classes={{ root: classes.root }}
+                      classes={{ root: classes.dropDownText }}
                       onClick={(e) => {
                         handleClose(e);
                         setAlgorithm('A*');
@@ -126,7 +135,7 @@ export default function MenuListComposition(props) {
                       A*
                     </MenuItem>
                     <MenuItem
-                      classes={{ root: classes.root }}
+                      classes={{ root: classes.dropDownText }}
                       onClick={(e) => {
                         handleClose(e);
                         setAlgorithm('BFS');
@@ -136,7 +145,7 @@ export default function MenuListComposition(props) {
                       BFS
                     </MenuItem>
                     <MenuItem
-                      classes={{ root: classes.root }}
+                      classes={{ root: classes.dropDownText }}
                       onClick={(e) => {
                         handleClose(e);
                         setAlgorithm('DFS');

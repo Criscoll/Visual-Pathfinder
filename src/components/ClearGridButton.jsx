@@ -4,8 +4,8 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(() => ({
   root: {
-    fontFamily: 'Share Tech',
-    fontSize: 25,
+    fontFamily: 'Ubuntu',
+    fontSize: '2.8vh',
     color: 'white',
   },
 }));
