@@ -558,7 +558,7 @@
 .modal-styles {
   position: absolute;
   height: 70%;
-  width: 50%;
+  width: 56%;
   margin: auto;
   top: 0;
   bottom: 0;
@@ -573,23 +573,25 @@
           user-select: none;
   -webkit-animation: slide-in ease-out 300ms;
           animation: slide-in ease-out 300ms;
+  font-family: 'Ubuntu' sans-serif;
 }
 
 .modal-styles h1 {
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   font-weight: bold;
   font-size: 4.4vh;
   color: rgba(11, 105, 117, 0.924);
+  margin-bottom: 0.5vh;
 }
 
 .modal-styles p {
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  font-size: 3vh;
+  font-size: 2.5vh;
   text-align: center;
   color: rgba(10, 66, 73, 0.924);
+  margin-bottom: 0.5vh;
 }
 
 .page-one {
+  position: absolute;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -604,9 +606,16 @@
       -ms-flex-pack: center;
           justify-content: center;
   width: 80%;
-  height: 60vh;
+  height: 80%;
   margin: auto;
-  margin-top: 1vh;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.page-one > img {
+  width: 30%;
 }
 
 .page-two {
@@ -620,14 +629,19 @@
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  width: 80%;
+  width: 85%;
+  height: 70%;
   margin: auto;
   margin-top: 1vh;
 }
 
+.page-two > img {
+  width: 80%;
+  margin-top: 3vh;
+}
+
 .page-three {
   position: absolute;
-  left: 5%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -635,13 +649,23 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-align: start;
-      -ms-flex-align: start;
-          align-items: flex-start;
-  width: 70%;
-  margin: auto;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  width: 85%;
   margin-top: 1vh;
-  border: 3px solid red;
+  margin: auto;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.page-three > img {
+  width: 85%;
 }
 
 .page-number {
@@ -649,7 +673,7 @@
   right: 0;
   margin-right: 2vh;
   margin-top: 1vh;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-family: 'Ubuntu' sans-serif;
   font-size: 3vh;
 }
 
@@ -688,7 +712,7 @@
 
 .close-button {
   position: absolute;
-  font-size: 2rem;
+  font-size: 3vh;
   top: 1vh;
   left: 1vh;
   color: rgba(0, 88, 122, 0.733);

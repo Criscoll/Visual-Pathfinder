@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import ReactDom from 'react-dom';
 import AppLogo from '../images/pathfinder-logo.svg';
+import Pathfinding from '../images/pathfinding.gif';
+import PlacingObstacles from '../images/placing-obstacles.gif';
+
 import {
   AiOutlineRight,
   AiOutlineLeft,
@@ -65,12 +68,11 @@ function PageOne() {
       <div className="page-one">
         <h1>Welcome to the Visual Pathfinder Tool! </h1>
         <p>
-          This short tutorial will help you get started with the application
-          <br />
-          <br />
-          If at any point this gets too boring to read feel free to close this
+          This short tutorial will help you get started with the application. If
+          at any point this gets too boring to read feel free to close this
           tutorial to jump right in!
         </p>
+        <img src={AppLogo} alt="logo" width="30%"></img>
       </div>
     </React.Fragment>
   );
@@ -83,13 +85,18 @@ function PageTwo() {
         <h1>About this app </h1>
         <p>
           A pathfinding algorithm is an algorithm that typically attempts to
-          find the shortest distance between two points
-          <br />
-          <br />
-          This app provides a playground for such algorithms, to help visualise
-          they way they behave and compare
+          find the shortest distance between two points. This app provides a
+          playground for such algorithms, to help visualise the way they behave
+          and compare.
         </p>
-        <img src={AppLogo} alt="logo" height="350"></img>
+
+        <p>
+          A quick note: On this grid, these algoritms run very fast! So fast in
+          fact I have manually slowed down their searching behaviour to help
+          actually visualise what is happening, its not fun seeing everything
+          happen in a milisecond or two :)
+        </p>
+        <img src={Pathfinding} alt="logo" width="30%"></img>
       </div>
     </React.Fragment>
   );
@@ -99,11 +106,19 @@ function PageThree() {
   return (
     <React.Fragment>
       <div className="page-three">
-        <h1>How to Use</h1>
+        <h1>Placing Walls and Weights</h1>
         <p>
-          Start and end locations can be changed by clicking and dragging the
-          start and end nodes anywhere on the grid
+          Walls are an impenetrable obstacle that prevents potential paths.
+          Weights are also an obstacle, but can be traversed, one weight node is
+          equivalent to 10 normal nodes in 'distance'.
         </p>
+
+        <p>
+          Walls can be placed by clicking and dragging across the grid. Holding
+          the 'W' key while clicking will place weight nodes instead. Click the
+          obstacles again to remove them.
+        </p>
+        <img src={PlacingObstacles} alt="placing walls gif" width="90%" />
       </div>
     </React.Fragment>
   );
