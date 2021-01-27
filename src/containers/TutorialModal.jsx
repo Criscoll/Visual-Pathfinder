@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import ReactDom from 'react-dom';
 import AppLogo from '../images/pathfinder-logo.svg';
 import {

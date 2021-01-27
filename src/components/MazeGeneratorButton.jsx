@@ -42,7 +42,7 @@ export default function MazeGeneratorButton(props) {
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
 
-  const [maze, setMaze] = useState('Maze Generator');
+  const [maze] = useState('Maze Generator');
 
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);

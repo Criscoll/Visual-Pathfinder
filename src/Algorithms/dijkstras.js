@@ -56,7 +56,8 @@ export default function dikstrasAlgorithm(
 // change this when weights are implemented
 function distance(u, v) {
   if (
-    document.getElementById(`node-${v.row}-${v.col}`).className == 'weight-node'
+    document.getElementById(`node-${v.row}-${v.col}`).className ===
+    'weight-node'
   ) {
     return constants.weightValue;
   } else {

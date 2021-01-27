@@ -5,6 +5,8 @@ export default function Stats(props) {
   const [prevStats, setPrevStats] = useState(null);
   const [tempStats, setTempStats] = useState(0);
 
+  const currStatsStable = currStats;
+
   useEffect(() => {
     if (props.pathLength && props.nodesChecked) {
       setCurrStats({
@@ -13,10 +15,10 @@ export default function Stats(props) {
         nodesChecked: props.nodesChecked,
       });
     } else {
-      if (currStats && !props.clearStats) {
-        let algorithmUsed = currStats.algorithmUsed;
-        let pathLength = currStats.pathLength;
-        let nodesChecked = currStats.nodesChecked;
+      if (currStatsStable && !props.clearStats) {
+        let algorithmUsed = currStatsStable.algorithmUsed;
+        let pathLength = currStatsStable.pathLength;
+        let nodesChecked = currStatsStable.nodesChecked;
 
         setTempStats({
           algorithmUsed: algorithmUsed,

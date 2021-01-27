@@ -343,7 +343,7 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  background-color: #2083c0e1;
+  background-color: #15647ac2;
   height: 8vh;
   overflow: hidden;
 }
@@ -358,7 +358,7 @@
   right: 0;
   bottom: 0;
   background: url("../images/circuit-board.svg") repeat;
-  opacity: 0.5;
+  opacity: 0.4;
   z-index: -1;
 }
 

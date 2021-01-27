@@ -12,19 +12,18 @@ import * as constants from '../constants/constants';
 function useKeyPressed(targetKey) {
   const [keyPressed, setKeyPressed] = useState(false);
 
-  function downHandler({ key }) {
-    if (key === targetKey) {
-      setKeyPressed(true);
-    }
-  }
-
-  const upHandler = ({ key }) => {
-    if (key === targetKey) {
-      setKeyPressed(false);
-    }
-  };
-
   useEffect(() => {
+    function downHandler({ key }) {
+      if (key === targetKey) {
+        setKeyPressed(true);
+      }
+    }
+
+    const upHandler = ({ key }) => {
+      if (key === targetKey) {
+        setKeyPressed(false);
+      }
+    };
     window.addEventListener('keydown', downHandler);
     window.addEventListener('keyup', upHandler);
 
@@ -32,7 +31,7 @@ function useKeyPressed(targetKey) {
       window.removeEventListener('keydown', downHandler);
       window.removeEventListener('keyup', upHandler);
     };
-  }, []);
+  }, [targetKey]);
 
   return keyPressed;
 }
@@ -178,7 +177,6 @@ class Grid extends Component {
       dragNode = 'start';
       document.getElementById(`node-${row}-${column}`).className =
         'start-node-dragged';
-      console.log(document.getElementById(`node-${row}-${column}`).className);
     } else if (
       this.state.endNode.row === row &&
       this.state.endNode.col === column
@@ -215,7 +213,6 @@ class Grid extends Component {
 
   handleDragBug(e) {
     e.preventDefault();
-    console.log('prevented a drag');
   }
 
   // Displays the nodes on the grid with their state values

@@ -10,8 +10,6 @@ export default function recursiveDivision(
 ) {
   // Recursion termination
   if (width < 2 || height < 2) {
-    console.log(origin);
-    console.log(`width: ${width}, height: ${height}`);
     return timer;
   }
 

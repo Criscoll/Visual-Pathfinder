@@ -7,6 +7,9 @@ class Node extends Component {
     this.handleMouseEnter = this.handleMouseEnter.bind(this);
     this.handlePress = this.handlePress.bind(this);
   }
+  state = {
+    mounted: false,
+  };
 
   handleMouseEnter() {
     if (this.props.isDragging) {

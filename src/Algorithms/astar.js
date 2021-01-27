@@ -10,11 +10,7 @@ export default function astar(grid, startNode, endNode, numRows, numCols) {
   openList.push(startNode);
   startNode.inOpenList = true;
 
-  let i = 0;
-
   while (openList.length !== 0) {
-    i++;
-
     let currentNode = findLowestFCost(openList);
 
     if (currentNode === null) {
