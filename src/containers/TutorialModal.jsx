@@ -3,6 +3,7 @@ import ReactDom from 'react-dom';
 import AppLogo from '../images/pathfinder-logo.svg';
 import Pathfinding from '../images/pathfinding.gif';
 import PlacingObstacles from '../images/placing-obstacles.gif';
+import MovingNodes from '../images/moving-nodes.gif';
 
 import {
   AiOutlineRight,
@@ -18,7 +19,7 @@ export default function TutorialModal(props) {
       setPageNum((prevPageNum) => prevPageNum + val);
     }
 
-    if (val > 0 && pageNum < 9) {
+    if (val > 0 && pageNum < 5) {
       setPageNum((prevPageNum) => prevPageNum + val);
     }
   }
@@ -36,10 +37,10 @@ export default function TutorialModal(props) {
             className="close-button"
             onClick={() => props.setModalOpen(false)}
           />
-          <div className="page-number">{pageNum}/9</div>
+          <div className="page-number">{pageNum}/5</div>
           <AiOutlineRight
             className={
-              pageNum === 9 ? 'arrow-icons-disabled right' : 'arrow-icons right'
+              pageNum === 5 ? 'arrow-icons-disabled right' : 'arrow-icons right'
             }
             onClick={() => incrementPage(1)}
           />
@@ -54,6 +55,8 @@ export default function TutorialModal(props) {
             {pageNum === 1 ? <PageOne /> : null}
             {pageNum === 2 ? <PageTwo /> : null}
             {pageNum === 3 ? <PageThree /> : null}
+            {pageNum === 4 ? <PageFour /> : null}
+            {pageNum === 5 ? <PageFive /> : null}
           </div>
         </div>
       </div>
@@ -70,7 +73,8 @@ function PageOne() {
         <p>
           This short tutorial will help you get started with the application. If
           at any point this gets too boring to read feel free to close this
-          tutorial to jump right in!
+          tutorial to jump right in! Click on the logo in the top left to open
+          up this tutorial at any time.
         </p>
         <img src={AppLogo} alt="logo" width="30%"></img>
       </div>
@@ -119,6 +123,55 @@ function PageThree() {
           obstacles again to remove them.
         </p>
         <img src={PlacingObstacles} alt="placing walls gif" width="90%" />
+      </div>
+    </React.Fragment>
+  );
+}
+
+function PageFour() {
+  return (
+    <React.Fragment>
+      <div className="page-four">
+        <h1>Moving Start and End Nodes</h1>
+        <p>
+          The Start and End nodes are your starting position and destination.
+          They can be re-positioned by clicking and dragging, then releasing
+          them anywhere on the grid.
+        </p>
+
+        <img src={MovingNodes} alt="placing walls gif" width="90%" />
+      </div>
+    </React.Fragment>
+  );
+}
+
+function PageFive() {
+  return (
+    <React.Fragment>
+      <div className="page-five">
+        <h1>Algorithms</h1>
+        <p>
+          <span className="algorithm-bold"> Dijkstras</span> - a very popular
+          weighted search. Will find the shortest path.
+        </p>
+        <p>
+          <span className="algorithm-bold"> A* (A star)</span> - the most
+          effective algorithm in the list, is also a weighted search and uses a
+          heuristic value in its search. Will find the shortest path.
+        </p>
+        <p>
+          <span className="algorithm-bold"> BFS</span> - also known as Breadth
+          First Search is an unweighted search, meaning it does not factor in
+          distances in its choice for which nodes to visit. Will find the
+          shortest path for an unweighted graph / grid. Weight nodes are
+          disabled for this type of search.
+        </p>
+        <p>
+          <span className="algorithm-bold"> DFS</span> - Depth First Search. A
+          poor algorithm choice for pathfinding, this is also an unweighted
+          search and so weight nodes are disabled. Is not guaranteed to find the
+          shortest path.
+        </p>
       </div>
     </React.Fragment>
   );

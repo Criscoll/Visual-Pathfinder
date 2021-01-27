@@ -1,4 +1,5 @@
 @import 'keyframes.scss';
+@import 'variables.scss';
 
 .modal-overlay {
   position: fixed;
@@ -28,19 +29,19 @@
 
   animation: slide-in ease-out 300ms;
 
-  font-family: 'Ubuntu' sans-serif;
+  font-family: 'Ubuntu', sans-serif;
 
   h1 {
     font-weight: bold;
     font-size: 4.4vh;
-    color: rgba(11, 105, 117, 0.924);
+    color: $primary-color;
     margin-bottom: 0.5vh;
   }
 
   p {
     font-size: 2.5vh;
     text-align: center;
-    color: rgba(10, 66, 73, 0.924);
+    color: rgba(11, 29, 36, 0.746);
     margin-bottom: 0.5vh;
   }
 }
@@ -103,7 +104,29 @@
 
   > img {
     width: 85%;
+    margin-top: 2.5vh;
   }
+}
+
+.page-four {
+  @extend .page-three;
+
+  > img {
+    margin-top: 5vh;
+  }
+}
+
+.page-five {
+  @extend .page-three;
+
+  > h1 {
+    margin-bottom: 2vh;
+  }
+}
+
+.algorithm-bold {
+  font-weight: bold;
+  color: $primary-color;
 }
 
 .page-number {

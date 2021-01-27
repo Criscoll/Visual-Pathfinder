@@ -573,20 +573,20 @@
           user-select: none;
   -webkit-animation: slide-in ease-out 300ms;
           animation: slide-in ease-out 300ms;
-  font-family: 'Ubuntu' sans-serif;
+  font-family: 'Ubuntu', sans-serif;
 }
 
 .modal-styles h1 {
   font-weight: bold;
   font-size: 4.4vh;
-  color: rgba(11, 105, 117, 0.924);
+  color: #15647ac2;
   margin-bottom: 0.5vh;
 }
 
 .modal-styles p {
   font-size: 2.5vh;
   text-align: center;
-  color: rgba(10, 66, 73, 0.924);
+  color: rgba(11, 29, 36, 0.746);
   margin-bottom: 0.5vh;
 }
 
@@ -640,7 +640,7 @@
   margin-top: 3vh;
 }
 
-.page-three {
+.page-three, .page-four, .page-five {
   position: absolute;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -664,8 +664,22 @@
   bottom: 0;
 }
 
-.page-three > img {
+.page-three > img, .page-four > img, .page-five > img {
   width: 85%;
+  margin-top: 2.5vh;
+}
+
+.page-four > img {
+  margin-top: 5vh;
+}
+
+.page-five > h1 {
+  margin-bottom: 2vh;
+}
+
+.algorithm-bold {
+  font-weight: bold;
+  color: #15647ac2;
 }
 
 .page-number {
