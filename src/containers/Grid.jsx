@@ -441,7 +441,8 @@ class Grid extends Component {
         this.maxCol,
         this.maxRow,
         { isHorizontal: null, holeIdx: null },
-        0
+        0,
+        false
       );
 
       setTimeout(() => {
@@ -494,6 +495,19 @@ class Grid extends Component {
       setTimeout(() => {
         this.props.setAlgorithmRunning(false);
       }, 25 * this.maxCol);
+    } else if (mazeType === enumerations.mazes.mazeWithWeights) {
+      const mazeDelay = recursiveDivision(
+        { row: 0, col: 0 },
+        this.maxCol,
+        this.maxRow,
+        { isHorizontal: null, holeIdx: null },
+        0,
+        true
+      );
+
+      setTimeout(() => {
+        this.props.setAlgorithmRunning(false);
+      }, 70 * mazeDelay);
     }
   }
 

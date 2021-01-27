@@ -1,3 +1,5 @@
+import * as constants from '../constants/constants';
+
 export default function astar(grid, startNode, endNode, numRows, numCols) {
   let visitedNodes = [];
   let openList = [];
@@ -51,7 +53,7 @@ export default function astar(grid, startNode, endNode, numRows, numCols) {
         document.getElementById(`node-${neighbour.row}-${neighbour.col}`)
           .className === 'weight-node'
       ) {
-        neighbourDistance = 15;
+        neighbourDistance = constants.weightValue;
       }
 
       let gScore = currentNode.g + neighbourDistance; // 1 is the distance from a node to it's neighbour

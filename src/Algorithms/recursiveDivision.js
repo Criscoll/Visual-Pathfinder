@@ -5,7 +5,8 @@ export default function recursiveDivision(
   width,
   height,
   wallInfo,
-  timer
+  timer,
+  withWeight
 ) {
   // Recursion termination
   if (width < 2 || height < 2) {
@@ -47,20 +48,29 @@ export default function recursiveDivision(
     if (wallIdx >= constants.maxRow) {
       return;
     }
-    timer = buildHorizontalWall(origin, wallIdx, wallInfo, width, timer);
+    timer = buildHorizontalWall(
+      origin,
+      wallIdx,
+      wallInfo,
+      width,
+      timer,
+      withWeight
+    );
     let mazeDelayOne = recursiveDivision(
       origin,
       width,
       Math.abs(wallIdx - origin.row),
       wallInfo,
-      timer
+      timer,
+      withWeight
     );
     let mazeDelayTwo = recursiveDivision(
       { row: wallIdx + 1, col: origin.col },
       width,
       height + origin.row - wallIdx - 1,
       wallInfo,
-      timer
+      timer,
+      withWeight
     );
 
     mazeDelay = mazeDelayOne > mazeDelayTwo ? mazeDelayOne : mazeDelayTwo;
@@ -68,20 +78,29 @@ export default function recursiveDivision(
     if (wallIdx >= constants.maxCol) {
       return;
     }
-    timer = buildVerticalWall(origin, wallIdx, wallInfo, height, timer);
+    timer = buildVerticalWall(
+      origin,
+      wallIdx,
+      wallInfo,
+      height,
+      timer,
+      withWeight
+    );
     let mazeDelayOne = recursiveDivision(
       origin,
       Math.abs(wallIdx - origin.col),
       height,
       wallInfo,
-      timer
+      timer,
+      withWeight
     );
     let mazeDelayTwo = recursiveDivision(
       { row: origin.row, col: wallIdx + 1 },
       width + origin.col - wallIdx - 1,
       height,
       wallInfo,
-      timer
+      timer,
+      withWeight
     );
 
     mazeDelay = mazeDelayOne > mazeDelayTwo ? mazeDelayOne : mazeDelayTwo;
@@ -95,7 +114,14 @@ function randomIntFromInterval(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-function buildHorizontalWall(origin, wallIdx, wallInfo, width, timer) {
+function buildHorizontalWall(
+  origin,
+  wallIdx,
+  wallInfo,
+  width,
+  timer,
+  withWeight
+) {
   for (let col = origin.col; col < width + origin.col; col++) {
     if (
       !['start-node', 'end-node'].includes(
@@ -104,8 +130,17 @@ function buildHorizontalWall(origin, wallIdx, wallInfo, width, timer) {
       col !== wallInfo.holeIdx
     ) {
       setTimeout(() => {
-        document.getElementById(`node-${wallIdx}-${col}`).className =
-          'wall-node';
+        if (
+          withWeight &&
+          Math.floor(Math.random() * 100) > 90 &&
+          col % 2 === 0
+        ) {
+          document.getElementById(`node-${wallIdx}-${col}`).className =
+            'weight-node';
+        } else {
+          document.getElementById(`node-${wallIdx}-${col}`).className =
+            'wall-node';
+        }
       }, 70 * timer);
       timer++;
     }
@@ -114,7 +149,14 @@ function buildHorizontalWall(origin, wallIdx, wallInfo, width, timer) {
   return timer;
 }
 
-function buildVerticalWall(origin, wallIdx, wallInfo, height, timer) {
+function buildVerticalWall(
+  origin,
+  wallIdx,
+  wallInfo,
+  height,
+  timer,
+  withWeight
+) {
   for (let row = origin.row; row < height + origin.row; row++) {
     if (
       !['start-node', 'end-node'].includes(
@@ -123,8 +165,17 @@ function buildVerticalWall(origin, wallIdx, wallInfo, height, timer) {
       row !== wallInfo.holeIdx
     ) {
       setTimeout(() => {
-        document.getElementById(`node-${row}-${wallIdx}`).className =
-          'wall-node';
+        if (
+          withWeight &&
+          Math.floor(Math.random() * 100) > 90 &&
+          row % 2 === 0
+        ) {
+          document.getElementById(`node-${row}-${wallIdx}`).className =
+            'weight-node';
+        } else {
+          document.getElementById(`node-${row}-${wallIdx}`).className =
+            'wall-node';
+        }
       }, 70 * timer);
       timer++;
     }

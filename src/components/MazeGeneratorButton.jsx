@@ -162,6 +162,23 @@ export default function MazeGeneratorButton(props) {
                     >
                       Maze
                     </MenuItem>
+                    <MenuItem
+                      classes={{ root: classes.dropDownText }}
+                      onClick={(e) => {
+                        handleClose(e);
+                        props.generateMaze(enumerations.mazes.mazeWithWeights);
+                      }}
+                      disabled={
+                        [
+                          enumerations.algorithms.BFS,
+                          enumerations.algorithms.DFS,
+                        ].includes(props.algorithm)
+                          ? true
+                          : null
+                      }
+                    >
+                      Maze with Weights
+                    </MenuItem>
                   </MenuList>
                 </ClickAwayListener>
               </Paper>

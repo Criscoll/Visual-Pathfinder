@@ -12,4 +12,5 @@ export const mazes = Object.freeze({
   randomWeights: 2,
   randomMixed: 3,
   maze: 4,
+  mazeWithWeights: 5,
 });

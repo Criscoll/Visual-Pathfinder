@@ -1,3 +1,5 @@
+import * as constants from '../constants/constants';
+
 export default function dikstrasAlgorithm(
   grid,
   startNode,
@@ -56,7 +58,7 @@ function distance(u, v) {
   if (
     document.getElementById(`node-${v.row}-${v.col}`).className == 'weight-node'
   ) {
-    return 15;
+    return constants.weightValue;
   } else {
     return 1;
   }
