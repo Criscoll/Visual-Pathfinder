@@ -114,10 +114,44 @@ export default function MazeGeneratorButton(props) {
                       classes={{ root: classes.dropDownText }}
                       onClick={(e) => {
                         handleClose(e);
-                        props.generateMaze(enumerations.mazes.random);
+                        props.generateMaze(enumerations.mazes.randomWalls);
                       }}
                     >
-                      Random Allocation
+                      Random Walls
+                    </MenuItem>
+                    <MenuItem
+                      classes={{ root: classes.dropDownText }}
+                      onClick={(e) => {
+                        handleClose(e);
+                        props.generateMaze(enumerations.mazes.randomWeights);
+                      }}
+                      disabled={
+                        [
+                          enumerations.algorithms.BFS,
+                          enumerations.algorithms.DFS,
+                        ].includes(props.algorithm)
+                          ? true
+                          : null
+                      }
+                    >
+                      Random Weights
+                    </MenuItem>
+                    <MenuItem
+                      classes={{ root: classes.dropDownText }}
+                      onClick={(e) => {
+                        handleClose(e);
+                        props.generateMaze(enumerations.mazes.randomMixed);
+                      }}
+                      disabled={
+                        [
+                          enumerations.algorithms.BFS,
+                          enumerations.algorithms.DFS,
+                        ].includes(props.algorithm)
+                          ? true
+                          : null
+                      }
+                    >
+                      Random Mixed
                     </MenuItem>
                     <MenuItem
                       classes={{ root: classes.dropDownText }}

@@ -8,6 +8,8 @@ export const algorithms = Object.freeze({
 
 export const mazes = Object.freeze({
   none: 0,
-  random: 1,
-  maze: 2,
+  randomWalls: 1,
+  randomWeights: 2,
+  randomMixed: 3,
+  maze: 4,
 });

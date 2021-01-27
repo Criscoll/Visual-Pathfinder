@@ -415,7 +415,7 @@ class Grid extends Component {
     this.resetGrid();
     this.props.setAlgorithmRunning(true);
 
-    if (mazeType === enumerations.mazes.random) {
+    if (mazeType === enumerations.mazes.randomWalls) {
       for (let row = 0; row < this.maxRow; row++) {
         for (let col = 0; col < this.maxCol; col++) {
           if (
@@ -447,6 +447,53 @@ class Grid extends Component {
       setTimeout(() => {
         this.props.setAlgorithmRunning(false);
       }, 70 * mazeDelay);
+    } else if (mazeType === enumerations.mazes.randomMixed) {
+      for (let row = 0; row < this.maxRow; row++) {
+        for (let col = 0; col < this.maxCol; col++) {
+          if (
+            Math.random() * 100 > 65 &&
+            !['start-node', 'end-node'].includes(
+              document.getElementById(`node-${row}-${col}`).className
+            )
+          ) {
+            if (Math.floor(Math.random() * 100) % 2 === 0) {
+              setTimeout(() => {
+                document.getElementById(`node-${row}-${col}`).className =
+                  'wall-node';
+              }, 25 * col);
+            } else {
+              setTimeout(() => {
+                document.getElementById(`node-${row}-${col}`).className =
+                  'weight-node';
+              }, 25 * col);
+            }
+          }
+        }
+      }
+
+      setTimeout(() => {
+        this.props.setAlgorithmRunning(false);
+      }, 25 * this.maxCol);
+    } else if (mazeType === enumerations.mazes.randomWeights) {
+      for (let row = 0; row < this.maxRow; row++) {
+        for (let col = 0; col < this.maxCol; col++) {
+          if (
+            Math.random() * 100 > 65 &&
+            !['start-node', 'end-node'].includes(
+              document.getElementById(`node-${row}-${col}`).className
+            )
+          ) {
+            setTimeout(() => {
+              document.getElementById(`node-${row}-${col}`).className =
+                'weight-node';
+            }, 25 * col);
+          }
+        }
+      }
+
+      setTimeout(() => {
+        this.props.setAlgorithmRunning(false);
+      }, 25 * this.maxCol);
     }
   }
 

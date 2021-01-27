@@ -25,6 +25,7 @@ export default function Toolbar(props) {
           />
           <MazeGeneratorButton
             generateMaze={props.generateMaze}
+            algorithm={props.algorithm}
             algorithmRunning={props.algorithmRunning}
           />
           <ClearGridButton
