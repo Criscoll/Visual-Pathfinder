@@ -297,7 +297,7 @@ class Grid extends Component {
   }
 
   createNode(row, col) {
-    if (row === 8 && col === 10) {
+    if (row === 10 && col === 10) {
       const nodeObject = {
         row: row,
         col: col,
@@ -310,7 +310,7 @@ class Grid extends Component {
 
       this.setState({ startNode: nodeObject });
       return nodeObject;
-    } else if (row === 8 && col === 38) {
+    } else if (row === 10 && col === 51) {
       const nodeObject = {
         row: row,
         col: col,
