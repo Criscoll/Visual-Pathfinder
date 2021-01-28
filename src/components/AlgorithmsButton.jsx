@@ -85,7 +85,7 @@ export default function MenuListComposition(props) {
           disabled={props.algorithmRunning}
         >
           {algorithm}
-          <ArrowDropDownIcon />
+          <ArrowDropDownIcon classes={{ root: classes.button }} />
         </Button>
         <Popper
           open={open}

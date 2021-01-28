@@ -85,7 +85,7 @@ export default function MazeGeneratorButton(props) {
           disabled={props.algorithmRunning}
         >
           {maze}
-          <ArrowDropDownIcon />
+          <ArrowDropDownIcon classes={{ root: classes.button }} />
         </Button>
         <Popper
           open={open}

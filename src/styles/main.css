@@ -414,14 +414,18 @@
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  height: 8vh;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 4vh;
   width: 50%;
-  margin-left: 1rem;
+  margin-left: 1vh;
+  margin-top: 0.8vh;
 }
 
 .stats-container > p, .prev-stats-container > p {
   font-family: 'Share Tech', sans-serif;
-  font-size: 1.2rem;
+  font-size: 2.1vh;
   font-weight: 1rem;
 }
 
@@ -451,7 +455,8 @@
 
 #info-container > p {
   font-family: 'Ubuntu', sans-serif;
-  font-size: 1.2rem;
+  font-size: 2.1vh;
+  margin-bottom: 3.2vh;
 }
 
 .bold {

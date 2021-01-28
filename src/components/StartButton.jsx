@@ -6,9 +6,11 @@ import * as enumerations from '../constants/enumerations';
 const useStyles = makeStyles(() => ({
   root: {
     fontFamily: 'Ubuntu',
-    fontSize: '2.8vh',
+    fontSize: '2.7vh',
     backgroundColor: '#8F3131',
-    boxShadow: '0 0 0.4rem black',
+    boxShadow: '0 0 0.4vh black',
+    width: '25vh',
+    height: '6vh',
     color: 'white',
     '&:hover': {
       backgroundColor: 'rgb(189, 15, 47)',
@@ -16,7 +18,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-export default function ClearGridButton(props) {
+export default function StartButton(props) {
   const classes = useStyles();
   return (
     <Button

@@ -2,14 +2,16 @@
   position: absolute;
   display: flex;
   justify-content: space-between;
-  height: 8vh;
+  align-items: center;
+  height: 4vh;
   width: 50%;
-  margin-left: 1rem;
+  margin-left: 1vh;
+  margin-top: 0.8vh;
 }
 
 .stats-container > p {
   font-family: 'Share Tech', sans-serif;
-  font-size: 1.2rem;
+  font-size: 2.1vh;
   font-weight: 1rem;
 }
 
