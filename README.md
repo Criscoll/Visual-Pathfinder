@@ -1,6 +1,6 @@
 
 # Deployed with Netlify
-https://quizzical-curie-78bd49.netlify.app/
+https://criscoll-visual-pathfinder.netlify.app/
 
 # About this project
 This project aims to be an informative graphical tool for anyone trying to wrap their heads around a variety of pathfinding algorithms or who wishes to compare how two algorithms work given the same graph layout. Each algorithm is run on a 2d grid where obstacles can be placed and the positions of the start and end positions can be modified. Once started the algorithm will begin to search the grid for the goal node according to its own rules and methods which can be seen in real time. 
