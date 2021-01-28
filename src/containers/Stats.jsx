@@ -33,6 +33,7 @@ export default function Stats(props) {
       setCurrStats(null);
       setPrevStats(null);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props]);
 
   useEffect(() => {
