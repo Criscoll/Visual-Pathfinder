@@ -1,0 +1,31 @@
+{
+  "files": {
+    "main.css": "/static/css/main.73237fc2.chunk.css",
+    "main.js": "/static/js/main.d5c6145e.chunk.js",
+    "main.js.map": "/static/js/main.d5c6145e.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.83c3e0c4.js",
+    "runtime-main.js.map": "/static/js/runtime-main.83c3e0c4.js.map",
+    "static/css/2.28f0137e.chunk.css": "/static/css/2.28f0137e.chunk.css",
+    "static/js/2.b82015d6.chunk.js": "/static/js/2.b82015d6.chunk.js",
+    "static/js/2.b82015d6.chunk.js.map": "/static/js/2.b82015d6.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.b993cba672725864092b0589fd32cea6.js": "/precache-manifest.b993cba672725864092b0589fd32cea6.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.28f0137e.chunk.css.map": "/static/css/2.28f0137e.chunk.css.map",
+    "static/css/main.73237fc2.chunk.css.map": "/static/css/main.73237fc2.chunk.css.map",
+    "static/js/2.b82015d6.chunk.js.LICENSE.txt": "/static/js/2.b82015d6.chunk.js.LICENSE.txt",
+    "static/media/index.css": "/static/media/Ubuntu-Regular.2505bfbd.ttf",
+    "static/media/main.css": "/static/media/circuit-board.ed7d9d2d.svg",
+    "static/media/moving-nodes.gif": "/static/media/moving-nodes.ce3e85ff.gif",
+    "static/media/pathfinder-logo.svg": "/static/media/pathfinder-logo.68ad7b69.svg",
+    "static/media/pathfinding.gif": "/static/media/pathfinding.1e9b9135.gif",
+    "static/media/placing-obstacles.gif": "/static/media/placing-obstacles.a675e19b.gif"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.83c3e0c4.js",
+    "static/css/2.28f0137e.chunk.css",
+    "static/js/2.b82015d6.chunk.js",
+    "static/css/main.73237fc2.chunk.css",
+    "static/js/main.d5c6145e.chunk.js"
+  ]
+}
