@@ -95,10 +95,11 @@ function PageTwo() {
         </p>
 
         <p>
-          A quick note: On this grid, these algoritms run very fast! So fast in
-          fact I have manually slowed down their searching behaviour to help
-          actually visualise what is happening, its not fun seeing everything
-          happen in a milisecond or two :)
+          <span className="algorithm-bold">A quick note:</span> On this grid,
+          these algoritms run very fast! So fast in fact I have manually slowed
+          down their searching behaviour to help actually visualise what is
+          happening, its not fun seeing everything happen in a milisecond or two
+          :)
         </p>
         <img src={Pathfinding} alt="logo" width="30%"></img>
       </div>

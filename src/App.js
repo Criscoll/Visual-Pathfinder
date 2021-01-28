@@ -27,6 +27,7 @@ class Main extends Component {
       algorithmUsed: null,
       pathLength: null,
       nodesChecked: null,
+      timeElapsed: null,
       clearStats: false,
       weightsDisabled: false,
       tutorialModalOpen: true,
@@ -40,6 +41,7 @@ class Main extends Component {
       algorithmUsed: null,
       pathLength: null,
       nodesChecked: null,
+      timeElapsed: null,
       clearStats: true,
     });
   }
@@ -51,6 +53,7 @@ class Main extends Component {
       algorithmUsed: this.state.algorithmName,
       pathLength: null,
       nodesChecked: null,
+      timeElapsed: null,
     });
   }
 
@@ -79,10 +82,11 @@ class Main extends Component {
     }
   }
 
-  setStats(pathLength, nodesChecked) {
+  setStats(pathLength, nodesChecked, timeElapsed) {
     this.setState({
       pathLength: pathLength,
       nodesChecked: nodesChecked,
+      timeElapsed: timeElapsed,
       clearStats: false,
     });
   }
@@ -118,6 +122,7 @@ class Main extends Component {
           algorithmUsed={this.state.algorithmUsed}
           pathLength={this.state.pathLength}
           nodesChecked={this.state.nodesChecked}
+          timeElapsed={this.state.timeElapsed}
           clearStats={this.state.clearStats}
         />
         <Info selectedAlgorithm={this.state.algorithm} />

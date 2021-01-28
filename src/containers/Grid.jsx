@@ -584,7 +584,7 @@ class Grid extends Component {
 
   visualisePath(result, startNode, endNode) {
     let visitedNodes = result.visitedNodes;
-
+    let startTime = new Date();
     // visualise visited nodes
     for (let i = 0; i < visitedNodes.length; i++) {
       setTimeout(() => {
@@ -619,6 +619,7 @@ class Grid extends Component {
         this.props.setAlgorithmRunning(false);
         return;
       }
+      let endTime = new Date();
 
       let prev = endNode.prev;
 
@@ -662,8 +663,10 @@ class Grid extends Component {
         ).className = 'end-node-found';
       }, 40 * i + 1);
 
+      let timeElapsed = endTime - startTime;
+
       this.props.setAlgorithmRunning(false);
-      this.props.setStats(pathNodes.length, visitedNodes.length);
+      this.props.setStats(pathNodes.length, visitedNodes.length, timeElapsed);
     }, 25 * visitedNodes.length);
   }
 }

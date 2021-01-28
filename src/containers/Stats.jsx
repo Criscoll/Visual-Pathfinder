@@ -8,22 +8,25 @@ export default function Stats(props) {
   const currStatsStable = currStats;
 
   useEffect(() => {
-    if (props.pathLength && props.nodesChecked) {
+    if (props.pathLength && props.nodesChecked && props.timeElapsed) {
       setCurrStats({
         algorithmUsed: props.algorithmUsed,
         pathLength: props.pathLength,
         nodesChecked: props.nodesChecked,
+        timeElapsed: props.timeElapsed,
       });
     } else {
       if (currStatsStable && !props.clearStats) {
         let algorithmUsed = currStatsStable.algorithmUsed;
         let pathLength = currStatsStable.pathLength;
         let nodesChecked = currStatsStable.nodesChecked;
+        let timeElapsed = currStatsStable.timeElapsed;
 
         setTempStats({
           algorithmUsed: algorithmUsed,
           pathLength: pathLength,
           nodesChecked: nodesChecked,
+          timeElapsed: timeElapsed,
         });
 
         setCurrStats(null);
@@ -49,6 +52,7 @@ export default function Stats(props) {
             <p>Algorithm used: {currStats.algorithmUsed}</p>
             <p>Path Length: {currStats.pathLength}</p>
             <p>Nodes Visited: {currStats.nodesChecked - 1}</p>
+            <p>Time Elapsed: {currStats.timeElapsed / 1000}s</p>
           </React.Fragment>
         ) : null}
       </div>
@@ -60,6 +64,7 @@ export default function Stats(props) {
             <p>Algorithm used: {prevStats.algorithmUsed}</p>
             <p>Path Length: {prevStats.pathLength}</p>
             <p>Nodes Visited: {prevStats.nodesChecked - 1}</p>
+            <p>Time Elapsed: {prevStats.timeElapsed / 1000}s</p>
           </React.Fragment>
         ) : null}
       </div>
