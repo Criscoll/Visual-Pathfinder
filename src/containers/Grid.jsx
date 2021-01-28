@@ -616,8 +616,6 @@ class Grid extends Component {
     // visualise shortest path
     setTimeout(() => {
       if (result.pathFound === false) {
-        document.getElementById('loading_sound').pause();
-        document.getElementById('loading_sound').currentTime = 0;
         this.props.setAlgorithmRunning(false);
         return;
       }
@@ -664,8 +662,6 @@ class Grid extends Component {
         ).className = 'end-node-found';
       }, 40 * i + 1);
 
-      // document.getElementById('loading_sound').pause();
-      // document.getElementById('loading_sound').currentTime = 0;
       this.props.setAlgorithmRunning(false);
       this.props.setStats(pathNodes.length, visitedNodes.length);
     }, 25 * visitedNodes.length);
