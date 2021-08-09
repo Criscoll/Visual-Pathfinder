@@ -10,7 +10,9 @@ Please note that for the project I have set my own speed for how fast the nodes 
 The project was built using Javascript, React and styled using SASS.
 
 
-# Project Demo Pics
+# Demo
+
+### Pathfinding Custom Layout
 ![image](https://drive.google.com/uc?export=view&id=1yNBNvlO3i5_P5TeWB8Zh935UNVtwrp3P)
 
 
@@ -21,5 +23,9 @@ The project was built using Javascript, React and styled using SASS.
 
 
 ![image](https://drive.google.com/uc?export=view&id=1g2IkXiVfCdZXwlWmwumS-Dy_cLgQy3-w)
+
+
+### Maze Generation 
+![image](https://drive.google.com/uc?export=view&id=1ZOEK7EQ8qHgZFAnsD6St-6CMlNWRDBl3)
 
 
