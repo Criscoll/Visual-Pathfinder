@@ -11,21 +11,14 @@ The project was built using Javascript, React and styled using SASS.
 
 
 # Demo
-
-### Pathfinding Custom Layout
-![image](https://drive.google.com/uc?export=view&id=1yNBNvlO3i5_P5TeWB8Zh935UNVtwrp3P)
-
-
-![image](https://drive.google.com/uc?export=view&id=1S1JZchgnphUFGUcg8JA2G2Av1s4QGw8Y)
-
-
-![image](https://drive.google.com/uc?export=view&id=1gYqX12i_Sa5OMZwx6TSLuj2HxNkyTqWC)
-
-
-![image](https://drive.google.com/uc?export=view&id=1g2IkXiVfCdZXwlWmwumS-Dy_cLgQy3-w)
-
+### Latest Version UI
+![cover](https://drive.google.com/uc?export=view&id=1L0MHwB9PGytLoPaSVapBMvck0LgP1U51)
 
 ### Maze Generation 
-![image](https://drive.google.com/uc?export=view&id=1ZOEK7EQ8qHgZFAnsD6St-6CMlNWRDBl3)
+![maze-generator-gif](https://drive.google.com/uc?export=view&id=1ZOEK7EQ8qHgZFAnsD6St-6CMlNWRDBl3)
 
-
+### Pathfinding Custom Layout (Old Version) 
+![image](https://drive.google.com/uc?export=view&id=1yNBNvlO3i5_P5TeWB8Zh935UNVtwrp3P)
+![image](https://drive.google.com/uc?export=view&id=1S1JZchgnphUFGUcg8JA2G2Av1s4QGw8Y)
+![image](https://drive.google.com/uc?export=view&id=1gYqX12i_Sa5OMZwx6TSLuj2HxNkyTqWC)
+![image](https://drive.google.com/uc?export=view&id=1g2IkXiVfCdZXwlWmwumS-Dy_cLgQy3-w)
